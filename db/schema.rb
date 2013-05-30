@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530141038) do
+ActiveRecord::Schema.define(:version => 20130530151256) do
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -20,8 +20,22 @@ ActiveRecord::Schema.define(:version => 20130530141038) do
     t.datetime "deleted_at"
     t.boolean  "featured"
     t.boolean  "active"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.decimal  "base_price",  :precision => 8, :scale => 2
   end
+
+  create_table "variants", :force => true do |t|
+    t.integer  "product_id"
+    t.string   "sku"
+    t.string   "name"
+    t.decimal  "price",      :precision => 8, :scale => 2
+    t.datetime "deleted_at"
+    t.boolean  "master"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+  end
+
+  add_index "variants", ["product_id"], :name => "index_variants_on_product_id"
 
 end
