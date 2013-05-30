@@ -13,6 +13,7 @@ gem 'rmagick'
 gem 'kaminari'
 gem "friendly_id"
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem "haml"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,6 +37,7 @@ group :test do
   gem "capybara"
   gem "guard-rspec"
   gem "faker"
+  gem "launchy"
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
