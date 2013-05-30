@@ -38,6 +38,30 @@ class Product < ActiveRecord::Base
   def price
     hero_variant.price
   end
+  
+  def lowest_price
+    price_range.first.to_f
+  end
+  
+  def active?(at = Time.zone.now)
+    deleted_at.nil? || deleted_at >= at
+  end
+
+  def activate!
+    self.deleted_at = nil
+    save
+  end
+
+  def self.featured
+    product = where({ :products => {:featured => true} } ).first
+    product ? product : where(['products.deleted_at IS NULL']).first
+  end
+  
+  def self.active
+    where("products.deleted_at IS NULL OR products.deleted_at > ?", Time.zone.now)
+  end
+  
+  
 
 
 end

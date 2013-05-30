@@ -72,7 +72,47 @@ describe Product do
        expect(@product.price).to eq(90.0)
     end
     
-
+    it "can return the lowest price" do
+      variant = @product.variants.first
+      variant.price = 2.00
+      variant.save
+      variant2 = @product.variants.create(name: "Whats", price: 90.00, master: true)
+      expect(@product.lowest_price).to eq(2.0)
+    end
+    
+    it "can tell you if it is deleted or not: active" do
+      expect(@product.active?).to be_true
+      @product.deleted_at = Time.zone.now
+      @product.save
+      expect(@product.active?).to be_false
+    end
+    
+    it "has an activate! method that undeletes a product" do
+      expect(@product.active?).to be_true
+      @product.deleted_at = Time.zone.now
+      @product.save
+      expect(@product.active?).to be_false
+      @product.activate!
+      expect(@product.active?).to be_true
+    end 
+  end
+  
+  describe "class methods" do
+    it "can return the first featured product or first product if none featured" do
+      @product.featured = false
+      @product.save
+      product_featured = create(:product, name: "the best", featured: true)
+      expect(Product.featured).to eql product_featured
+    end
+    
+    it "can return products that are active read: Not deleted" do
+      @product.deleted_at = Time.now
+      @product.save
+      active_product = create(:product, name: "the best")
+      expect(Product.active).to include active_product
+      expect(Product.active)
+    end
+    
   end
   
 end
