@@ -21,4 +21,23 @@ class Product < ActiveRecord::Base
     variants.detect{ |v| v.master } || variants.first
   end
   
+  def display_price_range(j = ' to ')
+    price_range.join(j)
+  end
+  
+  def price_range
+    return @price_range if @price_range
+    return @price_range = ['N/A', 'N/A'] if active_variants.empty?
+    @price_range = active_variants.minmax {|a,b| a.price <=> b.price }.map(&:price)
+  end
+  
+  def price_range?
+     !(price_range.first == price_range.last)
+  end
+  
+  def price
+    hero_variant.price
+  end
+
+
 end

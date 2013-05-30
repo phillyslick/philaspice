@@ -4,6 +4,6 @@ FactoryGirl.define do
     description {Faker::Lorem.sentences(2)}
     deleted_at nil
     featured true
-    base_price 9.99
+    base_price 9.94
   end
 end

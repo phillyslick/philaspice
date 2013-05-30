@@ -43,16 +43,36 @@ describe Product do
     
     it "has active variants that are not deleted" do
       expect(@product.active_variants.count).to be(1)
-      @product.variants.create(name: "product", price: "2.00", deleted_at: Time.now)
+      @product.variants.create(name: "product", price: 2.00, deleted_at: Time.now)
       expect(@product.active_variants.count).to be(1)
-      @product.variants.create(name: "product", price: "2.00", deleted_at: nil)
+      @product.variants.create(name: "product", price: 2.00, deleted_at: nil)
       expect(@product.active_variants.count).to be(2)
     end
     
   end
   
   describe "instance methods" do
+    it "has a price_range that returns a range of variant prices" do
+      variant = @product.variants.first
+      variant.price = 2.00
+      variant.save
+      variant2 = @product.variants.create(name: "Whats", price: 90.00)
+      expect(@product.display_price_range).to eq "2.0 to 90.0"
+    end
     
+    it "returns n/a if no active variants" do
+      variant = @product.variants.first
+      variant.deleted_at = Time.now
+      variant.save
+      expect(@product.display_price_range).to eq "N/A to N/A"
+    end
+    
+    it "has a price that returns the hero_variant's price" do
+       variant2 = @product.variants.create(name: "Whats", price: 90.00, master: true)
+       expect(@product.price).to eq(90.0)
+    end
+    
+
   end
   
 end
