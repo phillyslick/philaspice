@@ -17,8 +17,8 @@ development:
   encoding: unicode
   database: philaspice_development
   pool: 5
-  username: philaspice
-  password:
+  username: slick
+  password: 
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -43,13 +43,14 @@ test:
   encoding: unicode
   database: philaspice_test
   pool: 5
-  username: philaspice
+  username: slick
   password:
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: philaspice_production
-  pool: 5
-  username: philaspice
-  password:
+#production:
+#  adapter: postgresql
+#  encoding: unicode
+#  database: philaspice_production
+#  pool: 5
+#  username: philaspice
+#  password:
+#
