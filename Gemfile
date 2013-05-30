@@ -1,12 +1,18 @@
 source 'https://rubygems.org'
-
+ruby '2.0.0'
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-
+gem 'thin'
+gem 'devise'
+gem 'carrierwave'
+gem 'rmagick'
+gem 'kaminari'
+gem "friendly_id"
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,7 +27,16 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem "rb-fsevent"
+gem "rspec-rails", :group => [:test, :development]
 
+
+group :test do
+  gem "factory_girl_rails", "~> 4.0"
+  gem "capybara"
+  gem "guard-rspec"
+  gem "faker"
+end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
