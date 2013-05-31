@@ -51,6 +51,12 @@ describe Product do
     
   end
   
+  describe "category interaction" do
+    it "can have a category" do
+      expect(@product.category.class).to be Category
+    end
+  end
+  
   describe "instance methods" do
     it "has a price_range that returns a range of variant prices" do
       variant = @product.variants.first

@@ -1,15 +1,20 @@
 Philaspice::Application.routes.draw do
   
   resources :products do
+    
     member do
       get :revive
     end
+    
     resources :variants do
       member do
         get :revive
       end
     end
+    
   end
+  
+  resources :categories
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

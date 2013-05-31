@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
   has_many :active_variants, 
              class_name: "Variant", 
              conditions: ["variants.deleted_at IS NULL"]
+  belongs_to :category
 
   accepts_nested_attributes_for :variants
   
