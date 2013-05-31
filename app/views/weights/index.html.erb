@@ -1,0 +1,13 @@
+<%= content_tag :h1, "Manage Weights" %>
+
+<ul class="weights">
+
+	<% @weights.each do |weight| %>
+		<li class="weight_<%= weight.id %>">	
+			<%= "Ounces #{weight.ounces}" %>
+			<%= "Pounds: #{weight.pounds}" %>
+		</li>
+	<% end %>
+
+</ul>
+<%= link_to "Add Weight", new_weight_path %>

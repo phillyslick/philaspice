@@ -1,0 +1,8 @@
+<%= content_tag :h1, "Add a Weight" %>
+
+<%= form_for @weight do |f| %>
+<%= select_tag :measurement, "<option value='ounces'>Ounces</option><option value='pounds'>Pounds</option>".html_safe %>
+	<%= text_field_tag :value%>
+	
+	<%= f.submit "Create" %>
+<% end %>
