@@ -79,31 +79,32 @@ describe "Variant Management" do
   it "can deactivate a variant" do
     expect(page).to have_content "#{@variant.name}"
     within("li#variant_#{@variant.id}") do
-      click_link "Edit"
+      click_link "Deactivate"
     end
-    within("form") do
-      check "Deactivate:"
-      click_button("Update")
+    within("li#variant_#{@variant.id}") do
+      click_link "Details"
     end
      expect(page).to have_content "Status: Not Active"
   end
   
   
   it "can revive a variant" do
+    expect(page).to have_content "#{@variant.name}"
     within("li#variant_#{@variant.id}") do
-      click_link "Edit"
+      click_link "Deactivate"
     end
-    within("form") do
-      check "Deactivate:"
-      click_button("Update")
+    within("li#variant_#{@variant.id}") do
+      click_link "Details"
     end
      expect(page).to have_content "Status: Not Active"
-      click_link "Edit"
-      save_and_open_page
-     within("form") do
-       uncheck "Deactivate:"
-       click_button("Update")
+     click_link "Back to Products"
+     within("li#variant_#{@variant.id}") do
+       click_link "Activate"
      end
+     within("li#variant_#{@variant.id}") do
+       click_link "Details"
+     end
+     
       expect(page).to have_content "Status: Active"
   end
   
