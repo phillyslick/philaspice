@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
-  attr_accessible :active, :deleted_at, :description, :featured, :name, :slug, :base_price
+  attr_accessible :active, :deleted_at, :description, :featured, :name, :slug, :temp_price
+  attr_accessor :temp_price
   
   has_many :variants
   has_many :active_variants, 
@@ -8,12 +9,12 @@ class Product < ActiveRecord::Base
 
   accepts_nested_attributes_for :variants
   
-  validates_presence_of :name, :base_price
+  validates_presence_of :name, :temp_price
   
   after_create :check_for_variants
   
   def check_for_variants
-    variants.create(name: name, price: base_price) if variants.count < 1
+    variants.create(name: name, price: temp_price) if variants.count < 1
     save
   end
   

@@ -17,10 +17,10 @@ describe Product do
       expect(@product).to be_valid
     end
     
-    it "must have a base_price" do
-      @product.base_price = nil
-      expect(@product).to have(1).errors_on :base_price
-      @product.base_price = 9.00
+    it "has a virtual attribute base_price" do
+      @product.temp_price = nil
+      expect(@product).to have(1).errors_on :temp_price
+      @product.temp_price = 9.00
       expect(@product).to be_valid
     end
     
