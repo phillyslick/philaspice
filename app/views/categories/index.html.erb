@@ -1,0 +1,15 @@
+<%= content_tag :h1, "All Categories" %>
+
+<ul class="categories">
+	<% @categories.each do |category| %>
+		<li class="category_<%= category.id %>">
+			<%= category.name %>
+			<div class="actions">
+				<%= link_to "Edit", edit_category_path(category) %>
+			</div>
+		</li>
+	<% end %>
+</ul>
+
+
+<%= link_to "New Category", new_category_path %>

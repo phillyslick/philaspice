@@ -1,0 +1,8 @@
+<%= content_tag :h1, "Create a New Category" %>
+
+<%= form_for @category do |f| %>
+	<%= f.label :name, "Name:" %>
+	<%= f.text_field :name %>
+	
+	<%= f.submit "Create" %>
+<% end %>
