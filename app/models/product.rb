@@ -9,7 +9,8 @@ class Product < ActiveRecord::Base
 
   accepts_nested_attributes_for :variants
   
-  validates_presence_of :name, :temp_price
+  validates_presence_of :name
+  validates_presence_of :temp_price, if: "new_record?"
   
   after_create :check_for_variants
   
@@ -60,6 +61,10 @@ class Product < ActiveRecord::Base
   
   def self.active
     where("products.deleted_at IS NULL OR products.deleted_at > ?", Time.zone.now)
+  end
+  
+  def self.inactive
+    where("products.deleted_at IS NOT NULL OR products.deleted_at > ?", Time.zone.now)
   end
   
   

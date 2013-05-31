@@ -17,11 +17,11 @@ describe Product do
       expect(@product).to be_valid
     end
     
-    it "has a virtual attribute base_price" do
-      @product.temp_price = nil
-      expect(@product).to have(1).errors_on :temp_price
-      @product.temp_price = 9.00
-      expect(@product).to be_valid
+    it "has a virtual attribute base_price, only validated if new_record" do
+      new_product = build(:product, temp_price: nil)
+      expect(new_product).to have(1).errors_on :temp_price
+      new_product.temp_price = 9.00
+      expect(new_product).to be_valid
     end
     
   end
@@ -110,7 +110,17 @@ describe Product do
       @product.save
       active_product = create(:product, name: "the best")
       expect(Product.active).to include active_product
-      expect(Product.active)
+      expect(Product.active).to_not include @product
+    end
+    
+    it "can return products that are inactive" do
+      @product.deleted_at = nil
+      @product.save
+      expect(Product.inactive).to_not include @product
+      @product.deleted_at = Time.zone.now
+      @product.save
+      expect(Product.inactive).to include @product
+      
     end
     
   end

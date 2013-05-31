@@ -1,8 +1,15 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
-    @variants = Variant.all
-    #show variants for each
+    
+    if params[:active] == 'true'
+      @products = Product.active
+    elsif params[:active] == 'false'
+      @products = Product.inactive
+    else
+      @products = Product.active
+    end
+    
+    
   end
   
   def show
@@ -43,4 +50,18 @@ class ProductsController < ApplicationController
       
   end
 
+  def destroy
+    @product = Product.find(params[:id])
+    @product.deleted_at ||= Time.zone.now
+    @product.save
+    redirect_to products_path
+  end
+  
+  def revive
+    @product = Product.find(params[:id])
+    @product.deleted_at = nil
+    @product.save
+    redirect_to products_path
+  end
+  
 end

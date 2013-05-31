@@ -36,9 +36,38 @@ describe "Product Management" do
   
   it "can show a product"
   
-  it "can destroy a product"
+  it "can deactivate a product" do
+    expect(page).to have_content "#{@product.name}"
+    within("li#product_#{@product.id}") do
+      click_link "Deactivate"
+    end
+     expect(page).to_not have_content "#{@product.name}"
+  end
   
-  it "can revive a product"
+  it "can show only deactivated products" do
+    expect(page).to have_content "#{@product.name}"
+    within("li#product_#{@product.id}") do
+      click_link "Deactivate"
+    end
+     expect(page).to_not have_content "#{@product.name}"
+    within("nav.filter") do
+      click_link "Inactive"
+    end
+     expect(page).to have_content "#{@product.name}"
+  end
+  
+  it "can revive a product" do
+    within("li#product_#{@product.id}") do
+      click_link "Deactivate"
+    end
+    within("nav.filter") do
+      click_link "Inactive"
+    end
+    within("li#product_#{@product.id}") do
+      click_link "Activate"
+    end
+     expect(page).to have_content "#{@product.name}"
+  end
   
 
 end

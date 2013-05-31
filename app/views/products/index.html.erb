@@ -1,9 +1,12 @@
 <%= content_tag :h1, "Product Management" %>
 
+<%= render :partial => 'active_nav' %>
+
 <ul>
 	<% @products.each do |product| %>
 	<li id="product_<%= product.id %>">
-		<%= "Name: #{product.name} | Actions: #{link_to 'Edit', edit_product_path(product)}".html_safe  %>
+		<%= "Name: #{product.name} | Actions: #{link_to 'Edit', edit_product_path(product)} | #{link_to 'Details', product}".html_safe  %>
+		<%= product.active? ? (link_to 'Deactivate', product, method: :delete) : (link_to 'Activate', revive_product_path(product)) %>
 		<ul>
 			<% product.variants.each do |variant| %>
 				<%= variant.name %> | <%= variant.price %>
