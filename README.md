@@ -12,7 +12,9 @@
 - I'd say display the product, then have a show variant tab that slides open to show all variants. Create Variant Button from index view and show view.
 
 #NEXT
+-THE FUCKING CHECKBOX FUCK IT 
 - Categories (prototypes)
 - Images (you have to update Product.featured to include(:images), because a featured product has to have an image) see product.rb:: self.featured
 - STOCK - how is he handling stock? - I'm thinking just boolean, which would let me skip inventory for now..
-- All Properties, figure out how to do this at every level - if you even want them at all levels
+- Weight
+- Deactive variants on product index could be greyed out

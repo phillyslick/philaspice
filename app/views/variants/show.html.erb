@@ -1,0 +1,9 @@
+<%= @variant.name %>
+
+<%= @variant.price %>
+
+<%= "Status: #{@variant.status}" %>
+
+
+<%= link_to "Edit", edit_product_variant_path(@product, @variant) %>
+<%= link_to "Back to Products", products_path %>

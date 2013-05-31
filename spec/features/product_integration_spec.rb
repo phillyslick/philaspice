@@ -24,7 +24,9 @@ describe "Product Management" do
   it "can edit a product" do
     #save_and_open_page
     within("li#product_#{@product.id}") do
-      click_link "Edit"
+      within('span.productDeets') do
+        click_link "Edit"
+      end
     end
     expect(page).to have_content "Edit #{@product.name}"
     within("form") do
@@ -68,6 +70,8 @@ describe "Product Management" do
     end
      expect(page).to have_content "#{@product.name}"
   end
+  
+ 
   
 
 end

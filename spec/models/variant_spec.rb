@@ -57,9 +57,33 @@ describe Variant do
       @variant.save
       expect(@variant.name_with_sku).to eq "Meees"
     end
-    
-    
-    
-    
+
   end
+  
+  context "class methods" do
+   #it "can return the first featured variant or first product if none featured" do
+   #  @product.featured = false
+   #  @product.save
+   #  product_featured = create(:product, name: "the best", featured: true)
+   #  expect(Product.featured).to eql product_featured
+   #end
+    
+    it "can return variants that are active read: Not deleted" do
+      @variant.deleted_at = Time.now
+      @variant.save
+      active_variant = create(:variant, name: "the best")
+      expect(Variant.active).to include active_variant
+      expect(Variant.active).to_not include @variant
+    end
+    
+    it "can return variants that are inactive" do
+      @variant.deleted_at = nil
+      @variant.save
+      expect(Variant.inactive).to_not include @variant
+      @variant.deleted_at = Time.zone.now
+      @variant.save
+      expect(Variant.inactive).to include @variant
+    end
+  end
+  
 end

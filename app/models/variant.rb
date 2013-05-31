@@ -1,8 +1,9 @@
 class Variant < ActiveRecord::Base
   belongs_to :product
-  attr_accessible :deleted_at, :master, :name, :price, :sku
-  
-  validates_presence_of :price, :name
+  attr_accessor :delete
+  attr_accessible :deleted_at, :master, :name, :price, :sku, :delete
+
+  validates_presence_of :price, :name 
   
   def active?
     deleted_at.nil? || deleted_at > Time.zone.now
@@ -18,12 +19,25 @@ class Variant < ActiveRecord::Base
     save
   end
   
+  def status
+    active? ? "Active" : "Not Active"
+  end
+  
   def product_name
     name? ? name : product.name
   end
   
   def name_with_sku
     [product_name, sku].compact.join(': ')
+  end
+  
+  
+  def self.active
+    where("variants.deleted_at IS NULL OR variants.deleted_at > ?", Time.zone.now)
+  end
+  
+  def self.inactive
+    where("variants.deleted_at IS NOT NULL OR variants.deleted_at > ?", Time.zone.now)
   end
   
 end
