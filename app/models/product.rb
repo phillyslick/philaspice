@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   attr_accessible :active, :deleted_at, :description, :featured,
-   :name, :slug, :temp_price, :variants_attributes
+   :name, :slug, :temp_price, :variants_attributes, :category_id
   attr_accessor :temp_price
   
   has_many :variants
@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
              conditions: ["variants.deleted_at IS NULL"]
   belongs_to :category
 
-  accepts_nested_attributes_for :variants
+  accepts_nested_attributes_for :variants, :category
   
   validates_presence_of :name
   #validates_presence_of :temp_price, if: "new_record?"

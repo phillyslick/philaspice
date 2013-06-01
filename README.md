@@ -4,7 +4,6 @@
 -
 ###Variants
 - Need to see if he uses SKUs
-- Shift pricing from just price to another price range - this time for all the different weights.  Also a lowest price method.  
 - Ability to add weights "on the fly" in the variant/product page
 
 ###Categories
@@ -21,8 +20,7 @@
 - Implement editing in place so that you can get rid of shows or edits where you're not using them...
 
 #NEXT 
-- So set the default weight when first creating a product/variant. 
 - GroupBy Category on Product Page, and Also Filter by Category...
 - Images (you have to update Product.featured to include(:images), because a featured product has to have an image) see product.rb:: self.featured
-- STOCK - how is he handling stock? - I'm thinking just boolean, which would let me skip inventory for now..
+- STOCK - just boolean, which would let me skip inventory for now..
 

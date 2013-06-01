@@ -79,6 +79,21 @@ describe "Product Management" do
      expect(page).to have_content "#{@product.name}"
   end
   
+  it "can add a category" do
+    create(:category, name: "Nuts")
+    within("li#product_#{@product.id}") do
+      within('span.productDeets') do
+        click_link "Edit"
+      end
+    end
+  
+    within("form") do
+      select("Nuts", from: 'product_category_id')
+      click_button("Update")
+    end
+    expect(page).to have_content  "Nuts"
+      save_and_open_page
+  end
  
   
 

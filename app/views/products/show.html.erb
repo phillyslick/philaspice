@@ -1,4 +1,5 @@
 <%= content_tag :h1, @product.name %>
+<%= content_tag :h2, "in #{@product.category.name}" if @product.category %>
 
 <%= content_tag :h2, "All Variants" %>
 <ul>
