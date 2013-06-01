@@ -1,8 +1,8 @@
 class Weight < ActiveRecord::Base
   attr_accessible :ounces
   
-  has_many :variants, through: :variant_weights
-  has_many :variant_weights
+  has_many :variants, through: :prices
+  has_many :prices
   
   validates_presence_of :ounces
   accepts_nested_attributes_for :variants

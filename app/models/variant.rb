@@ -1,7 +1,7 @@
 class Variant < ActiveRecord::Base
   belongs_to :product
-  has_many :weights, through: :variant_weights
-  has_many :variant_weights
+  has_many :prices
+  has_many :weights, through: :prices
   
   accepts_nested_attributes_for :weights
   attr_accessor :delete
