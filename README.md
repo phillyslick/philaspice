@@ -7,7 +7,6 @@
 - Ability to add weights "on the fly" in the variant/product page
 
 ###Categories
-- Need to display products by categories.
 
 ###Weights
 - JS to automatically convert ounces to pounds in the weight new form.

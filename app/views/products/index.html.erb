@@ -1,50 +1,10 @@
-<%= content_tag :h1, "Product Management" %>
 
-<%= render :partial => 'active_nav' %>
-<%= form_tag(products_path, method: 'get', id: "filter", class: "form-inline") do %>
-	<%# hidden_field_tag :direction, params[:direction] %>
-  <%# hidden_field_tag :sort, params[:sort] %>
-	<%= hidden_field_tag :active, params[:active] %>
-	<%= collection_select :product, :category_id, Category.all, :id, :name, {prompt: "Select Category", selected: params[:product][:category_id]} %>
-	<%= submit_tag "Filter", class: "btn" %>
-<% end %>
+ <div class="span4">
+	 <%= content_tag :h1, "Product Management" %>
+<%= render :partial => 'navigation' %>
+<%= link_to "New Product", new_product_path %>
+</div>
 
-<ul>
-	<% @products.each do |product| %>
-	
-		<li id="product_<%= product.id %>">
-			
-			<span class="productDeets">
-				<%=( content_tag :h4, "Category: #{product.category.name}") if product.category %>
-				<%= "Name: #{product.name} | Price Range: #{product.display_price_range} Actions: #{link_to 'Edit', edit_product_path(product)} | #{link_to 'Details', product}".html_safe  %>
-				
-				<%= product.active? ? (link_to 'Deactivate', product, method: :delete) : (link_to 'Activate', revive_product_path(product)) %>
-			</span>
-			
-			
-			
-			<ul class="variants">
-				<% product.variants.each do |variant| %>
-				
-				<li id="variant_<%= variant.id %>">
-					<%= variant.name %> | <%= variant.price %>
-					<%= "Actions: #{link_to 'Edit', edit_product_variant_path(product, variant)} | #{link_to 'Details', product_variant_path(product,variant)}".html_safe %>
-					
-				
-					<%= variant.active? ? (link_to 'Deactivate', product_variant_path(product,variant), method: :delete) : (link_to 'Activate', revive_product_variant_path(product, variant)) %>
-					
-				<% end %>
-				
-				</li>
-				
-				<%= link_to "Add Variant", new_product_variant_path(product)%>
-			</ul>
-			
-			
-			
-		</li>
-		
-	<% end %>
-</ul>
 
-<%= link_to "New Product", new_product_path%>
+
+<%= render :partial => 'index' %>

@@ -6,6 +6,11 @@ class ProductsController < ApplicationController
     else
       params[:active] == 'false' ? @products = Product.inactive : @products = Product.active
     end
+   if params[:id]
+     @product = Product.find(params[:id])
+   else
+     @product = Product.first
+   end
   end
   
   def show

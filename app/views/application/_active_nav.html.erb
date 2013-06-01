@@ -1,7 +1,13 @@
 <nav class="filter">
 	<ul class="nav nav-tabs">
-		<li><%= link_to "All", {} %></li>
-		<li><%= link_to "Active", {active: 'true'} %></li>
-		<li><%= link_to "Inactive", {active: 'false'} %></li>
+		<% if params[:product] %>
+		<li <%= "class=active" if params[:active].blank? %>><%= link_to "All", {product: params[:product],category_id: params[:product][:category_id]}, data: {push: true, target: ".row-fluid"} %></li>
+		<li <%= "class=active" if params[:active] == 'true' %>><%= link_to "Active", {active: 'true', product: params[:product], category_id: params[:product][:category_id]}, data: {push: true, target: ".row-fluid"} %></li>
+		<li <%= "class=active" if params[:active] == 'false' %>><%= link_to "Inactive", {active: 'false', product: params[:product], category_id: params[:product][:category_id]}, data: {push:true, target: ".row-fluid"} %></li>
+		<% else %>
+		<li  <%= "class=active" unless params[:active] %>><%= link_to "All", {}, data: {push: true, target: ".row-fluid"} %></li>
+		<li <%= "class=active" if params[:active] == 'true' %>><%= link_to "Active", {active: 'true'}, data: {push: true, target: ".row-fluid"} %></li>
+		<li <%= "class=active" if params[:active] == 'false' %>><%= link_to "Inactive", {active: 'false'}, data: {push:true, target: ".row-fluid"} %></li>
+		<% end %>
 	</ul>
 </nav>

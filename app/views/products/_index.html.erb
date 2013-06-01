@@ -1,7 +1,8 @@
+<div id="rightDisplay" class="span8">
 
 <div id="productShow" class-"media">
 	<%= content_tag :h1, @product.name %>
-	<%= content_tag :h2, "in #{@product.category.name}" if @product.category %>
+	<%= content_tag :span, "in #{@product.category.name}", class: "label" if @product.category %>
 
 	<%= content_tag :h2, "All Variants" %>
 	<ul>
@@ -30,4 +31,7 @@
 	</ul>
 	<%= link_to "Edit", edit_product_path(@product) %>
 	<%= link_to "All Products", products_path %>
+</div>
+
+
 </div>
