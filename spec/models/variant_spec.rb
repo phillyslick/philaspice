@@ -60,6 +60,10 @@ describe Variant do
 
   end
   
+  context "Prices" do
+  
+  end
+  
   context "class methods" do
    #it "can return the first featured variant or first product if none featured" do
    #  @product.featured = false
