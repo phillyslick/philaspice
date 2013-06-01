@@ -1,7 +1,7 @@
 class CreatePrices < ActiveRecord::Migration
   def change
     create_table :prices do |t|
-      t.decimal :amount, precision: 9, scale: 4
+      t.decimal :amount, precision: 9, scale: 2
       t.references :variant
       t.references :weight
 

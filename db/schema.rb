@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20130601025312) do
   end
 
   create_table "prices", :force => true do |t|
-    t.decimal  "amount",     :precision => 9, :scale => 4
+    t.decimal  "amount",     :precision => 9, :scale => 2
     t.integer  "variant_id"
     t.integer  "weight_id"
     t.datetime "created_at",                               :null => false

@@ -61,7 +61,24 @@ describe Variant do
   end
   
   context "Prices" do
-  
+    it "has an add_price method that adds a price on a weight" do
+      @variant.add_price(9.99, 12)
+      weight = @variant.weights.first
+      expect(weight.ounces).to eq(12.0)
+    end
+    
+    it "can provide pounds if it wants to enter the price in pounds" do
+      @variant.add_price(9.99, 5.0, "pounds")
+      weight = @variant.weights.first
+      expect(weight.pounds).to eq(5.0)
+    end
+    
+    it "can return an array of all weights and prices" do
+      @variant.add_price(8.99, 16)
+      @variant.add_price(15.00, 32)
+      @variant.add_price(20.00, 48)
+      expect(@variant.all_prices).to eql([[8.99, 16],[15.00, 32], [20.00, 48]])
+    end
   end
   
   context "class methods" do
