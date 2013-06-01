@@ -10,12 +10,12 @@ describe Variant do
   end
   
   context "validations" do
-    it "must have a price" do
-      @variant.price = nil
-      expect(@variant).to have(1).errors_on :price
-      @variant.price = 9.99
-      expect(@variant).to have(0).errors_on :price
-    end
+   #it "must have a price" do
+   #  @variant.price = nil
+   #  expect(@variant).to have(1).errors_on :price
+   #  @variant.price = 9.99
+   #  expect(@variant).to have(0).errors_on :price
+   #end
     
     it "must have a name" do
       @variant.name = nil
@@ -73,12 +73,34 @@ describe Variant do
       expect(weight.pounds).to eq(5.0)
     end
     
+    it "can return an array of all prices" do
+      @variant.add_price(8.98, 16)
+      @variant.add_price(8.99, 32)
+      @variant.add_price(20.00, 48)
+      expect(@variant.all_prices).to eql([8.98,8.99,20.00])
+    end
+    
     it "can return an array of all weights and prices" do
+      @variant.add_price(8.98, 16)
+      @variant.add_price(8.99, 32)
+      @variant.add_price(20.00, 48)
+      expect(@variant.prices_with_weights).to eql([[8.98, 16],[8.99, 32], [20.00, 48]])
+    end
+    
+    it "can return a range of lowest to highest price" do
       @variant.add_price(8.99, 16)
       @variant.add_price(15.00, 32)
       @variant.add_price(20.00, 48)
-      expect(@variant.all_prices).to eql([[8.99, 16],[15.00, 32], [20.00, 48]])
+      expect(@variant.price_range).to eql([8.99,20.00])
     end
+    
+    it "can return a displayedrange of lowest to highest price" do
+      @variant.add_price(8.99, 16)
+      @variant.add_price(15.00, 32)
+      @variant.add_price(20.00, 48)
+      expect(@variant.display_price_range).to eql("8.99 to 20.0")
+    end
+    
   end
   
   context "class methods" do

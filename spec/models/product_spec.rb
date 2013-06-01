@@ -16,20 +16,9 @@ describe Product do
       @product.name = "Ground Pepper"
       expect(@product).to be_valid
     end
-    
-    it "has a virtual attribute base_price, only validated if new_record" do
-      new_product = build(:product, temp_price: nil)
-      expect(new_product).to have(1).errors_on :temp_price
-      new_product.temp_price = 9.00
-      expect(new_product).to be_valid
-    end
-    
   end
   
   describe "variant interaction" do
-    it "always has at least one variant" do
-      expect(@product.variants.count).to_not be(0)
-    end
     
     it "has a hero variant - the main variant" do
       non_hero = @product.variants.create(master: false, name: "product variant", price: "9.99")
@@ -38,10 +27,12 @@ describe Product do
     end
     
     it "defaults the hero variant to the first variant if none are marked as master" do
+       non_hero = @product.variants.create(master: false, name: "product variant", price: "9.99")
       expect(@product.hero_variant.id).to eq(@product.variants.first.id)
     end
     
     it "has active variants that are not deleted" do
+        non_hero = @product.variants.create(master: false, name: "product variant", price: "9.99")
       expect(@product.active_variants.count).to be(1)
       @product.variants.create(name: "product", price: 2.00, deleted_at: Time.now)
       expect(@product.active_variants.count).to be(1)
@@ -59,14 +50,19 @@ describe Product do
   
   describe "instance methods" do
     it "has a price_range that returns a range of variant prices" do
-      variant = @product.variants.first
-      variant.price = 2.00
-      variant.save
-      variant2 = @product.variants.create(name: "Whats", price: 90.00)
-      expect(@product.display_price_range).to eq "2.0 to 90.0"
+      non_hero = @product.variants.create(master: false, name: "product variant")
+      non_hero.prices.create(amount: 100)
+      non_hero.prices.create(amount: 10)
+      non_hero.prices.create(amount: 1)
+      variant = @product.variants.create(master: false, name: "product varian1t")
+      variant.prices.create(amount: 1010)
+      variant.prices.create(amount: 110)
+      variant.prices.create(amount: 32)
+      expect(@product.display_price_range).to eq "1.0 to 1010.0"
     end
     
     it "returns n/a if no active variants" do
+      non_hero = @product.variants.create(master: false, name: "product variant")
       variant = @product.variants.first
       variant.deleted_at = Time.now
       variant.save
@@ -79,11 +75,15 @@ describe Product do
     end
     
     it "can return the lowest price" do
-      variant = @product.variants.first
-      variant.price = 2.00
-      variant.save
-      variant2 = @product.variants.create(name: "Whats", price: 90.00, master: true)
-      expect(@product.lowest_price).to eq(2.0)
+      non_hero = @product.variants.create(master: false, name: "product variant")
+      non_hero.prices.create(amount: 100)
+      non_hero.prices.create(amount: 10)
+      non_hero.prices.create(amount: 1)
+      variant = @product.variants.create(master: false, name: "product varian1t")
+      variant.prices.create(amount: 1010)
+      variant.prices.create(amount: 110)
+      variant.prices.create(amount: 32)
+      expect(@product.lowest_price).to eq(1.0)
     end
     
     it "can tell you if it is deleted or not: active" do

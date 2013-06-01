@@ -7,18 +7,22 @@ class VariantsController < ApplicationController
   def new
     @product = Product.find(params[:product_id])
     @variant = @product.variants.build
+ 
   end
   
   def edit
     @product = Product.find(params[:product_id])
     @variant = Variant.find(params[:id])
     @variant.active? ? @active = true : @active = false
+    
   end
   
   def create
     @product = Product.find(params[:product_id])
     @variant = @product.variants.create(params[:variant])
+    
     if @variant.save
+      @variant.add_price(params[:price], params[:weight])
       flash[:notice] = "Variant Created"
       redirect_to product_variant_path(@product,@variant)
     else
@@ -58,6 +62,17 @@ class VariantsController < ApplicationController
     @variant.deleted_at = nil
     @variant.save
     redirect_to products_path
+  end
+  
+  def weights
+    @variant = Variant.find(params[:id])
+    @product = Product.find(params[:product_id])
+  end
+  
+  def save_weight
+    @variant = Variant.find(params[:id])
+    @variant.add_price(params[:price], params[:weight])
+    redirect_to weights_product_variant_path
   end
   
 end

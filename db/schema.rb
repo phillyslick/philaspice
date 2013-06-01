@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601025312) do
+ActiveRecord::Schema.define(:version => 20130601150833) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -49,11 +49,12 @@ ActiveRecord::Schema.define(:version => 20130601025312) do
     t.integer  "product_id"
     t.string   "sku"
     t.string   "name"
-    t.decimal  "price",      :precision => 8, :scale => 2
+    t.decimal  "price",       :precision => 8, :scale => 2
     t.datetime "deleted_at"
     t.boolean  "master"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.text     "description"
   end
 
   add_index "variants", ["product_id"], :name => "index_variants_on_product_id"

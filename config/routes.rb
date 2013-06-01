@@ -9,6 +9,8 @@ Philaspice::Application.routes.draw do
     resources :variants do
       member do
         get :revive
+        get :weights
+        put :save_weight
       end
     end
     

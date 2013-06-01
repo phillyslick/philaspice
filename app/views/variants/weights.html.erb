@@ -1,0 +1,36 @@
+
+
+<h1>Manager Weights/Prices for <%= @variant.name %></h1>
+<%= form_for([@product, @variant], url: save_weight_product_variant_path) do |f| %>
+
+<% if @variant.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@variant.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+    <ul>
+    <% @variant.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+	<div class="prices">
+		<% @variant.prices.each do |price| %>
+			<%= "#{price.weight.ounces} oz. for: " %>
+			<%= "#{price.amount} USD" %><br>
+
+		<% end %>
+	
+		<div class="priceWeight">
+			<%= label_tag :weight, "Weight:" %>
+			<%= text_field_tag :weight %>
+			
+			<%= label_tag :price, "Price:" %>
+			<%= text_field_tag :price %>
+		</div>
+
+	</div>
+  
+	
+	<%= f.submit "Create" %>
+<% end %>

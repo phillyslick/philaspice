@@ -1,0 +1,20 @@
+<fieldset class="item">
+		<%= f.label :name, "Name:"  %>
+		<%= f.text_field :name %>
+		
+		<%= f.label :description, "Description:" %>
+		<%= f.text_area :description %>
+		
+		<h3>Prices</h3>
+		
+		<div class="priceWeight">
+			<%= label_tag :weight, "Weight:" %>
+			<%= text_field_tag :weight %>
+			
+			<%= label_tag :price, "Price:" %>
+			<%= text_field_tag :price %>
+		</div>
+			
+
+		
+</fieldset>

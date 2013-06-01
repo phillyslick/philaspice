@@ -4,4 +4,5 @@ class Price < ActiveRecord::Base
   attr_accessible :amount, :weight_id, :weight_attributes, :weight
   
   validates_presence_of :amount, :weight_id
+  accepts_nested_attributes_for :weight
 end

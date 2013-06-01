@@ -16,11 +16,9 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
   
-  def create
-  end
-  
   def new
     @product = Product.new
+    @product.variants.build
   end
   
   def edit
@@ -29,7 +27,10 @@ class ProductsController < ApplicationController
   
   def create
     @product = Product.new(params[:product])
+    @product.name = params[:product][:variants_attributes]["0"][:name]
+    @product.description = params[:product][:variants_attributes]["0"][:description]
     if @product.save
+       @product.variants.first.add_price(params[:price], params[:weight])
       flash[:notice] = "Product Created"
       redirect_to @product
     else

@@ -5,9 +5,9 @@ class Variant < ActiveRecord::Base
   
   accepts_nested_attributes_for :weights, :prices
   attr_accessor :delete
-  attr_accessible :deleted_at, :master, :name, :price, :sku, :delete
+  attr_accessible :deleted_at, :master, :name, :price, :sku, :delete, :description, :prices_attributes, :weights_attributes
 
-  validates_presence_of :price, :name 
+  validates_presence_of :name 
   
   def active?
     deleted_at.nil? || deleted_at > Time.zone.now
@@ -41,11 +41,30 @@ class Variant < ActiveRecord::Base
   end
   
   def all_prices
+    a_prices = []
+    prices.each do |price|
+      a_prices << price.amount
+    end
+    a_prices
+  end
+  
+  def prices_with_weights
     prices_and_weights = []
     prices.each do |price|
       prices_and_weights << [price.amount, price.weight.ounces]
     end
     prices_and_weights
+  end
+    
+  def display_price_range(j = ' to ')
+    price_range.join(j)
+  end
+  
+  
+  def price_range
+    return @price_range if @price_range
+    return @price_range = ['N/A', 'N/A'] if prices.empty?
+    @price_range = prices.minmax {|a,b| a.amount.to_i <=> b.amount.to_i }.map(&:amount)
   end
   
   def self.active

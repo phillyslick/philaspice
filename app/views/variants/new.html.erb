@@ -1,10 +1,26 @@
 <h1>Add A Variant to <%= @product.name %></h1>
 <%= form_for [@product, @variant] do |f| %>
+
+<% if @variant.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@variant.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+    <ul>
+    <% @variant.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 	<%= f.label :name, "Name:" %>
 	<%= f.text_field :name %>
 
-	<%= f.label :price, "Price:" %>
-	<%= f.text_field :price %>	
+	<div class="prices">
+	
+			<%= render :partial => 'prices', locals: {f: f} %>
+
+	</div>
+  
 	
 	<%= f.submit "Create" %>
-<% end %>
+<% end %>w

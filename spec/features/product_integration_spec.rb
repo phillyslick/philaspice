@@ -12,10 +12,10 @@ describe "Product Management" do
   
   it "can create a new product" do
     click_link "New Product"
-    expect(page).to have_content "Create A New Product"
+    expect(page).to have_content "Create a New Product"
     within("form") do
       fill_in "Name:", with: "Cardamom"
-      fill_in "Price:", with: "9.99"
+      #fill_in "Price:", with: "9.99"
       click_button("Create")
     end
     expect(page).to have_content  "Cardamom"

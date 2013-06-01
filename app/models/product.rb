@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
-  attr_accessible :active, :deleted_at, :description, :featured, :name, :slug, :temp_price
+  attr_accessible :active, :deleted_at, :description, :featured,
+   :name, :slug, :temp_price, :variants_attributes
   attr_accessor :temp_price
   
   has_many :variants
@@ -11,17 +12,27 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :variants
   
   validates_presence_of :name
-  validates_presence_of :temp_price, if: "new_record?"
+  #validates_presence_of :temp_price, if: "new_record?"
   
-  after_create :check_for_variants
+  #after_create :check_for_variants
   
-  def check_for_variants
-    variants.create(name: name, price: temp_price) if variants.count < 1
-    save
-  end
+ #def check_for_variants
+ #  variants.create(name: name, price: temp_price)
+ #  save
+ #end
   
   def hero_variant 
     variants.detect{ |v| v.master } || variants.first
+  end
+  
+  def all_variant_prices
+    all = []
+    variants.each do |v|
+      v.prices.each do |p|
+        all << p.amount
+      end
+    end
+    all
   end
   
   def display_price_range(j = ' to ')
@@ -31,7 +42,9 @@ class Product < ActiveRecord::Base
   def price_range
     return @price_range if @price_range
     return @price_range = ['N/A', 'N/A'] if active_variants.empty?
-    @price_range = active_variants.minmax {|a,b| a.price <=> b.price }.map(&:price)
+    @price_range = []
+    @price_range << all_variant_prices.min
+    @price_range << all_variant_prices.max
   end
   
   def price_range?
@@ -43,7 +56,7 @@ class Product < ActiveRecord::Base
   end
   
   def lowest_price
-    price_range.first.to_f
+    all_variant_prices.min
   end
   
   def active?(at = Time.zone.now)
