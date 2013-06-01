@@ -1,15 +1,11 @@
 class ProductsController < ApplicationController
   def index
-    
-    if params[:active] == 'true'
-      @products = Product.active
-    elsif params[:active] == 'false'
-      @products = Product.inactive
+    if params[:product] && params[:product][:category_id].present?  
+      category = Category.find(params[:product][:category_id])
+      params[:active] == 'false' ? @products = category.products.inactive : @products = category.products.active
     else
-      @products = Product.active
+      params[:active] == 'false' ? @products = Product.inactive : @products = Product.active
     end
-    
-    
   end
   
   def show

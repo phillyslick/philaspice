@@ -1,6 +1,13 @@
 <%= content_tag :h1, "Product Management" %>
 
 <%= render :partial => 'active_nav' %>
+<%= form_tag(products_path, method: 'get', id: "filter", class: "form-inline") do %>
+	<%# hidden_field_tag :direction, params[:direction] %>
+  <%# hidden_field_tag :sort, params[:sort] %>
+	<%= hidden_field_tag :active, params[:active] %>
+	<%= collection_select :product, :category_id, Category.all, :id, :name, {prompt: "Select Category", selected: params[:product][:category_id]} %>
+	<%= submit_tag "Filter", class: "btn" %>
+<% end %>
 
 <ul>
 	<% @products.each do |product| %>
