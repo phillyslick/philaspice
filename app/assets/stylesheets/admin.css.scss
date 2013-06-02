@@ -1,2 +1,46 @@
 @import "bootstrap";
-@import "bootstrap-responsive";
+
+body{
+   min-width:780px; // suppose you want minimun width of 1000px
+   _width: expression( document.body.clientWidth > 780 ? "780px" : "auto" ); /* sets max-width for IE */
+}
+
+$lightBlue:rgb(236, 244, 250);
+ul{
+	list-style:none;
+	padding-left:0px;
+	margin-left:0px;
+}
+
+#productShow{
+	h1{
+		text-align:center;
+	}
+	#category{
+		width:38px;
+		margin:0 auto;
+		display:block;
+	}
+	.featuredImg{
+		margin: 5px auto 0 auto;
+		display:block;
+	}
+	div#variants{
+		float:left;
+		clear:both;
+		width:100%;
+		position:relative;
+	}
+
+	.variant{
+		padding: 5px;
+		margin-bottom:2px;
+		h3{
+			margin-top:0px;
+		}
+	
+	}
+	.variant.odd{
+		background-color: $lightBlue;
+	}
+}

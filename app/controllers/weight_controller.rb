@@ -9,11 +9,7 @@ class WeightsController < ApplicationController
   
   def create
     @weight = Weight.new(params[:weight])
-    if params[:measurement] == "Ounces"
-      @weight.ounces = params[:value]
-    else
-      @weight.ounces = params[:value].to_f * 16
-    end
+    @weight.ounces = params[:value]
     if @weight.save
       redirect_to weights_path, notice: "Weight Added!"
     else

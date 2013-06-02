@@ -10,15 +10,19 @@
 <body>
 	<nav id="adminNav">
 		<ul class="nav nav-tabs">
-			<%= content_tag :li, link_to("Products", products_path) %>
+			<%= content_tag :li, link_to("Products", products_path), class: 'active' %>
 			<%= content_tag :li, link_to("Categories", categories_path) %>
 		</ul>
 	</nav>
 	<div class="container-fluid">
 	  <div class="row-fluid">
-	
-
+			<div class="span4">
+				 <%= render :partial => 'navigation' %>
+				 <%= link_to "New Product", new_product_path %>
+			</div>
+<div id="rightDisplay" class="span8">
 				 <%= yield %>
+			 </div>
 	  </div>
 	</div>
 

@@ -10,6 +10,7 @@ Philaspice::Application.routes.draw do
         get :revive
         get :weights
         put :save_weight
+        put :master
       end
     end
     

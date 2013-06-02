@@ -1,34 +1,21 @@
 class ProductsController < ApplicationController
   def index
-    if params[:product] && params[:product][:category_id].present?  
-      category = Category.find(params[:product][:category_id])
-      params[:active] == 'false' ? @products = category.products.inactive : @products = category.products.active
-    else
-      params[:active] == 'false' ? @products = Product.inactive : @products = Product.active
-    end
-   if params[:id]
-     @product = Product.find(params[:id])
-   else
-     @product = Product.first
-   end
+    find_products
   end
   
   def show
-    if params[:product] && params[:product][:category_id].present?  
-      category = Category.find(params[:product][:category_id])
-      params[:active] == 'false' ? @products = category.products.inactive : @products = category.products.active
-    else
-      params[:active] == 'false' ? @products = Product.inactive : @products = Product.active
-    end
+    find_products
     @product = Product.find(params[:id])
   end
   
   def new
+    find_products
     @product = Product.new
     @product.variants.build
   end
   
   def edit
+    find_products 
     @product = Product.find(params[:id])
   end
   
@@ -71,5 +58,6 @@ class ProductsController < ApplicationController
     @product.save
     redirect_to products_path
   end
+  
   
 end

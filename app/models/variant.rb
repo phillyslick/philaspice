@@ -5,9 +5,12 @@ class Variant < ActiveRecord::Base
   
   accepts_nested_attributes_for :weights, :prices
   attr_accessor :delete
-  attr_accessible :deleted_at, :master, :name, :price, :sku, :delete, :description, :prices_attributes, :weights_attributes
+  attr_accessible :deleted_at, :master, :name, :price, :sku, :delete, :description, :prices_attributes, :weights_attributes,:image
 
   validates_presence_of :name 
+  mount_uploader :image, ImageUploader
+  
+  scope :recent, order("updated_at DESC")
   
   def active?
     deleted_at.nil? || deleted_at > Time.zone.now
@@ -36,8 +39,8 @@ class Variant < ActiveRecord::Base
   end
   
   def add_price(price, quantity, measurement="ounces")
-    quantity = quantity * 16.0 if measurement.downcase == "pounds"
-    prices.create(amount: price, weight: Weight.create(ounces: quantity))
+    measurement.downcase == "pounds" ? in_pounds = true : in_pounds = false
+    prices.create(amount: price, weight: Weight.create(ounces: quantity, in_pounds: in_pounds))
   end
   
   def all_prices
@@ -67,6 +70,11 @@ class Variant < ActiveRecord::Base
     @price_range = prices.minmax {|a,b| a.amount.to_i <=> b.amount.to_i }.map(&:amount)
   end
   
+  def set_as_master
+    self.master = true
+    self.class.where('id != ? and master', self.id).update_all("master = 'false'")
+  end
+
   def self.active
     where("variants.deleted_at IS NULL OR variants.deleted_at > ?", Time.zone.now)
   end

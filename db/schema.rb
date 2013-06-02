@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601150833) do
+ActiveRecord::Schema.define(:version => 20130602134233) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -55,14 +55,16 @@ ActiveRecord::Schema.define(:version => 20130601150833) do
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.text     "description"
+    t.string   "image"
   end
 
   add_index "variants", ["product_id"], :name => "index_variants_on_product_id"
 
   create_table "weights", :force => true do |t|
     t.decimal  "ounces",     :precision => 9, :scale => 4
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+    t.boolean  "in_pounds",                                :default => false
   end
 
 end

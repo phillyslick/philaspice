@@ -1,5 +1,5 @@
 class Weight < ActiveRecord::Base
-  attr_accessible :ounces, :prices_attributes
+  attr_accessible :ounces, :prices_attributes, :in_pounds
   
   has_many :variants, through: :prices, uniq: true
   has_many :prices
@@ -10,5 +10,9 @@ class Weight < ActiveRecord::Base
   def pounds
     (ounces / 16).to_f.round(4)
   end
-
+  
+  def display
+    self.in_pounds? ? "#{ounces} lbs." : "#{ounces} oz."
+  end
+  
 end

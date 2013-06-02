@@ -1,5 +1,5 @@
 <nav class="filter">
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-pills">
 		<% if params[:product] %>
 		<li <%= "class=active" if params[:active].blank? %>><%= link_to "All", {category_id: params[:product][:category_id]} %></li>
 		<li <%= "class=active" if params[:active] == 'true' %>><%= link_to "Active", {active: 'true',category_id: params[:product][:category_id]} %></li>

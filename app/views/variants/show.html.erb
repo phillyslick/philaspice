@@ -3,13 +3,13 @@
 
 <%= "Status: #{@variant.status}" %>
 <%= content_tag :h4, "Weights" %>
-<%= link_to "Add a Weight", weights_product_variant_path(@product, @variant) %>
+
 <% @variant.prices.each do |price| %>
-	<%= "#{price.weight.ounces} oz. for: " %>
+	<%= "#{price.weight.display} for: " %>
 	<%= "#{price.amount} USD" %>
 
 <% end %>
 
 <br>
 <%= link_to "Edit", edit_product_variant_path(@product, @variant) %>
-<%= link_to "Back to Products", products_path %>
+<%= link_to "Back to Products", products_path %>	

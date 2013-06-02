@@ -5,6 +5,12 @@
 		<%= f.label :description, "Description:" %>
 		<%= f.text_area :description %>
 		
+		<% if f.object.image.blank? %>
+			<%= f.label :image, "Image" %>
+			<%= f.file_field :image %>
+		<% else %>
+			<%= image_tag f.object.image.url(:thumb) %>
+		<% end %>
 		<h3>Prices</h3>
 		
 		<div class="priceWeight">

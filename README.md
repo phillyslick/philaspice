@@ -19,7 +19,6 @@
 - Implement editing in place so that you can get rid of shows or edits where you're not using them...
 
 #NEXT 
-- GroupBy Category on Product Page, and Also Filter by Category...
-- Images (you have to update Product.featured to include(:images), because a featured product has to have an image) see product.rb:: self.featured
+- Ability to add and display in pounds. (might need a boolean)
 - STOCK - just boolean, which would let me skip inventory for now..
 

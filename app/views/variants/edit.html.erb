@@ -1,9 +1,33 @@
-<%= content_tag :h1, "Edit #{@variant.name}" %>
 
-<%= form_for [@product, @variant] do |f| %>
-	<%= f.label :name, "Name:" %>
-	<%= f.text_field :name %>
 
+
+
+
+
+<div id="modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <%= content_tag :h3, "Edit #{@variant.name}" %>
+  </div>
+  <div class="modal-body">
+		<%= form_for [@product, @variant] do |f| %>
+		<%= f.label :name, "Name:" %>
+		<%= f.text_field :name %>
+		
+		<% if f.object.image.blank? %>
+			<%= f.label :image, "Image" %>
+			<%= f.file_field :image %>
+		<% else %>
 	
-	<%= f.submit "Update" %>
-<% end %>
+			<%= f.label :image, "Image" %>
+			<%= f.file_field :image %>
+					<%= image_tag f.object.image.url(:thumb) %>
+		<% end %>	
+  </div>
+  <div class="modal-footer">
+
+		<%= f.submit "Update", class: "btn btn-primary" %>
+	<% end %>
+
+  </div>
+</div>

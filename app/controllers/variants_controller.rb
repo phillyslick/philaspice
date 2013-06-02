@@ -1,4 +1,5 @@
 class VariantsController < ApplicationController
+  layout 'category'
   def show
        @product = Product.find(params[:product_id])
     @variant = Variant.find(params[:id])
@@ -42,7 +43,7 @@ class VariantsController < ApplicationController
         @variant.activate!
       end
       flash[:notice] = "Variant Updated"
-      redirect_to product_variant_path(@product,@variant)
+      redirect_to @variant.product  
     else
       flash[:error] = "Sorry, Variant Couldn't Be Updated"
       render action: :edit
@@ -71,8 +72,15 @@ class VariantsController < ApplicationController
   
   def save_weight
     @variant = Variant.find(params[:id])
-    @variant.add_price(params[:price], params[:weight])
-    redirect_to weights_product_variant_path
+    @variant.add_price(params[:price], params[:weight], params[:measurement])
+    redirect_to @variant.product
+  end
+  
+  def master
+    @variant = Variant.find(params[:id])
+    @variant.set_as_master
+    @variant.save
+    redirect_to @variant.product
   end
   
 end

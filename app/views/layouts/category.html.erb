@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Philaspice Categories</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<nav id="adminNav">
+		<ul class="nav nav-tabs">
+			<%= content_tag :li, link_to("Products", products_path) %>
+			<%= content_tag :li, link_to("Categories", categories_path), class: 'active' %>
+		</ul>
+	</nav>
+	<div class="container-fluid">
+	  <div class="row-fluid">
+			<span class="span12">
+				 <%= yield %>
+			 </span>
+	  </div>
+	</div>
+
+
+
+</body>
+</html>
+
+

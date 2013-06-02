@@ -1,6 +1,7 @@
 <%= content_tag :h1, "Create a New Product" %>
 <%= form_for @product do |f| %>
-
+<%= f.label :category_id, "Category:" %>
+	<%= f.collection_select :category_id, Category.all, :id, :name %>
 	<div class="items">
 		<%= f.nested_fields_for :variants do |f| %>
 			<%= render :partial => 'variants', locals: {f: f} %>
