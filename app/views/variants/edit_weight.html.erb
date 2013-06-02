@@ -1,0 +1,25 @@
+<div id="modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Edit Weight|Price</h3>
+  </div>
+  <div class="modal-body">
+		<%= form_for([@product, @variant], url: update_weight_product_variant_path) do |f| %>	
+			<div class="priceWeight">
+				<%= label_tag :weight, "Weight:" %>
+				<%= text_field_tag :weight, @weight.ounces %>
+						<%= select_tag :measurement, "<option value='ounces' #{@weight.in_pounds == false ? 'selected' : nil }>Ounces</option><option value='pounds' #{@weight.in_pounds? ? 'selected' : nil}>Pounds</option>".html_safe %>
+			
+				<%= label_tag :price, "Price:" %>
+				<%= text_field_tag :price, @price.amount %>
+				
+				<%= hidden_field_tag :weight_id, @weight.id %>
+				<%= hidden_field_tag :price_id, @price.id %>
+			</div>
+  </div>
+  <div class="modal-footer">
+		<%= f.submit "Create", class: "btn btn-primary" %>
+	<% end %>
+    
+  </div>
+</div>

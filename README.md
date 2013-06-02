@@ -19,6 +19,5 @@
 - Implement editing in place so that you can get rid of shows or edits where you're not using them...
 
 #NEXT 
-- Ability to add and display in pounds. (might need a boolean)
 - STOCK - just boolean, which would let me skip inventory for now..
 

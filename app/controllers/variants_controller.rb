@@ -70,9 +70,31 @@ class VariantsController < ApplicationController
     @product = Product.find(params[:product_id])
   end
   
+  def edit_weight
+    @product = Product.find(params[:product_id])
+    @weight = Weight.find(params[:weight_id])
+    @variant = Variant.find(params[:id])
+    @price = Price.find(params[:price_id])
+
+  end
+  
   def save_weight
     @variant = Variant.find(params[:id])
     @variant.add_price(params[:price], params[:weight], params[:measurement])
+    redirect_to @variant.product
+  end
+
+  def update_weight
+    @variant = Variant.find(params[:id])
+    @variant.update_price(params[:price_id], params[:price], params[:weight], params[:measurement])
+    @variant.save
+    redirect_to @variant.product
+  end
+  
+  def delete_price  
+    price = Price.find(params[:price_id])
+    @variant = Variant.find(params[:id])
+    price.destroy
     redirect_to @variant.product
   end
   

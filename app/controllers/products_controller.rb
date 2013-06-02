@@ -1,11 +1,13 @@
 class ProductsController < ApplicationController
   def index
     find_products
+    params[:id] ? @product = Product.find(params[:id]) : @product = Product.active.first
+    @product = Product.first unless @product
   end
   
   def show
     find_products
-    @product = Product.find(params[:id])
+    params[:id] ? @product = Product.find(params[:id]) : @product = Product.active.first
   end
   
   def new
@@ -17,6 +19,7 @@ class ProductsController < ApplicationController
   def edit
     find_products 
     @product = Product.find(params[:id])
+    render layout: "modal"
   end
   
   def create

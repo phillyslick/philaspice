@@ -9,7 +9,10 @@ Philaspice::Application.routes.draw do
       member do
         get :revive
         get :weights
+        get :edit_weight
+        get :delete_price
         put :save_weight
+        put :update_weight
         put :master
       end
     end

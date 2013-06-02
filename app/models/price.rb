@@ -5,4 +5,9 @@ class Price < ActiveRecord::Base
   
   validates_presence_of :amount, :weight_id
   accepts_nested_attributes_for :weight
+  
+  def self.by_weight
+    prices = Price.all.sort {|a,b| a.weight.raw <=> b.weight.raw}
+    prices.reverse
+  end
 end

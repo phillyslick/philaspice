@@ -1,49 +1,18 @@
 <% if @product %>
 <div id="productShow" class-"media">
 
-	<%= content_tag :h1, @product.hero_variant.name %>
+	<%= content_tag :h1, @product.hero_variant.name %> 
 	<%= content_tag :span, "#{@product.category.name}", class: "label label-info", id: "category" if @product.category %>
+
 
 	
 	<%= image_tag @product.hero_variant.image.url(:medium), class: "featuredImg" %>
+		<%= link_to "Change Category", edit_product_path(@product), class: "btn btn-primary triggerBlank" %>
+<%= link_to "Add New Variant", new_product_variant_path(@product), class:'btn btn-primary'%>
+	<%= render :partial => 'display_variants' %>
 
 
-	<div id="variants">
-	<%= content_tag :h2, "Variations" %>
-	<ul>
-	<% @product.variants.recent.each do |variant| %>
-	<li class='variant <%= cycle("odd", "even") -%>'>
-		<%= variant.active? ? "<span class='label label-success	'>Active</span>".html_safe : "<span class='label'>Inactive</span>".html_safe %>
-				<%= content_tag :span, "Master", class: "label label-info", id: "master" if variant.master? %>
-		<%= content_tag :h3, "#{variant.name}" %>
-		<%= "Description: #{variant.description}" %>
-		<ul class="pricesWeights">
-			<% variant.prices.each do |price| %>
-				<li class="priceWeight">
-					<%= "#{price.weight.display} for: " %>
-					<%= "#{price.amount} USD" %>
-					
-				</li>
-			<% end %>
-		</ul>
 
-		<%= "#{link_to 'Edit', edit_product_variant_path(@product, variant), class: "btn btn-mini triggerWeight"} | #{link_to "Add a Weight", weights_product_variant_path(@product, variant), class: "btn-mini btn triggerWeight"}".html_safe %>
-		
-
-		<%= variant.active? ? (link_to 'Deactivate', product_variant_path(@product,variant), method: :delete, class: "btn btn-mini btn-danger") : (link_to 'Activate', revive_product_variant_path(@product, variant), class: "btn btn-mini btn-success") %>
-		
-		<%= link_to "Set as Master", master_product_variant_path(@product,variant), method: :put, class: 'btn btn-mini btn-success' %>
-	</li>
-	<% end %>
-		
-	<%= link_to "Add Variant", new_product_variant_path(@product)%>
-	</ul>
-	<%= link_to "Edit", edit_product_path(@product) %>
-	<%= link_to "All Products", products_path %>
-</div>
 </div>
 <% end %>
-
-
-
 <%= render :partial => 'blank_modal' %>

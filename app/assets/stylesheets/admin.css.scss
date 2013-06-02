@@ -1,3 +1,8 @@
+textarea{
+	width: auto !important;
+	height: auto !important;
+}
+
 @import "bootstrap";
 
 body{
@@ -30,6 +35,22 @@ ul{
 		clear:both;
 		width:100%;
 		position:relative;
+		ul{margin-top:20px;}
+		li.variant{
+			margin-bottom:20px;
+			ul.pricesWeights{
+				margin-bottom:20px;
+		li.priceWeight{
+
+			span{
+				width:170px;
+				display:inline-block;
+				line-height: 25px;
+				vertical-align: middle;
+			}
+		}
+	}
+	}
 	}
 
 	.variant{

@@ -15,4 +15,15 @@ class Weight < ActiveRecord::Base
     self.in_pounds? ? "#{ounces} lbs." : "#{ounces} oz."
   end
   
+  def unit
+    self.in_pounds? ? "Pounds" : "Ounces"
+  end
+    
+  def raw
+    if unit == "Pounds"
+      ounces*16
+    else
+      ounces
+    end
+  end
 end
