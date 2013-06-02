@@ -62,5 +62,17 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
   
+  def unstock
+    @product = Product.find(params[:id])
+    @product.unstock_variants
+    redirect_to @product
+  end
+  
+  def stock
+    @product = Product.find(params[:id])
+    @product.stock_variants
+    redirect_to @product
+  end
+  
   
 end

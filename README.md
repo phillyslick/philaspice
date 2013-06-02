@@ -13,11 +13,12 @@
 
 ###Prices
 
+Stocks handled...
+
 ##VIEWS/BACKEND
 ###Product/variants
 - I'd say display the product, then have a show variant tab that slides open to show all variants. Variants that are not active should be greyed out.
 - Implement editing in place so that you can get rid of shows or edits where you're not using them...
 
 #NEXT 
-- STOCK - just boolean, which would let me skip inventory for now..
 

@@ -5,7 +5,8 @@ class Variant < ActiveRecord::Base
   
   accepts_nested_attributes_for :weights, :prices
   attr_accessor :delete
-  attr_accessible :deleted_at, :master, :name, :price, :sku, :delete, :description, :prices_attributes, :weights_attributes,:image
+  attr_accessible :deleted_at, :master, :name, :price, :sku, :delete, 
+  :description, :prices_attributes, :weights_attributes, :image, :stocked
 
   validates_presence_of :name 
   mount_uploader :image, ImageUploader

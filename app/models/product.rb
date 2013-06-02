@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   attr_accessible :active, :deleted_at, :description, :featured,
-   :name, :slug, :temp_price, :variants_attributes, :category_id
+   :name, :slug, :temp_price, :variants_attributes, :category_id, :stocked
   attr_accessor :temp_price
   
   has_many :variants
@@ -67,7 +67,24 @@ class Product < ActiveRecord::Base
     self.deleted_at = nil
     save
   end
+  
+  def unstock_variants
+    self.stocked = false
+    variants.each{ |v| v.stocked = false }
+    save
+  end
 
+  def stock_variants
+    self.stocked = true
+    variants.each{ |v| v.stocked = true }
+    save
+  end
+  
+  def stocked?
+    variants.each{ |v| return true if v.stocked? }
+    return false
+  end
+  
   def self.featured
     product = where({ :products => {:featured => true} } ).first
     product ? product : where(['products.deleted_at IS NULL']).first

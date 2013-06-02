@@ -105,4 +105,18 @@ class VariantsController < ApplicationController
     redirect_to @variant.product
   end
   
+  def unstock
+    @variant = Variant.find(params[:id])
+    @variant.stocked = false
+    @variant.save
+    redirect_to @variant.product
+  end
+  
+  def stock
+    @variant = Variant.find(params[:id])
+    @variant.stocked = true
+    @variant.save
+    redirect_to @variant.product
+  end
+  
 end

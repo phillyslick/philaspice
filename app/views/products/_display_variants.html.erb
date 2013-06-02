@@ -5,6 +5,8 @@
 			<li class='variant <%= cycle("odd", "even") -%>'>
 				<%= variant.active? ? "<span class='label label-success	'>Active</span>".html_safe : "<span class='label'>Inactive</span>".html_safe %>
 						<%= content_tag :span, "Master", class: "label label-info", id: "master" if variant.master? %>
+						<%= variant.stocked? ? content_tag(:span, "In-Stock", class: "label label-info") : content_tag(:span, "Out-Of-Stock", class: "label label-info") %>
+						
 				<%= content_tag :h3, "#{variant.name}" %>
 				<%= variant.description %>
 				<ul class="pricesWeights">
@@ -24,7 +26,13 @@
 	
 
 				<%= variant.active? ? (link_to 'Deactivate', product_variant_path(@product,variant), method: :delete, class: "btn btn-mini btn-danger") : (link_to 'Activate', revive_product_variant_path(@product, variant), class: "btn btn-mini btn-success") %>
-	
+				
+				<% if variant.stocked? %>
+					<%= link_to "Unstock", unstock_product_variant_path(@product, variant), class:'btn btn-primary'%>
+				<% else %>
+					<%= link_to "Re-Stock", stock_product_variant_path(@product, variant), class:'btn btn-primary'%>
+				<% end %>
+				
 				<%= (link_to "Set as Master", master_product_variant_path(@product,variant), method: :put, class: 'btn btn-mini btn-success') unless variant.master? %>
 			</li>
 		<% end %>

@@ -3,6 +3,8 @@ Philaspice::Application.routes.draw do
     
     member do
       get :revive
+      get :stock
+      get :unstock
     end
     
     resources :variants do
@@ -14,6 +16,8 @@ Philaspice::Application.routes.draw do
         put :save_weight
         put :update_weight
         put :master
+        get :stock
+        get :unstock
       end
     end
     
