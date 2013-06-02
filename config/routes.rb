@@ -1,5 +1,5 @@
 Philaspice::Application.routes.draw do
-  resources :products, except: [:show] do
+  resources :products do
     
     member do
       get :revive
@@ -15,7 +15,6 @@ Philaspice::Application.routes.draw do
     
   end
  
-  match "products(/:id)" => 'products#index', as: :products
   resources :categories
   resources :weights
   # The priority is based upon order of creation:

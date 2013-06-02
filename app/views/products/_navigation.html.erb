@@ -21,7 +21,7 @@
 			<span class="productDeets">
 				<%= "Name: #{product.name} | Price Range: #{product.display_price_range}" %>
 				<p>
-				<%= "Actions: #{link_to 'Edit', edit_product_path(product)} | #{link_to( 'Details', products_path(product), class: "rightPane", data: {push: 'partial', target: '#rightDisplay'})}".html_safe  %>
+				<%= "Actions: #{link_to 'Edit', edit_product_path(product)} | #{link_to( 'Details', product_path(product), class: "rightPane")}".html_safe  %>
 				<%= product.active? ? (link_to ' | Deactivate', product, method: :delete) : (link_to ' | Activate', revive_product_path(product)) %>
 				</p>	
 			</span>

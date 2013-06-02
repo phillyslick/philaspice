@@ -13,5 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.nested-fields
-//= require wiselinks
 //= require_tree .
