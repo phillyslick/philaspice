@@ -19,15 +19,13 @@ ul{
 
 #productShow{
 	h1{
-		text-align:center;
+		text-align:left;
 	}
 	#category{
-		width:38px;
-		margin:0 auto;
-		display:block;
+		
 	}
 	.featuredImg{
-		margin: 5px auto 0 auto;
+		margin: 10px 0 ;
 		display:block;
 	}
 	div#variants{
@@ -35,23 +33,24 @@ ul{
 		clear:both;
 		width:100%;
 		position:relative;
-		ul{margin-top:20px;}
-		li.variant{
-			margin-bottom:20px;
-			ul.pricesWeights{
+		ul{
+			margin-top:20px;
+			li.variant{
 				margin-bottom:20px;
-		li.priceWeight{
-
-			span{
-				width:170px;
-				display:inline-block;
-				line-height: 25px;
-				vertical-align: middle;
+				ul.pricesWeights{
+					margin-bottom:20px;
+					li.priceWeight{
+						span{
+							width:170px;
+							display:inline-block;
+							line-height: 25px;
+							vertical-align: middle;
+							}
+						}
+					}
+				}
 			}
 		}
-	}
-	}
-	}
 
 	.variant{
 		padding: 5px;

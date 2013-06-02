@@ -8,10 +8,13 @@ class Product < ActiveRecord::Base
              class_name: "Variant", 
              conditions: ["variants.deleted_at IS NULL"]
   belongs_to :category
+  belongs_to :subcategory
 
   accepts_nested_attributes_for :variants, :category
   
   validates_presence_of :name
+  
+  before_save :correspond_catgories, :if => :subcategory_id
   #validates_presence_of :temp_price, if: "new_record?"
   
   #after_create :check_for_variants
@@ -98,7 +101,10 @@ class Product < ActiveRecord::Base
     where("products.deleted_at IS NOT NULL OR products.deleted_at > ?", Time.zone.now)
   end
   
+  def correspond_categories
+    unless category_id == subcategory_id
+      errors.add :subcategory_id, 'Subcategory must be from the same category that the product belongs to!'
+    end
+  end
   
-
-
 end

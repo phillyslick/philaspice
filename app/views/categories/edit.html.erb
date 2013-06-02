@@ -1,1 +1,18 @@
-<%= content_tag :h1, "Editing #{@category.name}" %>
+<div id="content">
+	<div id="modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <%= content_tag :h1, "Edit #{@category.name}" %>
+  </div>
+  <div class="modal-body">
+			<%= form_for(@category) do |f| %>
+			<%= f.label :name, "Name:" %>
+			<%= f.text_field :name %>
+  </div>
+  <div class="modal-footer">
+		<%= f.submit "Update", class: 'btn-primary' %>
+	<% end %>
+		
+  </div>
+</div>
+</div>

@@ -13,7 +13,6 @@
 
 ###Prices
 
-Stocks handled...
 
 ##VIEWS/BACKEND
 ###Product/variants

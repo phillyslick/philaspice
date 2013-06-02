@@ -23,7 +23,9 @@ Philaspice::Application.routes.draw do
     
   end
  
-  resources :categories
+  resources :categories do
+    resources :subcategories
+  end
   resources :weights
   # The priority is based upon order of creation:
   # first created -> highest priority.
