@@ -4,9 +4,15 @@ class ApplicationController < ActionController::Base
   def find_products
     if params[:product] && params[:product][:category_id].present?  
       category = Category.find(params[:product][:category_id])
-      params[:active] == 'false' ? @products = category.products.inactive : @products = category.products.active
+      params[:active] == 'false' ? building_products = category.products.inactive : building_products = category.products.active
+      params[:stocked] == 'false' ? @products = building_products.unstocked : @products = building_products.stocked
+    elsif params[:category_id].present?
+      category = Category.find(params[:category_id])
+      params[:active] == 'false' ? building_products = category.products.inactive : building_products = category.products.active
+      params[:stocked] == 'false' ? @products = building_products.unstocked : @products = building_products.stocked
     else
-      params[:active] == 'false' ? @products = Product.inactive : @products = Product.active
+      params[:active] == 'false' ? building_products = Product.inactive : building_products = Product.active
+      params[:stocked] == 'false' ? @products = building_products.unstocked : @products = building_products.stocked
     end
   end
 end

@@ -55,14 +55,14 @@ class VariantsController < ApplicationController
     @variant = Variant.find(params[:id])
     @variant.deleted_at ||= Time.zone.now
     @variant.save
-    redirect_to products_path
+    redirect_to @variant.product
   end
   
   def revive
     @variant = Variant.find(params[:id])
     @variant.deleted_at = nil
     @variant.save
-    redirect_to products_path
+    redirect_to @variant.product
   end
   
   def weights
@@ -80,7 +80,7 @@ class VariantsController < ApplicationController
   
   def save_weight
     @variant = Variant.find(params[:id])
-    @variant.add_price(params[:price], params[:weight], params[:measurement])
+   ' @variant.add_price(params[:price], params[:weight], params[:measurement])'
     redirect_to @variant.product
   end
 

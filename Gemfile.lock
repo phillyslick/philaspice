@@ -214,7 +214,7 @@ DEPENDENCIES
   devise
   factory_girl_rails (~> 4.0)
   faker
-  friendly_id
+  friendly_id (~> 4.0.1)
   guard-rspec
   haml
   jquery-rails

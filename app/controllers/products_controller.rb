@@ -14,6 +14,11 @@ class ProductsController < ApplicationController
     find_products
     @product = Product.new
     @product.variants.build
+    if params[:category]
+      @category = Category.find(params[:category])
+    else
+      @category = Category.first
+    end
   end
   
   def edit
@@ -32,7 +37,7 @@ class ProductsController < ApplicationController
     @product.name = params[:product][:variants_attributes]["0"][:name]
     @product.description = params[:product][:variants_attributes]["0"][:description]
     if @product.save
-       @product.variants.first.add_price(params[:price], params[:weight])
+      @product.variants.first.add_price(params[:price], params[:weight], params[:measurement])
       flash[:notice] = "Product Created"
       redirect_to @product
     else
@@ -64,7 +69,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.deleted_at = nil
     @product.save
-    redirect_to products_path
+    redirect_to @product
   end
   
   def unstock

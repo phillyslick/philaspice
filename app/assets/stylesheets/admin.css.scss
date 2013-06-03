@@ -76,3 +76,18 @@ ul{
 		background-color: $lightBlue;
 	}
 }
+
+#productSide{
+	#categories{
+		margin-bottom:10px;
+	}
+	ul.products{
+		li{
+			width:95%;
+			position:relative;
+		}
+	}
+	.odd{
+			background-color: $lightBlue;
+		}
+}

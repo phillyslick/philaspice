@@ -11,14 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130602211626) do
+ActiveRecord::Schema.define(:version => 20130603011944) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.boolean  "active"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "slug"
   end
+
+  add_index "categories", ["slug"], :name => "index_categories_on_slug", :unique => true
 
   create_table "prices", :force => true do |t|
     t.decimal  "amount",     :precision => 9, :scale => 2
@@ -53,9 +56,11 @@ ActiveRecord::Schema.define(:version => 20130602211626) do
     t.integer  "category_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "slug"
   end
 
   add_index "subcategories", ["category_id"], :name => "index_subcategories_on_category_id"
+  add_index "subcategories", ["slug"], :name => "index_subcategories_on_slug", :unique => true
 
   create_table "variants", :force => true do |t|
     t.integer  "product_id"
@@ -69,9 +74,11 @@ ActiveRecord::Schema.define(:version => 20130602211626) do
     t.text     "description"
     t.string   "image"
     t.boolean  "stocked"
+    t.string   "slug"
   end
 
   add_index "variants", ["product_id"], :name => "index_variants_on_product_id"
+  add_index "variants", ["slug"], :name => "index_variants_on_slug", :unique => true
 
   create_table "weights", :force => true do |t|
     t.decimal  "ounces",     :precision => 9, :scale => 4

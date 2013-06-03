@@ -11,7 +11,7 @@ gem 'devise'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'kaminari'
-gem "friendly_id"
+gem "friendly_id", '~> 4.0.1'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem "haml"
 gem "awesome_nested_fields"

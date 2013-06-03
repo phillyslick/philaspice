@@ -3,7 +3,7 @@
 		<% if variant.stocked? %>
 			<%= link_to "Unstock", unstock_product_variant_path(@product, variant), class:'btn btn btn-mini'%>
 		<% else %>
-			<%= link_to "Re-Stock", stock_product_variant_path(@product, variant), class:'btn btn-primary btn-mini'%>
+			<%= link_to "Re-Stock", stock_product_variant_path(@product, variant), class:'btn btn btn-mini'%>
 		<% end %>
 
 		<%= variant.active? ? (link_to 'Deactivate', product_variant_path(@product,variant), method: :delete, class: "btn btn-mini btn-danger") : (link_to 'Activate', revive_product_variant_path(@product, variant), class: "btn btn-mini btn-success") %>

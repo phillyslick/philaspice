@@ -1,13 +1,38 @@
-<%= content_tag :h1, "Create a New Product" %>
-<%= form_for @product do |f| %>
-<%= f.label :category_id, "Category:" %>
-	<%= f.collection_select :category_id, Category.all, :id, :name %>
-	<div class="items">
-		<%= f.nested_fields_for :variants do |f| %>
-			<%= render :partial => 'variants', locals: {f: f} %>
-		<% end %>
-	</div>
-	
-	<%= f.submit "Create" %>
-<% end %>
 
+<div id="content">
+
+	<div id="modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <%= content_tag :h1, "Create a New Product" %>
+	  </div>
+		
+	  <div class="modal-body">
+			<%= form_for @product do |f| %>
+			<%= f.label :category_id, "Category:" %>
+
+		<%= f.collection_select :category_id, Category.all, :id, :name %>
+		<%= hidden_field_tag :path, new_product_path(@product) %>
+		<div id="subload">
+			<% if @category.subcategories.count > 0 %>
+				<%= f.label :subcategory, "Sub-Category:" %>
+				<%= f.collection_select :subcategory_id, @category.subcategories.all, :id, :name, include_blank: "None"  %>
+			<% end %>
+		</div>
+				
+				<div class="items">
+					<%= f.nested_fields_for :variants do |f| %>
+						<%= render :partial => 'variants', locals: {f: f} %>
+					<% end %>
+				</div>
+		</div>
+	  <div class="modal-footer">
+
+			<%= f.submit "Create" %>
+		<% end %>
+
+	  </div>
+	</div>
+
+</div>

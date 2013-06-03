@@ -14,7 +14,8 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :variants, :category
   
   validates_presence_of :name
-  
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   before_save :correspond_categories, :if => :subcategory_id
   #validates_presence_of :temp_price, if: "new_record?"
   
@@ -100,6 +101,14 @@ class Product < ActiveRecord::Base
   
   def self.inactive
     where("products.deleted_at IS NOT NULL OR products.deleted_at > ?", Time.zone.now)
+  end
+  
+  def self.stocked
+    where("products.stocked IS TRUE")
+  end
+  
+  def self.unstocked
+   where("products.stocked IS FALSE OR products.stocked IS NULL")
   end
   
   def correspond_categories

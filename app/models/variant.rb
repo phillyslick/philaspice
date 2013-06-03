@@ -3,10 +3,15 @@ class Variant < ActiveRecord::Base
   has_many :prices
   has_many :weights, through: :prices, uniq: true
   
+  
   accepts_nested_attributes_for :weights, :prices
   attr_accessor :delete
   attr_accessible :deleted_at, :master, :name, :price, :sku, :delete, 
-  :description, :prices_attributes, :weights_attributes, :image, :stocked
+  :description, :prices_attributes, :weights_attributes, :image, :stocked,
+  :slug
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
 
   validates_presence_of :name 
   mount_uploader :image, ImageUploader

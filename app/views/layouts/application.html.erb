@@ -16,9 +16,9 @@
 	</nav>
 	<div class="container-fluid">
 	  <div class="row-fluid">
-			<div class="span4">
+			<div id="productSide" class="span4">
 				 <%= render :partial => 'navigation' %>
-				 <%= link_to "New Product", new_product_path %>
+				 <%= link_to "New Product", new_product_path, class: "btn btn-primary triggerBlank" %>
 			</div>
 <div id="rightDisplay" class="span8">
 				 <%= yield %>

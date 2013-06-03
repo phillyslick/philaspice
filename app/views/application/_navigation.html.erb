@@ -5,28 +5,34 @@
 	<%# hidden_field_tag :direction, params[:direction] %>
   <%# hidden_field_tag :sort, params[:sort] %>
 	<%= hidden_field_tag :active, params[:active] %>
+	<%= hidden_field_tag :stocked, params[:stocked] %>
 	<% if params[:product] %>
-	<%= collection_select :product, :category_id, Category.all, :id, :name, {include_blank: "All", selected: params[:product][:category_id]} %>
+		<%= collection_select :product, :category_id, Category.all, :id, :name, {include_blank: "All", selected: params[:product][:category_id]} %>
+	<% elsif params[:category_id].to_s.length > 0 %>
+			<%= collection_select :product, :category_id, Category.all, :id, :name, {include_blank: "All", selected: params[:category_id]} %>
 	<% else %>
-	<%= collection_select :product, :category_id, Category.all, :id, :name, {include_blank: "All", selected: "All"} %>
+		<%= collection_select :product, :category_id, Category.all, :id, :name, {include_blank: "All", selected: "All"} %>
 	<% end %>
 	<%= submit_tag "Filter" %>
 <% end %>
 
-<ul>
+<ul class="products">
 	<% @products.each do |product| %>
 	
-		<li id="product_<%= product.id %>" class="media">
+		<li id="product_<%= product.id %>" class="<%= cycle("odd", "even") -%>">
 			<%= image_tag product.hero_variant.image.url(:thumb) %>
 			<span class="productDeets">
-				<%= "Name: #{product.name} | Price Range: #{product.display_price_range}" %>
 				<p>
-				<%= "Actions: #{link_to 'Edit', edit_product_path(product)} | #{link_to( 'Details', product_path(product), class: "rightPane")}".html_safe  %>
-				<%= product.active? ? (link_to ' | Deactivate', product, method: :delete) : (link_to ' | Activate', revive_product_path(product)) %>
-				</p>	
-			</span>
-			
-				<%=( content_tag :span, "#{product.category.name}") if product.category %>
+				<%= "Name: #{product.name} | Price Range: #{product.display_price_range}" %>
+			</p>
+			<div id="categories">
+				<%= render :partial => 'category_info', locals: {product: product} %>
+			</div>
+				<div class="btn-group">
+				<%= "Actions: #{link_to 'Edit', edit_product_path(product), class: "btn btn-mini"} | #{link_to( 'Details', product_path(product), class: "rightPane btn btn-mini")}".html_safe  %>
+				<%= product.active? ? (link_to 'Deactivate', product, method: :delete, class: "btn btn-mini") : (link_to 'Activate', revive_product_path(product), class: 'btn btn-mini') %>
+			</div>	
+			</span>				
 		</li>
 
 	<% end %>
