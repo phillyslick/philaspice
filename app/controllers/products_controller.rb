@@ -19,6 +19,11 @@ class ProductsController < ApplicationController
   def edit
     find_products 
     @product = Product.find(params[:id])
+    if params[:category]
+      @category = Category.find(params[:category])
+    else
+      @category = @product.category
+    end
     render layout: "modal"
   end
   

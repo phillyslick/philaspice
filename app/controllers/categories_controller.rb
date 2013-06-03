@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   
   def create
     @category = Category.new(params[:category])
-    if @category.save
+    if @category.save 
       redirect_to categories_path, notice: "Category Added!"
     else
       flash[:error] = "Sorry, something went wrong"

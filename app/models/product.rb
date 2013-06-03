@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
   attr_accessible :active, :deleted_at, :description, :featured,
-   :name, :slug, :temp_price, :variants_attributes, :category_id, :stocked
+   :name, :slug, :temp_price, :variants_attributes, :category_id, :stocked,
+   :subcategory_id
   attr_accessor :temp_price
   
   has_many :variants
@@ -14,7 +15,7 @@ class Product < ActiveRecord::Base
   
   validates_presence_of :name
   
-  before_save :correspond_catgories, :if => :subcategory_id
+  before_save :correspond_categories, :if => :subcategory_id
   #validates_presence_of :temp_price, if: "new_record?"
   
   #after_create :check_for_variants

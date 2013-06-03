@@ -1,0 +1,12 @@
+<% variant.prices.by_weight.each do |price| %>
+			<li class="priceWeight">
+				<span>
+					<%= "#{price.weight.display} for: " %>
+					<%= "#{price.amount} USD" %>
+				</span>
+				<div class='btn-group'>
+				<%= link_to "<i class='icon-pencil'></i>".html_safe, edit_weight_product_variant_path(@product, variant, weight_id: price.weight.id, price_id: price.id), class: "btn btn-mini tip triggerWeight", data: {toggle: "tooltip"}, title: "Edit Price" %>
+				<%= link_to "<i class='icon-trash'></i>".html_safe, delete_price_product_variant_path(@product, variant, price_id: price.id), class: "btn btn-mini tip", data: {toggle: "tooltip"}, title: "Delete Price" %>
+			</div>
+			</li>
+		<% end %>

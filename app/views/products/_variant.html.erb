@@ -1,0 +1,26 @@
+<li class='variant <%= cycle("odd", "even") -%>'>
+	<%= image_tag variant.image.url(:thumb) %>
+	
+	<%= content_tag :h3, "#{variant.name}", id: "variantName" %>
+	<span id="status">
+		
+		<%= variant.active? ? "<span class='label label-success	'>Active</span>".html_safe : "<span class='label'>Inactive</span>".html_safe %>
+	
+		<%= content_tag :span, "Master", class: "label label-info", id: "master" if variant.master? %>
+	
+		<%= variant.stocked? ? content_tag(:span, "In-Stock", class: "label label-info") : content_tag(:span, "Out-Of-Stock", class: "label label-important") %>
+		
+	</span>
+
+	
+	<%= content_tag :p, variant.description %>
+	
+	<ul class="pricesWeights">
+		<%= render :partial => 'prices_by_weight', locals: {variant: variant} %>
+	</ul>
+
+	<div class="btn-group">
+		<%= render :partial => 'variant_buttons', locals: {variant: variant} %>
+
+	</div>
+</li>

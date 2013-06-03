@@ -1,0 +1,12 @@
+<%= "#{link_to 'Edit', edit_product_variant_path(@product, variant), class: "btn btn-mini triggerWeight"}  #{link_to "Add a Weight", weights_product_variant_path(@product, variant), class: "btn-mini btn triggerWeight"}".html_safe %>
+		
+		<% if variant.stocked? %>
+			<%= link_to "Unstock", unstock_product_variant_path(@product, variant), class:'btn btn btn-mini'%>
+		<% else %>
+			<%= link_to "Re-Stock", stock_product_variant_path(@product, variant), class:'btn btn-primary btn-mini'%>
+		<% end %>
+
+		<%= variant.active? ? (link_to 'Deactivate', product_variant_path(@product,variant), method: :delete, class: "btn btn-mini btn-danger") : (link_to 'Activate', revive_product_variant_path(@product, variant), class: "btn btn-mini btn-success") %>
+
+	
+		<%= (link_to "Set as Master", master_product_variant_path(@product,variant), method: :put, class: 'btn btn-mini btn-success') unless variant.master? %>

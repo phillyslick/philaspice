@@ -3,6 +3,8 @@
 
 	<%= content_tag :h1, @product.hero_variant.name %> 
 	<%= content_tag :span, "#{@product.category.name}", class: "label label-info", id: "category" if @product.category %>
+	<%= content_tag :i, '', class: "icon-arrow-right" if @product.subcategory %>
+		<%= content_tag :span, "#{@product.subcategory.name}", class: "label label-info", id: "category" if @product.subcategory %>
 	<%= @product.stocked? ? content_tag(:span, "In-Stock", class: "label label-info") : content_tag(:span, "Out-Of-Stock", class: "label label-info") %>
 
 

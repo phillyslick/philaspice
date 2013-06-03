@@ -1,0 +1,18 @@
+<div id="content">
+	<div id="modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <%= content_tag :h1, "Edit #{@subcategory.name}" %>
+  </div>
+  <div class="modal-body">
+			<%= form_for([@category, @subcategory], url: category_subcategory_path) do |f| %>
+			<%= f.label :name, "Name:" %>
+			<%= f.text_field :name %>
+  </div>
+  <div class="modal-footer">
+		<%= f.submit "Create", class: 'btn-primary' %>
+	<% end %>
+		
+  </div>
+</div>
+</div>
