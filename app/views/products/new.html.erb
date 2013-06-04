@@ -9,7 +9,7 @@
 	  </div>
 		
 	  <div class="modal-body">
-			<%= form_for @product do |f| %>
+			<%= form_for @product, :validate => true do |f| %>
 			<%= f.label :category_id, "Category:" %>
 
 		<%= f.collection_select :category_id, Category.all, :id, :name %>

@@ -8,7 +8,11 @@ class VariantsController < ApplicationController
   def new
     @product = Product.find(params[:product_id])
     @variant = @product.variants.build
- 
+    respond_to do |format|
+      format.html
+      format.json
+      format.js
+    end
   end
   
   def edit
@@ -55,6 +59,7 @@ class VariantsController < ApplicationController
     @variant = Variant.find(params[:id])
     @variant.deleted_at ||= Time.zone.now
     @variant.save
+    @variant.product.count_for_master
     redirect_to @variant.product
   end
   

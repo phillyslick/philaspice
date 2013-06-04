@@ -11,12 +11,13 @@ class Variant < ActiveRecord::Base
   :slug
   extend FriendlyId
   friendly_id :name, use: :slugged
-
-
+  
+  before_create :set_as_master, :if => Proc.new { |variant| variant.product.variants.size == 0 }
   validates_presence_of :name 
   mount_uploader :image, ImageUploader
   
   scope :recent, order("updated_at DESC")
+
   
   def active?
     deleted_at.nil? || deleted_at > Time.zone.now
@@ -107,6 +108,14 @@ class Variant < ActiveRecord::Base
   
   def self.inactive
     where("variants.deleted_at IS NOT NULL OR variants.deleted_at > ?", Time.zone.now)
+  end
+  
+  def self.is_stocked
+    where("variants.stocked IS TRUE")
+  end
+  
+  def self.unstocked
+    where("variants.stocked IS NOT TRUE")
   end
   
 end

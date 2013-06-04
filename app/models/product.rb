@@ -8,14 +8,26 @@ class Product < ActiveRecord::Base
   has_many :active_variants, 
              class_name: "Variant", 
              conditions: ["variants.deleted_at IS NULL"]
+             
+  has_many :stocked_variants,
+    class_name: "Variant",
+    conditions: ["variants.stocked IS TRUE"]
+    
+  has_many :unstocked_variants,
+      class_name: "Variant",
+      conditions: ["variants.stocked IS FALSE"]
+    
   belongs_to :category
   belongs_to :subcategory
 
   accepts_nested_attributes_for :variants, :category
   
+  
   validates_presence_of :name
+  
   extend FriendlyId
   friendly_id :name, use: :slugged
+  
   before_save :correspond_categories, :if => :subcategory_id
   #validates_presence_of :temp_price, if: "new_record?"
   
@@ -27,7 +39,7 @@ class Product < ActiveRecord::Base
  #end
   
   def hero_variant 
-    variants.detect{ |v| v.master } || variants.first
+    active_variants.detect{ |v| v.master } || variants.first
   end
   
   def all_variant_prices
@@ -87,7 +99,14 @@ class Product < ActiveRecord::Base
   
   def stocked?
     variants.each{ |v| return true if v.stocked? }
-    return false
+    false
+  end
+  
+  def count_for_master
+    if active_variants.size == 1
+      active_variants.first.master = true
+      active_variants.first.save
+    end
   end
   
   def self.featured
@@ -103,12 +122,12 @@ class Product < ActiveRecord::Base
     where("products.deleted_at IS NOT NULL OR products.deleted_at > ?", Time.zone.now)
   end
   
-  def self.stocked
-    where("products.stocked IS TRUE")
+  def self.is_stocked
+    Product.all.select{ |p| p.stocked? }
   end
   
   def self.unstocked
-   where("products.stocked IS FALSE OR products.stocked IS NULL")
+    Product.all.select{ |p| p.stocked? == false }
   end
   
   def correspond_categories
