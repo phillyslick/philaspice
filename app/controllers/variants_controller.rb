@@ -29,7 +29,7 @@ class VariantsController < ApplicationController
     if @variant.save
       @variant.add_price(params[:price], params[:weight])
       flash[:notice] = "Variant Created"
-      redirect_to product_variant_path(@product,@variant)
+      redirect_to @product
     else
       flash[:error] = "Sorry, Variant Could Not Be Saved"
       render action: :new
@@ -47,7 +47,7 @@ class VariantsController < ApplicationController
         @variant.activate!
       end
       flash[:notice] = "Variant Updated"
-      redirect_to @variant.product  
+      redirect_to @variant.product  s
     else
       flash[:error] = "Sorry, Variant Couldn't Be Updated"
       render action: :edit

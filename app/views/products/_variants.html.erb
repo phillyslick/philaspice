@@ -1,6 +1,6 @@
 <fieldset class="item">
 		<%= f.label :name, "Name:"  %>
-		<%= f.text_field :name %>
+		<%= f.text_field :name, class: "required_field", data: {message: "Please enter a Name of at Least Three Letters"} %>
 		
 		<%= f.label :description, "Description:" %>
 		<%= f.text_area :description, size: "80x8" %>

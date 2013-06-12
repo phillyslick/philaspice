@@ -83,8 +83,12 @@ ul{
 	}
 	ul.products{
 		li{
+			cursor:pointer;
 			width:95%;
 			position:relative;
+		}
+		li:hover{
+			background:rgba(#bc1900, .2);
 		}
 	}
 	.odd{

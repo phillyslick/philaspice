@@ -2,7 +2,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   def find_products
-    if params[:product] && params[:product][:category_id].present?  
+    if params[:query]
+      @products = Product.search(params[:query])
+    elsif params[:product] && params[:product][:category_id].present?  
       category = Category.find(params[:product][:category_id])
       params[:active] == 'false' ? building_products = category.products.inactive : building_products = category.products.active
       params[:stocked] == 'false' ? @products = building_products.unstocked : @products = building_products.is_stocked

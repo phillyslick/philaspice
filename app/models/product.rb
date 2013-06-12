@@ -42,6 +42,10 @@ class Product < ActiveRecord::Base
     active_variants.detect{ |v| v.master } || variants.first
   end
   
+  def front_hero
+    active_variants.detect{ |v| v.master and v.stocked } || variants.first
+  end
+  
   def all_variant_prices
     all = []
     variants.each do |v|
@@ -133,6 +137,14 @@ class Product < ActiveRecord::Base
   def correspond_categories
     unless category_id == subcategory_id
       errors.add :subcategory_id, 'Subcategory must be from the same category that the product belongs to!'
+    end
+  end
+  
+  def self.search(query)
+    if query.present?
+      where("name @@ :q", q: query)
+    else
+      scoped
     end
   end
   
