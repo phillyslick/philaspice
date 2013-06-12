@@ -1,3 +1,8 @@
+
+.headFloat{
+	margin-bottom:1px;
+}
+
 h1,h2, h3, h4{
 	font-family: "Klinic Slab" !important;
 }
@@ -81,7 +86,9 @@ ul{
 	#categories{
 		margin-bottom:10px;
 	}
+	
 	ul.products{
+		
 		li{
 			cursor:pointer;
 			width:95%;
@@ -94,4 +101,20 @@ ul{
 	.odd{
 			background-color: $lightBlue;
 		}
+}
+
+.categories{
+	.odd{
+			background-color: $lightBlue;
+		}
+	li{
+		margin-bottom:20px;
+		.action{
+
+		}
+		ul{
+			margin-top:15px;
+			margin-left:20px;
+		}
+	}
 }
