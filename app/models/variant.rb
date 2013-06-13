@@ -49,19 +49,7 @@ class Variant < ActiveRecord::Base
     measurement.downcase == "pounds" ? in_pounds = true : in_pounds = false
     prices.create(amount: price, weight: Weight.create(ounces: quantity, in_pounds: in_pounds))
   end
-  
- # def update_price(weight_id, price, quantity, measurement="ounces")
- #   measurement.downcase == "pounds" ? in_pounds = true : in_pounds = false
- #   the_weight = Weight.find(weight_id)
- #   the_weight.ounces = quantity
- #   the_weight.in_pounds = in_pounds
- #   the_weight.save
- #   the_price = prices.where( weight_id: weight_id, variant_id: self.id ).first
- #   the_price.amount = price
- #   the_price.weight = the_weight
- #   the_price.save
- # end
-  
+
   def update_price(price_id, new_price, new_quantity, measurement="ounces")
     measurement.downcase == "pounds" ? in_pounds = true : in_pounds = false
     the_price = Price.find(price_id)
@@ -102,8 +90,8 @@ class Variant < ActiveRecord::Base
   end
   
   def set_as_master
-    self.master = true
-    self.class.where('id != ? and master', self.id).update_all("master = 'false'")
+    product.variants.where('id != ? and master', id).update_all("master = 'false'")
+    master = true
   end
 
   def self.active

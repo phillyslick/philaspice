@@ -41,6 +41,12 @@ describe Variant do
       expect(@variant.active?).to be_false
     end
     
+    it "can return a 'active' or 'not active' accordingly" do
+      expect(@variant.status).to eql "Active"
+      @variant.inactivate!
+      expect(@variant.status).to eql "Not Active"
+    end
+    
     it "can return its name with sku" do
       @variant.name = "Meees"
       @variant.sku = '124-12341-2431'
@@ -50,6 +56,7 @@ describe Variant do
       @variant.save
       expect(@variant.name_with_sku).to eq "Meees"
     end
+    
 
   end
   
@@ -58,6 +65,15 @@ describe Variant do
       @variant.add_price(9.99, 12)
       weight = @variant.weights.first
       expect(weight.ounces).to eq(12.0)
+    end
+    
+    it "can update a price using a similar method" do
+      @variant.add_price(9.99, 12)
+      weight = @variant.weights.first
+      expect(weight.ounces).to eq(12.0)
+      @variant.update_price(@variant.prices.first.id, 11.0, 10)
+      expect(@variant.prices.first.amount).to eql 11.0
+      expect(@variant.weights.first.ounces).to eql 10.0
     end
     
     it "can provide pounds if it wants to enter the price in pounds" do
@@ -95,6 +111,19 @@ describe Variant do
       expect(@variant.display_price_range).to eql("8.99 to 20.0")
     end
     
+    pending "can set itself as master and set all other sibling variants to master=false" do
+      parent_product = create(:product)
+      og_master = create(:variant, master: true, product: parent_product)
+      @variant.product = parent_product
+      @variant.save
+      @variant.master = false
+      expect(@variant.master).to be_false
+      @variant.master = true
+      @variant.save
+      expect(@variant.master).to be_true
+      expect(og_master.master).to be_false
+    end
+    
   end
   
   context "class methods" do
@@ -120,6 +149,21 @@ describe Variant do
       @variant.deleted_at = Time.zone.now
       @variant.save
       expect(Variant.inactive).to include @variant
+    end
+    
+    it "can return variants that are stocked" do
+      variants = create_list(:variant, 4, stocked: true)
+      no_variants = create_list(:variant, 4, stocked: false)
+      expect(Variant.is_stocked).to match_array variants
+      expect(Variant.is_stocked).to_not match_array no_variants
+    end
+    
+    it "can return variants that are not stocked" do
+      Variant.delete_all
+      variants = create_list(:variant, 4, stocked: true)
+      no_variants = create_list(:variant, 4, stocked: false)
+      expect(Variant.unstocked).to match_array no_variants
+      expect(Variant.unstocked).to_not match_array variants
     end
   end
   
