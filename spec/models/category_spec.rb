@@ -23,4 +23,13 @@ describe Category do
     @category.save
     expect(@category.products.count).to be(2)
   end
+  
+  context "instance methods" do
+    it "can display the featured product for that category" do
+      product = create(:product, category: @category)
+      product2 = create(:product, category: @category, deleted_at: Time.now)
+      @category.save
+      expect(@category.featured).to eql product
+    end
+  end
 end
