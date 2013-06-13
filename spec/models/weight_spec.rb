@@ -24,6 +24,17 @@ describe Weight do
       @weight.ounces = 16
       expect(@weight.pounds.to_f).to eq(1)
     end
+    
+    it "can tell you its unit" do
+      @weight.in_pounds = true
+      expect(@weight.unit).to eql "Pounds"
+    end
+    
+    it "can display its weight in ounces no matter" do
+      @weight.in_pounds = true
+      @weight.ounces = 10.0
+      expect(@weight.raw).to eql(160.0)
+    end
   end
   
 end
