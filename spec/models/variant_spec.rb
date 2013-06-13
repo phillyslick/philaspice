@@ -10,13 +10,6 @@ describe Variant do
   end
   
   context "validations" do
-   #it "must have a price" do
-   #  @variant.price = nil
-   #  expect(@variant).to have(1).errors_on :price
-   #  @variant.price = 9.99
-   #  expect(@variant).to have(0).errors_on :price
-   #end
-    
     it "must have a name" do
       @variant.name = nil
       expect(@variant).to have(1).errors_on :name
@@ -68,9 +61,10 @@ describe Variant do
     end
     
     it "can provide pounds if it wants to enter the price in pounds" do
-      @variant.add_price(9.99, 5.0, "pounds")
+      @variant.add_price(9.99, 5.0, "Pounds")
       weight = @variant.weights.first
-      expect(weight.pounds).to eq(5.0)
+      expect(weight.raw).to eq(80.0)
+      expect(weight.in_pounds).to be_true
     end
     
     it "can return an array of all prices" do

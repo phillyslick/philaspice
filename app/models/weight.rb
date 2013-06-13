@@ -8,8 +8,13 @@ class Weight < ActiveRecord::Base
   accepts_nested_attributes_for :variants, :prices
   
   def pounds
-    (ounces / 16).to_f.round(4)
+    if in_pounds?
+      ounces
+    else
+      (ounces / 16).to_f.round(4)
+    end
   end
+  
   
   def display
     self.in_pounds? ? "#{ounces} lbs." : "#{ounces} oz."
