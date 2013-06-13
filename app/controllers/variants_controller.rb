@@ -47,7 +47,7 @@ class VariantsController < ApplicationController
         @variant.activate!
       end
       flash[:notice] = "Variant Updated"
-      redirect_to @variant.product  s
+      redirect_to @variant.product
     else
       flash[:error] = "Sorry, Variant Couldn't Be Updated"
       render action: :edit

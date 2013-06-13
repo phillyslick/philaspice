@@ -3,8 +3,9 @@ FactoryGirl.define do
     name {Faker::Name.first_name}
     description {Faker::Lorem.sentences(2)}
     deleted_at nil
-    featured true
-    temp_price 9.94
+    featured false
+    active true
+    stocked false
     category { |p| p.association(:category) }
   end
 end

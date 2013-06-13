@@ -78,6 +78,10 @@ class Variant < ActiveRecord::Base
     a_prices
   end
   
+  def lowest_price
+    all_prices.min
+  end
+  
   def prices_with_weights
     prices_and_weights = []
     prices.each do |price|
@@ -85,7 +89,7 @@ class Variant < ActiveRecord::Base
     end
     prices_and_weights
   end
-    
+  
   def display_price_range(j = ' to ')
     price_range.join(j)
   end

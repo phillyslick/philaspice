@@ -1,4 +1,12 @@
 Philaspice::Application.routes.draw do
+  get "storefront/index" => 'storefront#index', as: :storefront
+
+  get "storefront/product"
+
+  get "storefront/checkout"
+
+  get "front/index"
+  root to: "front#index"
   resources :products do
     
     member do

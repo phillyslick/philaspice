@@ -18,6 +18,26 @@ describe Product do
     end
   end
   
+  describe "callbacks" do
+    it "checks to make sure the subcategory assigned belongs to the category assigned" do
+      cat = @product.category
+      subcat = cat.subcategories.create(name: "Stuffs")
+      @product.subcategory = subcat
+      @product.save
+      expect(@product).to be_valid
+      stray_cat = create(:category)
+      stray_sub = stray_cat.subcategories.create(name: "SubSuf")
+      @product.subcategory = stray_sub
+      @product.save
+      expect(@product).to_not be_valid
+      expect(@product).to have(1).errors_on :subcategory_id
+      @product.category = cat
+      @product.subcategory = subcat
+      @product.save
+      expect(@product).to be_valid
+    end
+  end
+  
   describe "variant interaction" do
     
     it "has a hero variant - the main variant" do
@@ -40,6 +60,12 @@ describe Product do
       expect(@product.active_variants.count).to be(2)
     end
     
+    it "has a front_hero that is an active, stocked, and master variant (falls back to first active)" do
+      non_front = @product.variants.create(master: true, name: "product variant", price: "9.99", stocked: false)
+      front = @product.variants.create(master: true, name: "product variantf", price: "19.99", stocked: true)
+      expect(@product.front_hero).to eql(front)
+    end
+    
   end
   
   describe "category interaction" do
@@ -49,6 +75,20 @@ describe Product do
   end
   
   describe "instance methods" do
+    
+    it "can return all of its variant prices in an array" do
+      variants = create_list(:variant, 5)
+      @product.variants = []
+      @product.variants = variants
+      @product.save
+      prices = []
+      @product.variants.collect do |v|
+       prices = v.prices.each {|p| p.amount}
+      end
+      puts prices
+      expect(@product.all_variant_prices).to eql(prices)
+    end
+    
     it "has a price_range that returns a range of variant prices" do
       non_hero = @product.variants.create(master: false, name: "product variant")
       non_hero.prices.create(amount: 100)
@@ -69,8 +109,10 @@ describe Product do
       expect(@product.display_price_range).to eq "N/A to N/A"
     end
     
-    it "has a price that returns the hero_variant's price" do
-       variant2 = @product.variants.create(name: "Whats", price: 90.00, master: true)
+    it "has a price that returns the hero_variant's lowest price" do
+       variant2 = @product.variants.create(name: "Whats", master: true)
+       variant2.prices << create(:price, variant: variant2, amount: 90.0)
+       variant2.prices << create(:price, variant: variant2, amount: 190.0)
        expect(@product.price).to eq(90.0)
     end
     
@@ -101,6 +143,37 @@ describe Product do
       @product.activate!
       expect(@product.active?).to be_true
     end 
+    
+    it "can stock all of its variants" do
+      @product.variants = create_list(:variant, 5, stocked: false)
+      @product.stock_variants
+      @product.variants.each do |v|
+        expect(v.stocked).to be_true
+      end
+    end
+    
+    it "can de/unstock all of its variants" do
+      @product.variants = create_list(:variant, 5, stocked: true)
+      @product.unstock_variants
+      @product.variants.each do |v|
+        expect(v.stocked).to be_false
+      end
+    end
+    
+    it "can tell if any of its variants have any stock" do
+      @product.variants = create_list(:variant, 5, stocked: false)
+      expect(@product.stocked?).to be_false
+      @product.variants.first.stocked = true
+      expect(@product.stocked?).to be_true
+    end
+    
+    it "detects if there's only one active_variant left and sets it to master" do
+      @product.variants << create(:variant, master: false, deleted_at: nil, product: @product)
+      @product.save
+      @product.count_for_master
+      expect(@product.variants.first.master).to be_true
+    end
+    
   end
   
   describe "class methods" do
@@ -127,6 +200,23 @@ describe Product do
       @product.save
       expect(Product.inactive).to include @product
       
+    end
+    
+    it "can return products that are stocked and unstocked" do
+      product2 = create(:product)
+      product2.variants << create_list(:variant, 2, stocked: false, product: product2)
+      @product.variants << create_list(:variant, 3, stocked: true, product: @product)
+      @product.save
+      product2.save
+      expect(Product.is_stocked).to include @product
+      expect(Product.unstocked).to include product2
+    end
+    
+    it "can search for product by name" do
+      @product.name = "Spicy Ketchup"
+      @product.save
+      product2 = create(:product, name: "Ketchup")
+      expect(Product.search("Ketchup").count).to be(2)
     end
     
   end

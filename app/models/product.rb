@@ -1,8 +1,7 @@
 class Product < ActiveRecord::Base
   attr_accessible :active, :deleted_at, :description, :featured,
-   :name, :slug, :temp_price, :variants_attributes, :category_id, :stocked,
+   :name, :slug, :variants_attributes, :category_id, :stocked,
    :subcategory_id
-  attr_accessor :temp_price
   
   has_many :variants
   has_many :active_variants, 
@@ -24,20 +23,13 @@ class Product < ActiveRecord::Base
   
   
   validates_presence_of :name
+  validate :subcategory_must_correspond_to_category, :if => :subcategory_id
   
   extend FriendlyId
   friendly_id :name, use: :slugged
   
-  before_save :correspond_categories, :if => :subcategory_id
-  #validates_presence_of :temp_price, if: "new_record?"
   
-  #after_create :check_for_variants
-  
- #def check_for_variants
- #  variants.create(name: name, price: temp_price)
- #  save
- #end
-  
+
   def hero_variant 
     active_variants.detect{ |v| v.master } || variants.first
   end
@@ -73,7 +65,7 @@ class Product < ActiveRecord::Base
   end
   
   def price
-    hero_variant.price
+    hero_variant.lowest_price
   end
   
   def lowest_price
@@ -127,17 +119,11 @@ class Product < ActiveRecord::Base
   end
   
   def self.is_stocked
-    Product.all.select{ |p| p.stocked? }
+    joins(:variants).merge(Variant.is_stocked)
   end
   
   def self.unstocked
     Product.all.select{ |p| p.stocked? == false }
-  end
-  
-  def correspond_categories
-    unless category_id == subcategory_id
-      errors.add :subcategory_id, 'Subcategory must be from the same category that the product belongs to!'
-    end
   end
   
   def self.search(query)
@@ -145,6 +131,14 @@ class Product < ActiveRecord::Base
       where("name @@ :q", q: query)
     else
       scoped
+    end
+  end
+  
+  private 
+  
+  def subcategory_must_correspond_to_category
+    unless category_id == subcategory.category_id
+      errors.add :subcategory_id, 'Subcategory must be from the same category that the product belongs to!'
     end
   end
   
