@@ -6,6 +6,10 @@ Philaspice::Application.routes.draw do
   get "storefront/checkout"
 
   get "front/index"
+  
+  get "front/about"
+  
+  get "front/contact"
   root to: "front#index"
   resources :products do
     

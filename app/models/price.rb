@@ -10,4 +10,9 @@ class Price < ActiveRecord::Base
     prices = Price.all.sort {|a,b| a.weight.raw <=> b.weight.raw}
     prices.reverse
   end
+  
+  def weight_and_price
+    "$#{amount} for #{weight.display}"
+  end
+
 end

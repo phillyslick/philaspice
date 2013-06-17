@@ -119,7 +119,7 @@ class Product < ActiveRecord::Base
   end
   
   def self.is_stocked
-    joins(:variants).merge(Variant.is_stocked)
+    joins(:variants).merge(Variant.is_stocked).uniq!
   end
   
   def self.unstocked
