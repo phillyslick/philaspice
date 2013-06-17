@@ -1,9 +1,11 @@
 Philaspice::Application.routes.draw do
   get "storefront/index" => 'storefront#index', as: :storefront
 
-  get "storefront/product"
+  get "storefront/product/:id" => 'storefront#product', as: :storefront_product
 
   get "storefront/checkout"
+  
+  get "storefront/review_order"
 
   get "front/index"
   
@@ -39,6 +41,7 @@ Philaspice::Application.routes.draw do
     resources :subcategories
   end
   resources :weights
+  resources :pages
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
