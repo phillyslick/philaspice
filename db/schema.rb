@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130617172938) do
+ActiveRecord::Schema.define(:version => 20130618142521) do
+
+  create_table "carts", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -22,6 +27,22 @@ ActiveRecord::Schema.define(:version => 20130617172938) do
   end
 
   add_index "categories", ["slug"], :name => "index_categories_on_slug", :unique => true
+
+  create_table "line_items", :force => true do |t|
+    t.integer  "cart_id"
+    t.integer  "order_id"
+    t.integer  "price_id"
+    t.string   "name"
+    t.decimal  "cost",       :precision => 9, :scale => 2
+    t.integer  "ounces"
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
+    t.integer  "quantity",                                 :default => 1
+  end
+
+  add_index "line_items", ["cart_id"], :name => "index_line_items_on_cart_id"
+  add_index "line_items", ["order_id"], :name => "index_line_items_on_order_id"
+  add_index "line_items", ["price_id"], :name => "index_line_items_on_price_id"
 
   create_table "pages", :force => true do |t|
     t.string   "name"

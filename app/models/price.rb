@@ -1,6 +1,7 @@
 class Price < ActiveRecord::Base
   belongs_to :variant
   belongs_to :weight
+  has_many :line_items
   attr_accessible :amount, :weight_id, :weight_attributes, :weight
   
   validates_presence_of :amount, :weight_id
