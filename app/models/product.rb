@@ -119,9 +119,7 @@ class Product < ActiveRecord::Base
   end
   
   def self.is_stocked
-    result = joins(:variants).merge(Variant.is_stocked).uniq!
-    result = [] unless result
-    result
+     Product.all.select{ |p| p.stocked? == true }
   end
   
   def self.unstocked
