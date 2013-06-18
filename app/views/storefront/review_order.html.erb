@@ -1,0 +1,33 @@
+<h1>Review Order</h1>
+
+<span>(Click an item to make changes)</span>
+
+<table border="0" cellspacing="5" cellpadding="5">
+	<thead>
+		<tr>
+			<th>Unit Price</th>
+			<th>Item</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @cart.line_items.each do |item| %>
+		<tr>
+			<td><%= item.cost %></td>
+			<td><%= item.info %></td>
+			<td><%= item.total_price %> </td>
+		</tr>
+		<% end %>
+	</tbody>
+	
+	<tfoot>
+		<tr>
+			<td>Subtotal</td>
+			<td><%= @cart.total_price %></td>
+		</tr>
+	</tfoot>
+</table>
+
+<%= button_to "Checkout" %>
+<%= button_to 'Empty cart', @cart, :method => :delete, :confirm => 'Are you sure?' %>

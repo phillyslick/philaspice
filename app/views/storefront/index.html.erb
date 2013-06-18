@@ -1,0 +1,30 @@
+<ul id="productCategories">
+	<% Category.all.each do |cat| %>
+		<%= content_tag :li do %>
+		 <%= link_to cat.name, category_id: cat.id %>
+		 <% end %>
+	<% end %>
+</ul>
+
+<div id="mainList">
+	<ul id="subcategories">
+		<% @category.subcategories.each do |subcat| %>
+			<li>
+				<%= subcat.name %>
+					<ul>
+						<% subcat.products.active.each do |product| %>
+							<li>
+								<%= image_tag product.front_hero.image.url(:thumb) %>
+								<%= link_to product.name, storefront_product_path(product) %>
+								<%= form_for @line_item do |f| %>
+									<%= f.grouped_collection_select :price_id, product.variants.active.is_stocked, 'prices.by_weight', :name, :id, :weight_and_price %>
+									<%= f.submit "Add to Cart" %>
+								<% end %>
+							</li>
+						<% end %>
+					</ul>
+			</li>
+		<% end %>
+	<ul>
+</div>
+

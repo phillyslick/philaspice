@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Philadelphia Spice Trader</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+	<header>
+		<%= link_to (content_tag :h1, "Philadelphia Spice Trader"), root_path%>
+		<nav id="front">
+			<ul>
+				<%= link_to "Home", root_path %>
+				<%= link_to "Featured", "" %>
+				<%= link_to "Catalogue", storefront_path %>
+				<%= link_to "About", front_about_path %>
+				<%= link_to "Contact", front_contact_path %>
+			</ul>
+		</nav>
+	</header>
+
+	<% if notice %>
+		<p id="notice"><%= notice %></p>
+	<% end %>
+<div id="content">
+		<%= yield %>
+</div>
+
+</body>
+</html>
+
+

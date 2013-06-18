@@ -1,0 +1,3 @@
+<%= content_tag :span, "#{product.category.name}", class: "label label-info", id: "category" if product.category %>
+	<%= content_tag :i, '', class: "icon-arrow-right" if product.subcategory %>
+		<%= content_tag :span, "#{product.subcategory.name}", class: "label label-info", id: "category" if product.subcategory %>
