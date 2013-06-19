@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618142521) do
+ActiveRecord::Schema.define(:version => 20130619135823) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "kind"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.integer  "order_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "addresses", ["order_id"], :name => "index_addresses_on_order_id"
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -28,6 +42,16 @@ ActiveRecord::Schema.define(:version => 20130618142521) do
 
   add_index "categories", ["slug"], :name => "index_categories_on_slug", :unique => true
 
+  create_table "customers", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "work_phone"
+    t.string   "home_phone"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "line_items", :force => true do |t|
     t.integer  "cart_id"
     t.integer  "order_id"
@@ -43,6 +67,18 @@ ActiveRecord::Schema.define(:version => 20130618142521) do
   add_index "line_items", ["cart_id"], :name => "index_line_items_on_cart_id"
   add_index "line_items", ["order_id"], :name => "index_line_items_on_order_id"
   add_index "line_items", ["price_id"], :name => "index_line_items_on_price_id"
+
+  create_table "orders", :force => true do |t|
+    t.decimal  "total_price",   :precision => 9, :scale => 2
+    t.integer  "total_weight"
+    t.decimal  "shipping_cost", :precision => 9, :scale => 2
+    t.integer  "customer_id"
+    t.datetime "archived_at"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
+
+  add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"
 
   create_table "pages", :force => true do |t|
     t.string   "name"

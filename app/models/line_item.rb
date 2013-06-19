@@ -4,7 +4,7 @@ class LineItem < ActiveRecord::Base
   belongs_to :price
   attr_accessor :variant_id
   attr_accessible :cart_attributes, :price_attributes, :price, :cart,
-                  :price_id, :cost, :name, :ounces, :quantity, :variant_id
+                  :price_id, :name, :ounces, :quantity, :variant_id
   
   def total_price
     unless quantity.blank? || cost.blank?

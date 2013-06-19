@@ -36,6 +36,7 @@ class LineItemsController < ApplicationController
   # GET /cart_items/1/edit
   def edit
     @line_item = LineItem.find(params[:id])
+     @cart = current_cart
   end
 
   # POST /cart_items
@@ -91,5 +92,13 @@ class LineItemsController < ApplicationController
       format.json { head :no_content }
       format.js
     end
+  end
+  
+  def update_quantity
+   
+    line_item = LineItem.find(params[:pk])
+    line_item.quantity = params[:value]
+    line_item.save
+    render nothing: true, status: 200
   end
 end

@@ -6,6 +6,10 @@ Philaspice::Application.routes.draw do
   get "storefront/checkout"
   
   get "storefront/review_order"
+  
+  put "line_items/update_quantity" => 'line_items#update_quantity', as: :update_quantity
+  
+  get "orders/new" => "orders#new", as: :new_order
 
   get "front/index"
   

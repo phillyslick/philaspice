@@ -1,0 +1,32 @@
+<h1><%= "Edit #{@line_item.name}" %></h1>
+
+
+<table border="0" cellspacing="5" cellpadding="5">
+	<thead>
+		<tr>
+			<th>Unit Price</th>
+			<th>Product Name</th>
+			<th>Weight</th>
+			<th>Quantity</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		
+		
+		<tr>
+			<td><%= @line_item.cost %></td>
+			<td><%= @line_item.name %></td>
+			<td><%= @line_item.ounces %></td>
+			<td><%= link_to @line_item.quantity, '#', id: "quantity", data: {type: "text", url: update_quantity_path, pk: @line_item.id, original_title: "Change Quantity"} %></td>
+			<td><%= @line_item.total_price %></td>
+		</tr>
+		
+	</tbody>
+	
+	
+</table>
+
+<%= link_to "Back to Cart/Close", @cart %>
+<%= link_to "Review Order/Checkout", storefront_review_order_path %>

@@ -1,0 +1,28 @@
+<table border="0" cellspacing="5" cellpadding="5">
+	<thead>
+		<tr>
+			<th>Unit Price</th>
+			<th>Item</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @cart.line_items.each do |item| %>
+		
+		<tr>
+			<td><%= link_to edit_line_item_path(item) do %><%= item.cost %><% end %></td>
+			<td><%= item.info %></td>
+			<td><%= item.total_price %> </td>
+		</tr>
+		
+		<% end %>
+	</tbody>
+	
+	<tfoot>
+		<tr>
+			<td>Subtotal</td>
+			<td><%= @cart.total_price %></td>
+		</tr>
+	</tfoot>
+</table>
