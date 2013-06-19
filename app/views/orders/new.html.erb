@@ -1,1 +1,92 @@
-<%= @cart.total_price %>
+<h1>Your Order</h1>
+<%= render :partial => 'cart_table' %>
+
+<%= form_for @order, validate: true do |f| %>
+<% if @order.errors.any? %>
+  <div id="errorExplanation">
+    <h2>Please check your contact information:</h2>
+    <ul>
+    <% @order.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+
+	<%= f.fields_for :customer do |c| %>
+	
+		<%= c.label :first_name, "First Name" %>
+		<%= c.text_field :first_name  %>
+		
+		<%= c.label :last_name, "Last Name" %>
+		<%= c.text_field :last_name %>
+		
+		<%= c.label :company, "Company" %>
+		<%= c.text_field :company %>
+		
+		<%= c.label :email, "Email" %>
+		<%= c.text_field :email %>
+		
+		<%= c.label :home_phone, "Home Phone" %>
+		<%= c.text_field :home_phone %>
+		
+		<%= c.label :work_phone, "Work/Cell Phone" %>
+		<%= c.text_field :work_phone %>
+		
+	<% end %>
+	
+	
+	
+	<%= f.fields_for :addresses do |a| %>
+
+	<br>
+	
+	<%= a.object.kind == "Shipping" ? "Shipping Address: " : "Billing Address: " %>
+	<%= link_to("Copy From Billing", '#') if  a.object.kind == "Shipping" %>
+	
+	<br>
+		<%= a.label :address1, "Street" %>
+		<%= a.text_field :address1 %>
+		<%= a.hidden_field :kind %>
+		
+		<%= a.label :address2, "Address (Continued)" %>
+		<%= a.text_field :address2 %>
+		
+		<%= a.label :city, "City" %>
+		<%= a.text_field :city %>
+		
+		<%= a.label :state, "State" %>
+		<%= a.text_field :state %>
+		
+		<%= a.label :zip, "Zip Code" %>
+		<%= a.text_field :zip %>
+	<% end %>
+	
+	<br>
+	
+  <div id="creditCardFields">
+
+	  	 <div class="field">
+ 		   <%= label_tag :credit_card_number, "Credit Card Number:" %>
+ 		   <%= text_field_tag :credit_card_number, nil, name: nil, :data => {stripe: "number"} %>
+		 </div>
+		  
+		 <div class="field">
+		     <%= label_tag :card_month, "Card Expiration" %>
+			 <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+			 <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"} %>
+ <input type="number" size="2" data-stripe="exp-month" id="exp-month" value="1"/>
+ <input type="number" size="4" data-stripe="exp-year" id="exp-year" value="2013"/>
+		   </div>
+		
+		<div class="field">
+ 		   <%= label_tag :cvv, "CVC/Security Code" %>
+ 		   <%= text_field_tag :cvv, nil, name: nil, :data => {stripe: "cvc"} %>
+		</div>
+
+  </div>
+	
+	
+	<%= f.submit "Submit" %>
+<% end %>

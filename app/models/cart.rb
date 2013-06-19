@@ -12,9 +12,9 @@ class Cart < ActiveRecord::Base
       current_item.quantity += 1
     else
       current_item = line_items.build(price_id: price_id,
-                                    cost: price.amount,
                                     name: price.variant.name,
                                     ounces: price.weight.ounces)
+                                    current_item.cost = price.amount
     end
     current_item
   end

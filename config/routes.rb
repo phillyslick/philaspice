@@ -9,8 +9,7 @@ Philaspice::Application.routes.draw do
   
   put "line_items/update_quantity" => 'line_items#update_quantity', as: :update_quantity
   
-  get "orders/new" => "orders#new", as: :new_order
-
+  resources :orders
   get "front/index"
   
   get "front/about"
@@ -46,6 +45,7 @@ Philaspice::Application.routes.draw do
   end
   resources :weights
   resources :pages
+  get "show_cart" => 'carts#show', as: :show_cart
   resources :carts
   resources :line_items
   # The priority is based upon order of creation:
