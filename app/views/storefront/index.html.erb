@@ -1,3 +1,4 @@
+
 <ul id="productCategories">
 	<% Category.all.each do |cat| %>
 		<%= content_tag :li do %>
@@ -6,13 +7,34 @@
 	<% end %>
 </ul>
 
+<%= form_tag storefront_path, method: :get, id: "search", class: "form-inline" do %>
+  <p>
+    <%= text_field_tag :query, params[:query], data: {provide: "typeahead", source: "#{@category.products.active.is_stocked.collect {|product| product.name }}"}, autocomplete: "off" %>
+    <%= submit_tag "Search", class: "btn btn-primary btn-small", name: nil %>
+		<%= link_to "Reset Search", storefront_path %>
+  </p>
+<% end %>
+
+
 <div id="mainList">
 	<ul id="subcategories">
 		<% @category.subcategories.each do |subcat| %>
 			<li>
 				<%= subcat.name %>
 					<ul>
-						<% subcat.products.active.is_stocked.each do |product| %>
+						<% if params[:query] %>
+						<% subcat.products.where("name @@ :q", q: params[:query]).active.is_stocked.each do |product| %>
+						<li>
+							<%= image_tag product.front_hero.image.url(:thumb) %>
+							<%= link_to product.name, storefront_product_path(product) %>
+							<%= form_for @line_item, remote: true do |f| %>
+								<%= f.grouped_collection_select :price_id, product.variants.active.is_stocked, 'prices.by_weight', :name, :id, :weight_and_price %>
+								<%= f.submit "Add to Cart" %>
+							<% end %>
+						</li>
+					<% end %>
+						<% else %>
+							<% subcat.products.active.is_stocked.each do |product| %>
 							<li>
 								<%= image_tag product.front_hero.image.url(:thumb) %>
 								<%= link_to product.name, storefront_product_path(product) %>
@@ -22,6 +44,8 @@
 								<% end %>
 							</li>
 						<% end %>
+						<% end %>
+							
 					</ul>
 			</li>
 		<% end %>

@@ -7,6 +7,8 @@ Philaspice::Application.routes.draw do
   
   get "storefront/review_order"
   
+  get "storefront/search"
+  
   put "line_items/update_quantity" => 'line_items#update_quantity', as: :update_quantity
   
   resources :orders

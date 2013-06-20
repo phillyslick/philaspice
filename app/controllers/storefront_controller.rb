@@ -3,9 +3,15 @@ class StorefrontController < ApplicationController
   def index
     @cart = current_cart
     @line_item = current_cart.line_items.build
-    @products = Product.active.is_stocked
+    if params[:query]
+      @products = Product.search(params[:query])
+    end
     @featured = Product.featured
-    params[:category_id] ? @category = Category.find(params[:category_id]) : @category = Category.first
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+    else
+      @category = Category.first
+    end
   end
   
   def product
