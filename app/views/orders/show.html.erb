@@ -1,0 +1,7 @@
+<%= @order.customer.first_name %>
+<%= @order.addresses.first.city %>
+
+
+<% @order.line_items.each do |l|%>
+	<%= l.name %><br>
+<% end %>
