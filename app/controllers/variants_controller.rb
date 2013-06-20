@@ -1,5 +1,7 @@
 class VariantsController < ApplicationController
-  layout 'category'
+  before_filter :authenticate_admin!
+  
+  layout 'admin'
   def show
        @product = Product.find(params[:product_id])
     @variant = Variant.find(params[:id])

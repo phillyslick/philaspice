@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  layout 'admin'
+  before_filter :authenticate_admin!
   def index
     find_products
     params[:id] ? @product = Product.find(params[:id]) : @product = Product.active.first

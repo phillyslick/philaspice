@@ -1,32 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Philaspice</title>
+  <title>Philaspice Signin</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<nav id="adminNav">
-		<ul class="nav nav-tabs">
-			<%= content_tag :li, link_to("Products", products_path), class: 'active' %>
-			<%= content_tag :li, link_to("Categories", categories_path) %>
-			<%= content_tag :li, link_to("Additional Pages", pages_path) %>
-		</ul>
-	</nav>
-	<div class="container-fluid">
-	  <div class="row-fluid">
-			<div id="productSide" class="span4">
-				 <%= render :partial => 'navigation' %>
-				 <%= link_to "New Product", new_product_path, class: "btn btn-primary triggerBlank" %>
-			</div>
-<div id="rightDisplay" class="span8">
-				 <%= yield %>
-			 </div>
-	  </div>
-	</div>
+	
+  <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
 
+	
+				 <%= yield %>
 
 
 </body>

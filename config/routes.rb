@@ -1,4 +1,6 @@
 Philaspice::Application.routes.draw do
+  devise_for :admins, skip: [:registration]
+
   get "storefront/index" => 'storefront#index', as: :storefront
 
   get "storefront/product/:id" => 'storefront#product', as: :storefront_product

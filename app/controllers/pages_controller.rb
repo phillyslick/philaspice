@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_filter :authenticate_admin!
+  
   layout "category"
   # GET /pages
   # GET /pages.json
