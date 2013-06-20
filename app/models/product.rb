@@ -98,6 +98,8 @@ class Product < ActiveRecord::Base
     false
   end
   
+
+  
   def count_for_master
     if active_variants.size == 1
       active_variants.first.master = true
@@ -125,6 +127,7 @@ class Product < ActiveRecord::Base
   def self.unstocked
     Product.all.select{ |p| p.stocked? == false }
   end
+
   
   def self.search(query)
     if query.present?

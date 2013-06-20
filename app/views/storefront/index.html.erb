@@ -12,11 +12,11 @@
 			<li>
 				<%= subcat.name %>
 					<ul>
-						<% subcat.products.active.each do |product| %>
+						<% subcat.products.active.is_stocked.each do |product| %>
 							<li>
 								<%= image_tag product.front_hero.image.url(:thumb) %>
 								<%= link_to product.name, storefront_product_path(product) %>
-								<%= form_for @line_item do |f| %>
+								<%= form_for @line_item, remote: true do |f| %>
 									<%= f.grouped_collection_select :price_id, product.variants.active.is_stocked, 'prices.by_weight', :name, :id, :weight_and_price %>
 									<%= f.submit "Add to Cart" %>
 								<% end %>
@@ -28,4 +28,6 @@
 	<ul>
 </div>
 
-<%= link_to "Checkout", new_order_path %>
+<div id="quickCart">
+	<%= render :partial => 'cart_table' %>
+</div>

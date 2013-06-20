@@ -13,7 +13,7 @@ class Variant < ActiveRecord::Base
   friendly_id :name, use: :slugged
   
   before_create :set_as_master, :if => Proc.new { |variant| variant.product.variants.size == 0 }
-  validates_presence_of :name 
+  validates_presence_of :name
   mount_uploader :image, ImageUploader
   
   scope :recent, order("updated_at DESC")
@@ -109,5 +109,6 @@ class Variant < ActiveRecord::Base
   def self.unstocked
     where("variants.stocked IS NOT TRUE")
   end
+  
   
 end
