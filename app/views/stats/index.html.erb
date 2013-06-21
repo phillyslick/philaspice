@@ -1,4 +1,19 @@
-<% @orders.each do |order| %>
-	<%= order.id %>
-	<%= order.uuid %>
-<% end %>
+<table border="0" cellspacing="5" cellpadding="5">
+	
+	<tr>
+		<th>Order ID</th>
+		<th>Order State</th>
+		<th>Order Total</th>
+		<th>Customer Name</th>
+	</tr>
+	
+	<% @orders.each do |order| %>
+		<tr>
+				<%= content_tag :td, order.uuid %>
+				<%= content_tag :td, order.state %>
+				<%= content_tag :td, order.total_price if order.total_price %>
+				<%= content_tag :td, order.customer.name %>
+	
+		</tr>
+	<% end %>
+</table>
