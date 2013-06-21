@@ -64,29 +64,8 @@
 	<% end %>
 	
 	<br>
-	
-  <div id="creditCardFields">
 
-	  	 <div class="field">
- 		   <%= label_tag :credit_card_number, "Credit Card Number:" %>
- 		   <%= text_field_tag :credit_card_number, nil, name: nil, :data => {stripe: "number"} %>
-		 </div>
-		  
-		 <div class="field">
-		     <%= label_tag :card_month, "Card Expiration" %>
-			 <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-			 <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"} %>
- <input type="number" size="2" data-stripe="exp-month" id="exp-month" value="1"/>
- <input type="number" size="4" data-stripe="exp-year" id="exp-year" value="2013"/>
-		   </div>
-		
-		<div class="field">
- 		   <%= label_tag :cvv, "CVC/Security Code" %>
- 		   <%= text_field_tag :cvv, nil, name: nil, :data => {stripe: "cvc"} %>
-		</div>
-
-  </div>
 	
 	
-	<%= f.submit "Submit" %>
+	<%= f.submit "Review Order" %>
 <% end %>

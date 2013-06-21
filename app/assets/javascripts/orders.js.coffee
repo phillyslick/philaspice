@@ -10,7 +10,7 @@ jQuery ($) ->
 	  $('#exp-year').val(year)
 
 
-  $("#new_order").submit (event) ->
+  $("#new_transaction").submit (event) ->
     $form = $(this)
     
     # Disable the submit button to prevent repeated clicks
@@ -21,7 +21,7 @@ jQuery ($) ->
     false
 
 stripeResponseHandler = (status, response) ->
-  $form = $("#new_order")
+  $form = $("#new_transaction")
   if response.error
     
     # Show the errors on the form

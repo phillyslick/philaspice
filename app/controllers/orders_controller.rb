@@ -15,24 +15,9 @@ class OrdersController < ApplicationController
   def create
     @cart = current_cart
     @order = Order.new(params[:order])
-    @order.add_cart_items(@cart)
-    if @order.valid?
-      # Amount in cents
-       @amount = (@order.total_price * 100).to_i
-      begin
-       charge = Stripe::Charge.create(
-         :card    => params[:stripeToken],
-         :amount      => @amount,
-         :description => @order.customer.first_name,
-         :currency    => 'usd'
-       )
-
-     rescue Stripe::CardError => e
-       flash[:error] = e.message
-       redirect_to new_order_path
-     end
-      @order.save
-      redirect_to root_path
+    @order.state = "Unpaid"
+    if @order.save
+      redirect_to storefront_review_order_path(@order.uuid)
     else
       render :new
     end

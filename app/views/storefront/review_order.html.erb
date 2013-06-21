@@ -1,9 +1,53 @@
 <h1>Review Order</h1>
 
-<span>(Click an item to make changes)</span>
+<%= @order.customer.first_name %>
+<%= @order.customer.last_name %>
+<%= @order.customer.company %>
+<%= @order.customer.email %>
+<%= @order.customer.home_phone %>
+<%= @order.customer.work_phone %>
+
+<% @order.addresses.each do |address| %>
+	<%= address.kind %>
+	<%= address.address1 %>
+	<%= address.address2 %>
+	<%= address.city %>
+	<%= address.state %>
+	<%= address.zip %>
+<% end %>
 
 <%= render :partial => 'cart_table' %>
 
 
-<%= link_to "Checkout", new_order_path %>
-<%= button_to 'Empty cart', @cart, :method => :delete, :confirm => 'Are you sure?' %>
+<%= form_tag storefront_pay_path, id: 'new_transaction' do %>
+
+	<br>
+	<div class="payment-errors"></div>
+  <div id="creditCardFields">
+<%= hidden_field_tag :order_id, @order.id %>
+	  	 <div class="field">
+ 		   <%= label_tag :credit_card_number, "Credit Card Number:" %>
+ 		   <%= text_field_tag :credit_card_number, nil, name: nil, :data => {stripe: "number"} %>
+		 </div>
+		  
+		 <div class="field">
+		     <%= label_tag :card_month, "Card Expiration" %>
+			 <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+			 <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"} %>
+ <input type="number" size="2" data-stripe="exp-month" id="exp-month" value="1"/>
+ <input type="number" size="4" data-stripe="exp-year" id="exp-year" value="2013"/>
+		   </div>
+		
+		<div class="field">
+ 		   <%= label_tag :cvv, "CVC/Security Code" %>
+ 		   <%= text_field_tag :cvv, nil, name: nil, :data => {stripe: "cvc"} %>
+		</div>
+
+  </div>
+	
+	
+	<%= submit_tag "Pay" %>
+<% end %>
+
+
+

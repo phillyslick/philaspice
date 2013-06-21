@@ -3,17 +3,19 @@ Philaspice::Application.routes.draw do
 
   get "storefront/index" => 'storefront#index', as: :storefront
 
-  get "storefront/product/:id" => 'storefront#product', as: :storefront_product
+  get "storefront/product/:slug" => 'storefront#product', as: :storefront_product
 
   get "storefront/checkout"
   
-  get "storefront/review_order"
+  get "storefront/review_order/:slug" => 'storefront#review_order', as: :storefront_review_order
   
   get "storefront/search"
   
+  post "storefront/pay" => 'storefront#pay', as: :storefront_pay
+  
   put "line_items/update_quantity" => 'line_items#update_quantity', as: :update_quantity
   
-  resources :orders
+  resources :orders, :stats
   get "front/index"
   
   get "front/about"

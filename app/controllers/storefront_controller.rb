@@ -27,6 +27,37 @@ class StorefrontController < ApplicationController
 
   def review_order
     @cart = current_cart
+    @order = Order.find_by_uuid(params[:slug])
+    if @order.state == "Paid"
+      redirect_to root_path
+    end
+  end
+  
+  def pay
+    @cart = current_cart
+    @order = Order.find(params[:order_id])
+    @order.add_cart_items(@cart)
+    if @order.valid?
+      # Amount in cents
+       @amount = (@order.total_price * 100).to_i
+      begin
+       charge = Stripe::Charge.create(
+         :card    => params[:stripeToken],
+         :amount      => @amount,
+         :description => @order.customer.first_name,
+         :currency    => 'usd'
+       )
+
+     rescue Stripe::CardError => e
+       flash[:error] = e.message
+       redirect_to new_order_path
+     end
+      @order.state = "Paid"
+      @order.save
+      redirect_to root_path
+    else
+      render :review_order
+    end
   end
   
   def checkout
