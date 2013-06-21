@@ -14,6 +14,7 @@
 			<%= content_tag :li, link_to("Categories", categories_path) %>
 			<%= content_tag :li, link_to("Slider Updates", sliders_path) %>
 			<%= content_tag :li, link_to("Additional Pages", pages_path) %>	
+				<%= content_tag :li, link_to("Options", option_path) %>	
 			<% if admin_signed_in? %>
 			  <li>
 			  <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>        

@@ -1,0 +1,20 @@
+<%= form_for @option do |f| %>
+
+	<%= f.label :product_id, "Select a Featured Product: " %>
+	<%= f.collection_select :product_id, Product.active.is_stocked, :id, :name %>
+	
+	<br/>
+	<%= image_tag @option.image.url(:thumb) %>
+	<%= f.label :image, "Change a Catalogue Image" %>
+	<%= f.file_field :image %>
+
+	
+	<%= f.label :cat_heading, "Catalogue Heading" %>
+	<%= f.text_field :cat_heading %>
+	
+	<%= f.label :cat_info, "Catalogue Info" %>
+	<%= f.text_area :cat_info, size: "80x8" %>
+	
+	<%= f.submit "Update" %>
+	
+<% end %>

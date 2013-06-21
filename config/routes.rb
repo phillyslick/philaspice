@@ -1,6 +1,9 @@
 Philaspice::Application.routes.draw do
   devise_for :admins, skip: [:registration]
 
+  get "admin/options" => 'options#show', as: :option
+  
+  put "admin/options" => 'options#update', as: :option
   get "storefront/index" => 'storefront#index', as: :storefront
 
   get "storefront/product/:slug" => 'storefront#product', as: :storefront_product

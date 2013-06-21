@@ -10,5 +10,22 @@
 		<% end %>
 	</ul>
 </div>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      
+
+<div id="featuredProduct">
+	<h2> Featured </h2>
+	<%= image_tag @featured.front_hero.image.url(:medium) %>
+	<h3><%= @featured.front_hero.name %></h3>
+	<p><%= @featured.front_hero.description %></p>
+</div>
+
+<div id="catalogueFeature">
+	<h2> Our Catalogue </h2>
+	<%= image_tag @option.image.url(:medium) %>
+	<h3><%= @option.cat_heading %></h3>
+	<p><%= @option.cat_info %></p>
+</div>
+
+
+<div id="quickCart">
+	<%= render :partial => 'cart_table' %>
+</div>
