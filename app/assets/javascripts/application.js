@@ -16,4 +16,5 @@
 //= require bootstrap
 //= require rails.validations
 //= require jquery.Jcrop
+//= require bjqs-1.3
 //= require_tree .
