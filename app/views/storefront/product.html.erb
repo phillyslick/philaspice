@@ -1,4 +1,5 @@
 <%= content_tag :h1, @selected_variant.name %>
+<%= content_tag :p, @product.alternate_names %>
 <%= image_tag @selected_variant.image.url(:large) %>
 <%= content_tag :div, @selected_variant.description %>
 

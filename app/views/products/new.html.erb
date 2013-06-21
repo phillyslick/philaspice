@@ -26,6 +26,9 @@
 						<%= render :partial => 'variants', locals: {f: f} %>
 					<% end %>
 				</div>
+				
+				<%= f.label :alternate_names, "Alternate Names" %>
+				<%= f.text_area :alternate_names, size: '80x8' %>
 		</div>
 	  <div class="modal-footer">
 

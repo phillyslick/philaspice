@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621143000) do
+ActiveRecord::Schema.define(:version => 20130621153030) do
 
   create_table "addresses", :force => true do |t|
     t.string   "kind"
@@ -127,11 +127,12 @@ ActiveRecord::Schema.define(:version => 20130621143000) do
     t.datetime "deleted_at"
     t.boolean  "featured"
     t.boolean  "active"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "category_id"
     t.boolean  "stocked"
     t.integer  "subcategory_id"
+    t.text     "alternate_names"
   end
 
   add_index "products", ["category_id"], :name => "index_products_on_category_id"

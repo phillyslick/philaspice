@@ -2,6 +2,7 @@
 <div id="productShow" class-"media">
 
 	<%= content_tag :h1, @product.hero_variant.name %> 
+	<%= content_tag :h3, @product.alternate_names %> 
 	<%= render :partial => 'category_info', locals: {product: @product} %>
 
 	<%= @product.stocked? ? content_tag(:span, "In-Stock", class: "label label-info") : content_tag(:span, "Out-Of-Stock", class: "label label-info") %>
@@ -10,7 +11,7 @@
 	
 	<%= image_tag @product.hero_variant.image.url(:medium), class: "featuredImg" %>
 	<div class="btn-group">
-		<%= link_to "Change Category", edit_product_path(@product), class: "btn btn-primary triggerBlank" %>
+		<%= link_to "Edit Product Details", edit_product_path(@product), class: "btn btn-primary triggerBlank" %>
 <%= link_to "Add New Variant", new_product_variant_path(@product), class:'btn btn-primary triggerBlank'%>
 	<% if @product.stocked? %>
 		<%= link_to "Unstock All", unstock_product_path(@product), class:'btn btn-primary'%>

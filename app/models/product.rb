@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   attr_accessible :active, :deleted_at, :description, :featured,
    :name, :slug, :variants_attributes, :category_id, :stocked,
-   :subcategory_id
+   :subcategory_id, :alternate_names
   
   has_many :variants
   has_many :active_variants, 
