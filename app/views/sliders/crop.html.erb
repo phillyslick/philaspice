@@ -1,0 +1,13 @@
+<h1>Crop Slider</h1>
+<%= image_tag @slider.picture.url(:medium), id: "cropbox" %>
+
+<%= form_for @slider do |f| %>
+  <div class="actions">
+		
+  	<% %w[x y w h].each do |attribute| %>
+			<%= f.hidden_field "crop_#{attribute}" %>
+		<% end %>
+		
+		<%= f.submit "crop" %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<%= form_for @slider do |f| %>
+  
+	<%= f.label :name, "Name" %>
+	<%= f.text_field :name %>
+
+	<%= f.label :picture, "Upload Picture" %>
+	<%= f.file_field :picture %>
+	
+	<%= f.submit "Submit" %>
+<% end %>
