@@ -52,6 +52,7 @@ Philaspice::Application.routes.draw do
   get "show_cart" => 'carts#show', as: :show_cart
   resources :carts
   resources :line_items
+  resources :sliders
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -15,4 +15,5 @@
 //= require jquery.nested-fields
 //= require bootstrap
 //= require rails.validations
+//= require jquery.Jcrop
 //= require_tree .
