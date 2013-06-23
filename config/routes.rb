@@ -6,7 +6,7 @@ Philaspice::Application.routes.draw do
   put "admin/options" => 'options#update', as: :option
   get "storefront/index" => 'storefront#index', as: :storefront
 
-  get "storefront/product/:slug" => 'storefront#product', as: :storefront_product
+  get "storefront/product/:id" => 'storefront#product', as: :storefront_product
 
   get "storefront/checkout"
   

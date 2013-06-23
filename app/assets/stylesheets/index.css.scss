@@ -1,0 +1,517 @@
+// MIXINS
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin gradient($from, $to) {
+  background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+  background: -moz-linear-gradient(top,  $from, $to);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+}
+@mixin rounded($radius: 0.5em) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin button($color: $red, $text_color: $white) {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  padding: .5em 2em .55em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  @include rounded();
+  @include box-shadow(0, 1px, 2px, rgba(0, 0, 0, 0.2));
+ 
+  color: $text_color !important;
+  font-weight: bold;
+  border: solid 1px darken($color, 18%);
+  background: $color;
+  @include gradient(saturate($color, 15%), darken($color, 15%));
+ 
+  &:hover {
+    text-decoration: none;
+    background: saturate($color, 10%);
+    @include gradient(saturate($color, 5%), darken($color, 5%));
+  }
+ 
+  &:active {
+    position: relative;
+    top: 1px;
+    color: saturate($color, 15%);
+    @include gradient(saturate($color, 15%), lighten($color, 15%));
+  }
+}
+
+
+.clearfix {
+    zoom:1;
+    &:before, &:after {
+        content: "\0020";
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+    &:after {
+        clear: both;
+    }
+}
+/**
+ * html5doctor.com Reset Stylesheet v1.6.1 (http://html5doctor.com/html-5-reset-stylesheet/)
+ * Richard Clark (http://richclarkdesign.com)
+ * http://cssreset.com
+ */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+body {
+    line-height:1;
+}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+nav ul {
+    list-style:none;
+}
+blockquote, q {
+    quotes:none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+del {
+    text-decoration: line-through;
+}
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+input, select {
+    vertical-align:middle;
+}
+
+// END RESET
+
+
+// FONTS
+
+@font-face {
+    font-family: 'chelsea';
+    src: url('fonts/chelsea-webfont.eot');
+    src: url('fonts/chelsea-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/chelsea-webfont.woff') format('woff'),
+         url('fonts/chelsea-webfont.ttf') format('truetype'),
+         url('fonts/chelsea-webfont.svg#chelsearegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'ofl';
+    src: url('fonts/oflgoudystmtt-webfont.eot');
+    src: url('fonts/oflgoudystmtt-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/oflgoudystmtt-webfont.woff') format('woff'),
+         url('fonts/oflgoudystmtt-webfont.ttf') format('truetype'),
+         url('fonts/oflgoudystmtt-webfont.svg#ofl_sorts_mill_goudy_ttRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+// COLOR VARIABLES
+
+$beige : #EFEFD9;
+$maroon : #631214;
+$green : #B2B24B;
+$white : #ffffff;
+$black : #000000;
+
+
+
+body{
+	width:100%;
+	font-size:100%;
+	line-height: 1.125em;
+}
+
+div,p{
+	font-family: 'Open Sans', sans-serif;
+	line-height:1.4em;
+}
+
+img{
+	max-width:100%;
+}
+
+h2{
+	background-color:$maroon;
+	color:$white;
+	padding: .5em 1em;
+	width:auto;
+
+	text-align:center;
+	text-transform:lowercase;
+	font-family:'chelsea', serif;
+	font-size:1.6em;
+	font-weight:normal;
+	letter-spacing:.02em;
+	margin:auto;
+	
+	@include box-shadow(0px, 4px, 10px, $black, $inset: false)
+}
+
+h3{
+	font-family: 'Open Sans', sans-serif;
+	font-weight:bold;
+}
+
+
+#wrapper{
+	width:96%;
+	max-width:1200px;
+	margin: auto;
+	padding: 0%;
+}
+
+//header
+
+header#front{
+	width:100%;
+	height:auto;
+	background-color:$beige;
+	color:$black;
+	padding:20px 0 20px;
+	
+	img{
+		margin:auto;
+		display:block;
+	}
+	nav{
+		margin-top:10px;
+		div{
+			display:block;
+			width:100%;
+			text-align:center;
+				a{
+					margin:0 .5em;
+					color:$black;
+					text-transform:lowercase;
+					font-size:1.2em;
+					font-weight:bold;
+
+				}
+				
+		}
+	}
+}
+
+
+// front page
+
+h2.main{
+	width:25%;
+	margin-bottom:20px;
+	position:relative;
+	top:-1px;
+}
+
+h2.featured{
+	width:23%;
+	text-align:center;
+	margin:0 0 20px 7%;
+	position:relative;
+	top:-1px;
+	font-size:1.2em;
+}
+
+hr{
+	margin-bottom:0px;
+	padding-bottom:0px;
+
+}
+
+#mainSlider{
+	width:76%;
+	margin: 0 auto;
+	position:relative;
+	.bjqs-prev{
+		
+		a{
+			width:150px;
+			height:180px;
+		//	span.nextAarow{
+		//			display:none;
+		//						cursor:pointer;
+		//		display:block;
+		//		width:65px;
+		//		height:42px;
+    //
+		//	  background: url(aarow.png) 0 0 no-repeat;
+		//		background-size:40px;
+		//		position:absolute;
+		//		top:50%;
+		//	}
+		}
+	}
+	.bjqs-next{
+	
+		a{
+			width:70px;
+			height:150px;
+		//	span.prevAarow{
+		//			display:none;
+		//		cursor:pointer;
+		//		display:block;
+		//		width:65px;
+		//		height:42px;
+		//	  background: url(aarow.png) 0 0 no-repeat;
+		//	     -webkit-transform: rotate(180deg);
+		//	     -moz-transform: rotate(180deg);
+		//	     -ms-transform: rotate(180deg);
+		//	     -o-transform: rotate(180deg);
+		//	     transform: rotate(180deg);
+		//	  background-size:40px;
+		//		position:absolute;
+		//		top:50%;
+		//	}
+		}
+	}
+}
+
+.featuredSlice{
+	@extend .clearfix;
+	margin-top:50px;
+	background:$beige;
+	padding:10px 0 30px 0;
+	width:100%;
+	
+	hr{
+		width:30%;
+	}
+	
+	img{
+		min-width:130px;
+		width:33.5%;
+		float:left;
+		margin:0 4.5%;
+	}
+	
+	p{
+		margin: 0 4.5%;
+	}
+}
+
+#catalogueFeature{
+	margin-top:25px;
+	background:$white;
+	h2{
+		width:29%;
+		padding: .5em .4em;
+	}
+}
+
+#quickCart{
+	display:none;
+}
+
+// ------------- CATALOGUE PAGE
+
+h2#productCategories{
+	width:80%;
+	padding:.5em .2em;
+	position:relative;
+	top:-1px;
+	margin-bottom:50px;
+	span{
+		margin:0 5px;
+		a{
+			color:white;
+			font-decoration:none;
+		}
+	}
+}
+
+#mainList{
+	width:100%;
+	#subcategories{
+		width:100%;
+	
+		li{
+			width:100%;
+			float:left;
+			clear:both;
+			position:relative;
+			
+			h4{
+				width:100%;
+				background-color:$beige;
+				color:black;
+				font-family: "chelsea", serif;
+				font-size:1.6em;
+				padding:8px 0 5px 0;
+				text-align:center;
+				margin-bottom:40px;
+				}
+			ul{
+				padding-left:20px;
+				list-style:none;
+				li{
+					margin:0 0 20px 0;
+						img{
+							width:20%;
+							vertical-align:text-bottom;
+					
+						}
+						a{
+							position:relative;
+							color:$black;
+							margin:0 20px 0 10px;
+							font-size:2em;					
+						}
+						form{
+							padding-top:10px;
+							display:inline-block;
+							
+						}
+					}
+			}
+		}
+	}
+}
+
+// ------------- PRODUCT PAGE
+
+h1#productName{
+	font-family: 'chelsea', serif;
+	font-size:2.5em;
+	text-align:center;
+	margin:30px 0;
+	width:100%;
+	background-color:$beige;
+	padding:20px 0;
+}
+
+h2#productAlternates{
+	width:70%;
+	line-height:1.2em;
+	position:relative;
+	top:-1px;	
+}
+
+img#productImage{
+	width:100%;
+	display:block;
+	margin:auto;
+}
+
+div#productDescription{
+	width:80%;
+	text-align:center;
+	margin:20px auto;
+}
+
+form{
+	margin-bottom:20px;
+	width:100%;
+	text-align:center;
+	font-family: 'chelsea', serif;
+	span{
+		margin:10px 0;
+		display:block;
+	}
+	input[type="submit"]{
+		@include button($color: $black, $text_color: $white)
+	}
+}
+// ------------- FOOTER
+
+footer{
+	float:left;
+	clear:both;
+	@extend .clearfix;
+	background-color:$green;
+	padding:20px 3.5%;
+	width:93%;
+	text-align:center;
+	font-family:'chelsea', serif;
+	
+	div{
+		font-size:1.3em;
+		font-family:'chelsea', serif;
+		width:100%;
+		position:relative;
+		float:left;
+	}
+	img{
+		position:relative;
+		display:block;
+		width:60%;
+		margin: 20px auto;
+	}
+}

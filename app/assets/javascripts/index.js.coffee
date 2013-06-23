@@ -7,6 +7,9 @@ jQuery ->
 		height: 900
 		animtype: 'fade'
 		responsive: 'true'
+		nexttext: "<span class='prevAarow'></span>"
+		prevtext: "<span class='nextAarow'></span>"
+		showmarkers: false
 		
 	$('#line_item_variant_id').on "change", ->
 		variant_id = $(this).val()

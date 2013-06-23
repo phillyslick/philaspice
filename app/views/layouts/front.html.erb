@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>Philadelphia Spice Trader</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	
+  <%= stylesheet_link_tag    "front", :media => "all" %>
+  <%= javascript_include_tag "front" %>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.4/jquery-editable/js/jquery-editable-poshytip.min.js"></script>
 	<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.4/jquery-editable/css/jquery-editable.css" rel="stylesheet">
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
@@ -17,27 +19,51 @@
 </head>
 <body>
 
-	<header>
-		<%= link_to (content_tag :h1, "Philadelphia Spice Trader"), root_path%>
-		<nav id="front">
-			<ul>
-				<%= link_to "Home", root_path %>
-				<%= link_to "Featured", "" %>
-				<%= link_to "Catalogue", storefront_path %>
-				<%= link_to "About", front_about_path %>
-				<%= link_to "Contact", front_contact_path %>
-			</ul>
-		</nav>
-	</header>
+		<header id="front">
+			<%= mobile_image "logo.png", "Philadelphia Spice Trader" %>
 
-	<% if notice %>
-		<p id="notice"><%= notice %></p>
-	<% end %>
-<div id="content">
-		<%= yield %>
-</div>
+			
+			<nav id="front">
+				
+				<div>
+					<%= link_to "Home", root_path %>
+					<%= link_to "Catalogue", storefront_path %>
+					<%= link_to "About", front_about_path %>
+					<%= link_to "Contact", front_contact_path %>
+				</div>
+				
+			</nav>
+			
+		</header>
 
+		<% if notice %>
+			<p id="notice"><%= notice %></p>
+		<% end %>
+		
+		<div id="content">
+				<%= yield %>
+		</div>
+		
+		
+	
 </body>
+
+<footer>
+	<div>
+		Philadelphia Spice Trader
+<%= mobile_image "stem.png" %>
+		1000 E. Spice Street
+		Philadelphia, P.A. 19148
+		<br>
+		<br>
+		(215) 888-1212
+		<br>
+		sales@phillyspicetrader.com
+	</div>
+	
+	
+</footer>
+
 </html>
 
 

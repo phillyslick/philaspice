@@ -1,11 +1,14 @@
-<%= content_tag :h1, @selected_variant.name %>
-<%= content_tag :p, @product.alternate_names %>
-<%= image_tag @selected_variant.image.url(:large) %>
-<%= content_tag :div, @selected_variant.description %>
+<hr>
+<%= content_tag :h2, @product.alternate_names, id: "productAlternates" %>
+<%= content_tag :h1, @selected_variant.name, id: "productName" %>
+<%= image_tag @selected_variant.image.url(:large), id: "productImage" %>
+<%= content_tag :div, @selected_variant.description, id: "productDescription" %>
 
 <%= form_for @line_item, remote: true do |f| %>
+	<%= f.label :variant_id, "Kinds:" %>
 	<%= f.collection_select :variant_id, @product.variants.active.is_stocked, :id, :name %>
 	<span id="priceSelect">
+			<%= f.label :price_id, "Weight:" %>
 		<%= f.collection_select :price_id, @selected_variant.prices, :id, :weight_and_price %>
 	</span>
 	<%= f.submit "Add to Cart" %>

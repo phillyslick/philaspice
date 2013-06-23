@@ -1,11 +1,11 @@
-
-<ul id="productCategories">
+<hr class="top">
+<h2 id="productCategories">
 	<% Category.all.each do |cat| %>
-		<%= content_tag :li do %>
+		<%= content_tag :span do %>
 		 <%= link_to cat.name, category_id: cat.id %>
 		 <% end %>
 	<% end %>
-</ul>
+</h2>
 
 <%= form_tag storefront_path, method: :get, id: "search", class: "form-inline" do %>
   <p>
@@ -20,12 +20,12 @@
 	<ul id="subcategories">
 		<% @category.subcategories.each do |subcat| %>
 			<li>
-				<%= subcat.name %>
+				<%= content_tag :h4, subcat.name %>
 					<ul>
 						<% if params[:query] %>
 						<% subcat.products.where("name @@ :q", q: params[:query]).active.is_stocked.each do |product| %>
 						<li>
-							<%= image_tag product.front_hero.image.url(:thumb) %>
+							<%= image_tag product.front_hero.image.url(:medium) %>
 							<%= link_to product.name, storefront_product_path(product) %>
 							<%= form_for @line_item, remote: true do |f| %>
 								<%= f.grouped_collection_select :price_id, product.variants.active.is_stocked, 'prices.by_weight', :name, :id, :weight_and_price %>
@@ -36,7 +36,7 @@
 						<% else %>
 							<% subcat.products.active.is_stocked.each do |product| %>
 							<li>
-								<%= image_tag product.front_hero.image.url(:thumb) %>
+								<%= image_tag product.front_hero.image.url(:medium) %>
 								<%= link_to product.name, storefront_product_path(product) %>
 								<%= form_for @line_item, remote: true do |f| %>
 									<%= f.grouped_collection_select :price_id, product.variants.active.is_stocked, 'prices.by_weight', :name, :id, :weight_and_price %>

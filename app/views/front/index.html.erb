@@ -1,4 +1,6 @@
-<h1>Welcome</h1>
+<hr class="top">
+
+<h2 class="main">Welcome</h2>
 
 <div id="mainSlider" class="sliders">
 	<ul class="bjqs">
@@ -11,15 +13,17 @@
 	</ul>
 </div>
 
-<div id="featuredProduct">
-	<h2> Featured </h2>
+<div id="featuredProduct" class="featuredSlice">
+	<hr>
+	<h2 class="featured"> Featured </h2>
 	<%= image_tag @featured.front_hero.image.url(:medium) %>
 	<h3><%= @featured.front_hero.name %></h3>
 	<p><%= @featured.front_hero.description %></p>
 </div>
 
-<div id="catalogueFeature">
-	<h2> Our Catalogue </h2>
+<div id="catalogueFeature" class="featuredSlice">
+	<hr>
+	<h2 class="featured"> Our Catalogue </h2>
 	<%= image_tag @option.image.url(:medium) %>
 	<h3><%= @option.cat_heading %></h3>
 	<p><%= @option.cat_info %></p>
