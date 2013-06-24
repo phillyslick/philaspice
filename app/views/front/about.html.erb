@@ -1,11 +1,9 @@
-<%= content_tag :h1, "About" %>
-Image Goes Here
-
+<hr>
+<%= content_tag :h2, @about.title, class: "main" %>
+<%= image_tag @about.image.url(:large), class: "aboutPic" %>
 <div id="aboutContent">
-	<%= content_tag :h2, @about.title %>
+
 	<%= content_tag :div, @about.content %>
 </div>
 
-<div id="quickCart">
-	<%= render :partial => 'cart_table' %>
-</div>
+<%= render :partial => 'the_cart' %>

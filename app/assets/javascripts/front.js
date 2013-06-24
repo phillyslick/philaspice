@@ -18,4 +18,5 @@
 //= require index
 //= require line_items
 //= require orders
-//= require products
+//= require cart
+//= require jquery.poshytip.min

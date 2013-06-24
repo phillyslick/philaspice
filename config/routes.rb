@@ -21,6 +21,8 @@ Philaspice::Application.routes.draw do
   resources :orders, :stats
   get "front/index"
   
+  post "front/contact_us" => 'front#contact_us', as: :contact_us
+  
   get "front/about"
   
   get "front/contact"

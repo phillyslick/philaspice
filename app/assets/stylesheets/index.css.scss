@@ -1,4 +1,4 @@
-// MIXINS
+// MIXINS + INCLUDES
 
 @mixin box-shadow($top, $left, $blur, $color, $inset: false) {
   @if $inset {
@@ -11,7 +11,6 @@
     box-shadow: $top $left $blur $color;
   }
 }
-
 @mixin gradient($from, $to) {
   background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
   background: -moz-linear-gradient(top,  $from, $to);
@@ -22,6 +21,7 @@
   -moz-border-radius: $radius;
   border-radius: $radius;
 }
+
 @mixin button($color: $red, $text_color: $white) {
   display: inline-block;
   outline: none;
@@ -54,7 +54,6 @@
   }
 }
 
-
 .clearfix {
     zoom:1;
     &:before, &:after {
@@ -67,11 +66,13 @@
         clear: both;
     }
 }
+
 /**
  * html5doctor.com Reset Stylesheet v1.6.1 (http://html5doctor.com/html-5-reset-stylesheet/)
  * Richard Clark (http://richclarkdesign.com)
  * http://cssreset.com
  */
+
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code,
@@ -154,7 +155,6 @@ input, select {
     vertical-align:middle;
 }
 
-// END RESET
 
 
 // FONTS
@@ -171,7 +171,6 @@ input, select {
 
 }
 
-
 @font-face {
     font-family: 'ofl';
     src: url('fonts/oflgoudystmtt-webfont.eot');
@@ -184,8 +183,8 @@ input, select {
 
 }
 
-// COLOR VARIABLES
 
+// COLOR VARIABLES
 $beige : #EFEFD9;
 $maroon : #631214;
 $green : #B2B24B;
@@ -193,6 +192,7 @@ $white : #ffffff;
 $black : #000000;
 
 
+// Some common styles
 
 body{
 	width:100%;
@@ -202,7 +202,7 @@ body{
 
 div,p{
 	font-family: 'Open Sans', sans-serif;
-	line-height:1.4em;
+	line-height:1.8em;
 }
 
 img{
@@ -249,6 +249,7 @@ header#front{
 	padding:20px 0 20px;
 	
 	img{
+		width:70%;
 		margin:auto;
 		display:block;
 	}
@@ -376,9 +377,6 @@ hr{
 	}
 }
 
-#quickCart{
-	display:none;
-}
 
 // ------------- CATALOGUE PAGE
 
@@ -436,8 +434,10 @@ h2#productCategories{
 						}
 						form{
 							padding-top:10px;
-							display:inline-block;
-							
+							display:block;
+							width:100%;
+							text-align:left;
+					
 						}
 					}
 			}
@@ -489,6 +489,70 @@ form{
 		@include button($color: $black, $text_color: $white)
 	}
 }
+
+span.bottomImage{
+	img{
+		display:block;
+		margin: 40px auto;
+		width:110px;
+	}
+}
+
+// ------------- ABOUT PAGE
+
+
+img.aboutPic{
+	display:block;
+	margin: auto;
+}
+
+div#aboutContent{
+	div{
+		width:80%;
+		text-align:center;
+		margin: 50px auto;
+	}
+}
+
+// ------------- CONTACT
+
+
+
+div#contactContent{
+	width:80%;
+	text-align:center;
+	margin: 50px auto;
+}
+
+form.contact{
+	width:95%;
+	margin: auto auto 40px auto;
+	p{
+		display:block;
+		margin-bottom:20px;
+		
+		label{
+			vertical-align:top;
+			display:inline-block;
+			width:10%;
+			min-width:100px;
+			text-align:left;
+		}
+		input, textarea{
+			display:inline-block;
+			width:50%;
+			min-height:25px;
+		}
+		textarea{
+			height:200px;
+		}
+		input[type="submit"]{
+			text-align:right;
+
+		}
+	}
+}
+
 // ------------- FOOTER
 
 footer{
@@ -515,3 +579,288 @@ footer{
 		margin: 20px auto;
 	}
 }
+
+// --------------- CHECKOUT
+
+div#checkoutText{
+	width:80%;
+	margin:20px auto;
+	text-align:center;
+}
+
+div#orderItems{
+	a.checkout{
+		display:none;
+	}
+	#cartHead{
+		padding-top:20px;
+		text-align:center;
+		font-family:"ofl", serif;
+		text-transform:uppercase;
+		color:$maroon;
+		font-size:2em;
+		display:none;
+	}
+	span.note{
+		text-align:center;
+		margin:20px auto;
+		width:auto;
+		display:block;
+		color:$maroon;
+		display:none;
+	}
+	.front-checkout{
+		
+		text-decoration:none;
+	}
+	.empty-cart{
+
+		border:none;
+		cursor:pointer;
+	}
+	h5{
+		text-align:center;
+		margin: 10px;
+
+	}
+	table{
+		width:95%;
+		margin:40px auto 80px auto;
+		text-align:left;
+		thead{
+			font-family: "chelsea", serif;
+			font-size:1.5em;
+			text-transform:uppercase;
+			tr{
+			td{
+				padding-left:30px;
+			}
+		}
+		}
+		tfoot{
+			font-family: "chelsea", serif;
+			font-size:1.5em;
+		}
+		tbody{
+			tr{
+				padding: 5px 0;
+				margin-bottom:10px;
+				height:25px;
+				color:$black;
+				background-color:#cccccc;
+				td{
+					padding:3px 0;
+					border-bottom:white 10px solid;
+				}
+				.itemPrice{
+					padding-left:20px;
+				}
+				.cartTotal{
+					padding-left:20px;
+				}
+			}
+		}
+}
+}
+
+form h4{
+	font-size:2em;
+	margin:20px;
+}
+
+form.new_order{
+	width:95%;
+	margin: auto auto 40px auto;
+	p{
+		display:block;
+		margin-bottom:20px;
+		
+		label{
+			vertical-align:top;
+			display:inline-block;
+			width:10%;
+			min-width:100px;
+			text-align:left;
+		}
+		input, textarea{
+			display:inline-block;
+			width:50%;
+			min-height:25px;
+		}
+		textarea{
+			height:200px;
+		}
+		input[type="submit"]{
+			text-align:right;
+
+		}
+	}
+}
+
+// --------------- CART
+aside#cart{
+	position:fixed;
+	top:0%;
+	right:-100%;
+	z-index:9999;
+	width:100%;
+	height:60%;
+	#closeCart{
+		cursor:pointer;
+		position:absolute;
+		color:$black;
+		right:	0px;
+		bottom: 0px;
+	}
+	
+	#cartTrigger{
+		position:fixed;
+		top:4%;
+		right:0px;
+		z-index:-1;
+		cursor:pointer;
+		
+	
+	}
+	
+	#theCart{
+		min-height:400px;
+		height:100%;
+		background:$white;
+		background-image:url('ovals.png');
+		background-repeat:no-repeat;
+		background-position:right 10px;
+		#cartHead{
+			padding-top:20px;
+			text-align:center;
+			font-family:"ofl", serif;
+			text-transform:uppercase;
+			color:$maroon;
+			font-size:2em;
+		}
+		span.note{
+			text-align:center;
+			margin:20px auto;
+			width:auto;
+			display:block;
+			color:$maroon;
+		}
+		.front-checkout{
+		
+			text-decoration:none;
+		}
+		.empty-cart{
+
+			border:none;
+			cursor:pointer;
+		}
+		h5{
+			text-align:center;
+			margin: 10px;
+
+		}
+		table{
+			width:95%;
+			margin:10px auto;
+			text-align:left;
+			thead{
+				font-family: "chelsea", serif;
+				font-size:1.5em;
+				text-transform:uppercase;
+				tr{
+				td{
+					padding-left:30px;
+				}
+			}
+			}
+			tfoot{
+				font-family: "chelsea", serif;
+				font-size:1.5em;
+			}
+			tbody{
+				tr{
+					padding: 5px 0;
+					margin-bottom:10px;
+					height:25px;
+					color:$black;
+					background-color:#cccccc;
+					td{
+						padding:3px 0;
+						border-bottom:white 10px solid;
+					}
+					.itemPrice{
+						padding-left:20px;
+					}
+					.cartTotal{
+						padding-left:20px;
+					}
+				}
+			}
+		}
+form{
+	margin-top:10px;
+	input[type="submit"]{
+		
+		}
+	}
+
+	a.checkout{
+		@include button($color: $maroon, $text_color: $white);
+		text-align:center !important;
+		display:block;
+		margin:50px auto;
+		width:100px;
+	}
+	span.checkoutTwig{
+		background-image:url("sm_stem_mobile.png");
+		background-repeat:no-repeat;
+	
+		left:20%;
+		bottom:3%;
+		height:20%;
+		display:block;
+		position:absolute;
+		
+	}
+	span.flip{
+		right:20%;
+		left:auto !important;
+		bottom: 4%;
+	  -moz-transform: scaleX(-1);
+	     -o-transform: scaleX(-1);
+	     -webkit-transform: scaleX(-1);
+	     transform: scaleX(-1);
+	     filter: FlipH;
+	     -ms-filter: "FlipH";
+	}
+}
+
+}
+
+// --------- ORDER REVIEW
+#orderInformation{
+	width:90%;
+	margin: auto;
+	text-align:center;
+	h4{
+		font-size:2em;
+		margin:20px;
+	}
+	p{
+		font-family: "ofl", serif;
+	}
+}
+
+
+#overlay{
+	width:100%;
+	height:100%;
+	display:block;
+	background-color: rgba(#000, .7);
+	position: fixed;
+	top: 0px;
+	z-index:998
+}
+
+
+

@@ -15,3 +15,8 @@ jQuery ->
 		variant_id = $(this).val()
 		address = "?variant_id=#{variant_id}"
 		$('#priceSelect').load("#{address} #priceSelect")
+		
+	$(document).on "change", "#product_category_id", ->
+		category_id = $(this).val()
+		the_link = $(this).next("input#path").val()
+		$('#subload').load("#{the_link}?category=#{category_id} #subload")

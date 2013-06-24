@@ -15,8 +15,3 @@ jQuery ->
 		return false
 	
 	$('.tip').tooltip()
-	
-	$(document).on "change", "#product_category_id", ->
-		category_id = $(this).val()
-		the_link = $(this).next("input#path").val()
-		$('#subload').load("#{the_link}?category=#{category_id} #subload")

@@ -10,7 +10,7 @@
 <%= form_tag storefront_path, method: :get, id: "search", class: "form-inline" do %>
   <p>
     <%= text_field_tag :query, params[:query], data: {provide: "typeahead", source: "#{@category.products.active.is_stocked.collect {|product| product.name }}"}, autocomplete: "off" %>
-    <%= submit_tag "Search", class: "btn btn-primary btn-small", name: nil %>
+    <%= submit_tag "Search", class: "btn btn-primary btn-small", name: nil %><br>
 		<%= link_to "Reset Search", storefront_path %>
   </p>
 <% end %>
@@ -52,6 +52,4 @@
 	<ul>
 </div>
 
-<div id="quickCart">
-	<%= render :partial => 'cart_table' %>
-</div>
+<%= render :partial => 'the_cart' %>

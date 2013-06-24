@@ -1,5 +1,13 @@
-<h1>Your Order</h1>
-<%= render :partial => 'cart_table' %>
+<hr>
+<h2 class='main'>Checkout</h1>
+
+<div id="checkoutText">
+	If everything looks good, please enter your checkout information.  Once you place your order you’ll receive an email confirmation with a tracking number.  Thanks again!
+</div>
+
+<div id="orderItems">
+	<%= render :partial => 'cart_table' %>
+</div>
 
 <%= form_for @order, validate: true do |f| %>
 <% if @order.errors.any? %>
@@ -13,27 +21,39 @@
   </div>
   <% end %>
 
+	<h4>About You</h4>
 
 	<%= f.fields_for :customer do |c| %>
 	
-		<%= c.label :first_name, "First Name" %>
-		<%= c.text_field :first_name  %>
+	<p>
+			<%= c.label :first_name, "First Name" %>
+			<%= c.text_field :first_name  %>
+	</p>
 		
+<p>		
 		<%= c.label :last_name, "Last Name" %>
 		<%= c.text_field :last_name %>
+</p>		
 		
+<p>		
 		<%= c.label :company, "Company" %>
 		<%= c.text_field :company %>
+		</p>
 		
+<p>		
 		<%= c.label :email, "Email" %>
 		<%= c.text_field :email %>
+		</p>
 		
+<p>		
 		<%= c.label :home_phone, "Home Phone" %>
 		<%= c.text_field :home_phone %>
 		
+		</p>
+<p>		
 		<%= c.label :work_phone, "Work/Cell Phone" %>
 		<%= c.text_field :work_phone %>
-		
+		</p>
 	<% end %>
 	
 	
@@ -42,25 +62,41 @@
 
 	<br>
 	
-	<%= a.object.kind == "Shipping" ? "Shipping Address: " : "Billing Address: " %>
+	<%= a.object.kind == "Shipping" ? "<h4>Shipping Address: </h4>".html_safe : "<h4>Billing Address: </h4>".html_safe %>
+	
 	<%= link_to("Copy From Billing", '#') if  a.object.kind == "Shipping" %>
 	
 	<br>
+	
+<p>	
 		<%= a.label :address1, "Street" %>
 		<%= a.text_field :address1 %>
+	</p>
+		
 		<%= a.hidden_field :kind %>
 		
+		
+<p>		
 		<%= a.label :address2, "Address (Continued)" %>
 		<%= a.text_field :address2 %>
+	
+</p>	
+		
+<p>		
 		
 		<%= a.label :city, "City" %>
 		<%= a.text_field :city %>
 		
+	</p>	
+<p>		
 		<%= a.label :state, "State" %>
 		<%= a.text_field :state %>
-		
+</p>		
+<p>
 		<%= a.label :zip, "Zip Code" %>
 		<%= a.text_field :zip %>
+		</p>
+		
 	<% end %>
 	
 	<br>

@@ -1,5 +1,6 @@
+
 <hr>
-<%= content_tag :h2, @product.alternate_names, id: "productAlternates" %>
+<%= content_tag :h2, @product.alternate_names, id: "productAlternates" unless @product.alternate_names.blank? %>
 <%= content_tag :h1, @selected_variant.name, id: "productName" %>
 <%= image_tag @selected_variant.image.url(:large), id: "productImage" %>
 <%= content_tag :div, @selected_variant.description, id: "productDescription" %>
@@ -14,7 +15,8 @@
 	<%= f.submit "Add to Cart" %>
 <% end %>
 
+<span class='bottomImage'>
+	<%= mobile_image "sm_stem.png", "Small Stem" %>
+</span>
 
-<div id="quickCart">
-	<%= render :partial => 'cart_table' %>
-</div>
+<%= render :partial => 'the_cart' %>

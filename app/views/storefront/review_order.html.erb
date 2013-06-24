@@ -1,23 +1,35 @@
-<h1>Review Order</h1>
+<h4>
+<h2 class="main">Review Your Order</h2>
 
-<%= @order.customer.first_name %>
-<%= @order.customer.last_name %>
-<%= @order.customer.company %>
-<%= @order.customer.email %>
-<%= @order.customer.home_phone %>
-<%= @order.customer.work_phone %>
+<div id="checkoutText">
+	If everything looks good, hit submit and we’ll receive your order.  Once again, thanks so much for ordering spices from us.  We hope the spices will please you.
+</div>
 
-<% @order.addresses.each do |address| %>
-	<%= address.kind %>
-	<%= address.address1 %>
-	<%= address.address2 %>
-	<%= address.city %>
-	<%= address.state %>
-	<%= address.zip %>
-<% end %>
 
-<%= render :partial => 'cart_table' %>
+<div id="orderItems">
+	<%= render :partial => 'cart_table' %>
+</div>
 
+<div id="orderInformation">
+	<h4>Contact Information</h4>
+	<%= content_tag :p, @order.customer.first_name %>
+	<%= content_tag :p, @order.customer.last_name %>
+	<%= content_tag :p, @order.customer.company %>
+	<%= content_tag :p, @order.customer.email %>
+	<%= content_tag :p, @order.customer.home_phone %>
+	<%= content_tag :p, @order.customer.work_phone %>
+
+	<% @order.addresses.each do |address| %>
+		<%= content_tag :h4, "#{address.kind} Address" %>
+		<%= content_tag :p, address.address1 %>
+		<%= content_tag :p, address.address2 %>
+		<%= content_tag :p, address.city %>
+		<%= content_tag :p, address.state %>
+		<%= content_tag :p, address.zip %>
+	<% end %>
+
+</div>
+ 
 
 <%= form_tag storefront_pay_path, id: 'new_transaction' do %>
 
