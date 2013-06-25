@@ -54,7 +54,9 @@ class StorefrontController < ApplicationController
      end
       @order.state = "Paid"
       @order.save
-      redirect_to root_path
+      PaymentMailer.customer_confirm(@order).deliver
+      PaymentMailer.accepted_alert(@order).deliver
+      redirect_to front_thanks_path
     else
       render :review_order
     end

@@ -23,3 +23,4 @@ toggleCart =  ->
 		$('#cart').animate
 			right: "-100%"
 		$('#overlay').remove()
+

@@ -17,13 +17,21 @@ class FrontController < ApplicationController
   end
   
   def contact_us
-    @mail_info = {
-      name: params[:name],
-      email: params[:email],
-      phone: params[:phone],
-      message: params[:message]
-    }
-    render json: @mail_info
+    if params[:name].blank? || params[:email].blank?
+      redirect_to front_contact_path
+    else
+      @mail_info = {
+        name: params[:name],
+        email: params[:email],
+        phone: params[:phone],
+        message: params[:message]
+      }
+      ContactMailer.contact(@mail_info).deliver
+    redirect_to front_contact_path, notice: "Thanks!  We'll be in touch shortly."
+    end
+  end
+  
+  def thanks
   end
   
 end

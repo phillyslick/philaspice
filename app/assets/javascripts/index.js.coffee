@@ -2,6 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
+	$('#addyCopy').on 'click', ->
+		copyBillingAddress()
+		false
+		
 	$('#mainSlider').bjqs
 		width: 900
 		height: 900
@@ -36,4 +40,18 @@ openAndCloseSections = (h4) ->
 	h4.addClass('active')
 	$('ul.active').slideUp().removeClass('active')
 	h4.next('ul.subcategory').slideDown().addClass('active')
-	
+
+copyBillingAddress = ->
+	fields = {
+		street: $('#order_addresses_attributes_0_address1').val()
+		address2: $('#order_addresses_attributes_0_address2').val()
+		city: $('#order_addresses_attributes_0_city').val()
+		state: $('#order_addresses_attributes_0_state').val()
+		zip: $('#order_addresses_attributes_0_zip').val()
+	}
+	$('#order_addresses_attributes_1_address1').val(fields.street)
+	$('#order_addresses_attributes_1_address2').val(fields.address2)
+	$('#order_addresses_attributes_1_city').val(fields.city)
+	$('#order_addresses_attributes_1_state').val(fields.state)
+	$('#order_addresses_attributes_1_zip').val(fields.zip)
+	false

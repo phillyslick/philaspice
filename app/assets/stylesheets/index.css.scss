@@ -673,22 +673,42 @@ form h4{
 }
 
 form.new_order{
-	width:95%;
-	margin: auto auto 40px auto;
-	p{
-		display:block;
-		margin-bottom:20px;
-		
+	.field_with_errors{
+		width:auto;
+		display:inline-block;
 		label{
 			vertical-align:top;
 			display:inline-block;
 			width:10%;
+			min-width:111px;
+			text-align:left;
+			color:red;
+		}
+		input{
+			width:50%;
+			display:inline-block;
+			position:absolute;
+		}
+	}
+	
+	width:95%;
+	margin: auto auto 40px auto;
+	p{
+		display:block;
+		margin:0 auto 20px auto;
+		position:relative;
+		text-align:left;
+		width:80%;
+		label{
+			vertical-align:top;
+			display:inline-block;
+			width:13%;
 			min-width:100px;
 			text-align:left;
 		}
 		input, textarea{
 			display:inline-block;
-			width:50%;
+			width:85%;
 			min-height:25px;
 		}
 		textarea{
@@ -700,6 +720,8 @@ form.new_order{
 		}
 	}
 }
+
+
 
 // --------------- CART
 aside#cart{
@@ -855,7 +877,7 @@ form{
 	}
 }
 
-
+// --------- RANDOM
 #overlay{
 	width:100%;
 	height:100%;
@@ -868,3 +890,8 @@ form{
 
 
 
+.editable-container{
+	z-index: 9999999;
+	background:$beige;
+	padding:3px;
+}

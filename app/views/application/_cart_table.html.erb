@@ -7,6 +7,7 @@
 		<tr>
 			<th>Unit Price</th>
 			<th>Item</th>
+			<th>Quantity</th>
 			<th>Total</th>
 		</tr>
 	</thead>
@@ -15,8 +16,9 @@
 		<% @cart.line_items.each do |item| %>
 		
 		<tr>
-			<td><%= link_to edit_line_item_path(item) do %><%= item.cost %><% end %></td>
+			<td><%= item.cost %></td>
 			<td><%= item.info %></td>
+			<td><%= link_to item.quantity, '#', id: "quantity", data: {type: "text", url: update_quantity_path, pk: item.id, original_title: "Change Quantity"} %></td>
 			<td><%= item.total_price %> </td>
 		</tr>
 		

@@ -25,6 +25,8 @@ Philaspice::Application.routes.draw do
   
   get "front/about"
   
+   get "front/thanks"
+  
   get "front/contact"
   root to: "front#index"
   resources :products do

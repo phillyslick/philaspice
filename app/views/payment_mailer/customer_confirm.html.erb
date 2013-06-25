@@ -1,0 +1,58 @@
+Hi,
+
+Thanks for your order.
+
+<h1 id="cartHead">Your Order</h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>Unit Price</th>
+			<th>Item</th>
+			<th>Quantity</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @order.line_items.each do |item| %>
+		
+		<tr>
+			<td><%= item.cost %></td>
+			<td><%= item.info %></td>
+			<td><%= item.quantity %></td>
+			<td><%= item.total_price %> </td>
+		</tr>
+		
+		<% end %>
+	</tbody>
+	
+	<tfoot>
+		<tr>
+			<td>Subtotal</td>
+			<td><%= @order.total_price %></td>
+		</tr>
+	</tfoot>
+</table>
+
+
+<div>
+	<h4>Contact Information</h4>
+	<%= content_tag :p, @order.customer.first_name %>
+	<%= content_tag :p, @order.customer.last_name %>
+	<%= content_tag :p, @order.customer.company %>
+	<%= content_tag :p, @order.customer.email %>
+	<%= content_tag :p, @order.customer.home_phone %>
+	<%= content_tag :p, @order.customer.work_phone %>
+
+	<% @order.addresses.each do |address| %>
+		<%= content_tag :h4, "#{address.kind} Address" %>
+		<%= content_tag :p, address.address1 %>
+		<%= content_tag :p, address.address2 %>
+		<%= content_tag :p, address.city %>
+		<%= content_tag :p, address.state %>
+		<%= content_tag :p, address.zip %>
+	<% end %>
+
+</div>
+ 

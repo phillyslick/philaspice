@@ -64,7 +64,7 @@
 	
 	<%= a.object.kind == "Shipping" ? "<h4>Shipping Address: </h4>".html_safe : "<h4>Billing Address: </h4>".html_safe %>
 	
-	<%= link_to("Copy From Billing", '#') if  a.object.kind == "Shipping" %>
+	<%= link_to("Copy From Billing", '#', id: "addyCopy") if  a.object.kind == "Shipping" %>
 	
 	<br>
 	
