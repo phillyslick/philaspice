@@ -25,11 +25,15 @@ jQuery ->
 		setUpSliders()
 		$('h4.opener').on "click", ->
 			unless $(this).hasClass('active')
-				$('h4.active').removeClass('active')
-				$(this).addClass('active')
-				$('ul.active').slideUp().removeClass('active')
-				$(this).next('ul.subcategory').slideDown().addClass('active')
-
+				openAndCloseSections($(this))
+			
 setUpSliders = ->
 	$('.subcategory').hide()
 	$('.active').slideDown()
+
+openAndCloseSections = (h4) ->
+	$('h4.active').removeClass('active')
+	h4.addClass('active')
+	$('ul.active').slideUp().removeClass('active')
+	h4.next('ul.subcategory').slideDown().addClass('active')
+	
