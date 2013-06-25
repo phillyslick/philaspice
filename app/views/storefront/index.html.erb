@@ -18,10 +18,10 @@
 
 <div id="mainList">
 	<ul id="subcategories">
-		<% @category.subcategories.each do |subcat| %>
+		<% @category.subcategories.each_with_index do |subcat, index| %>
 			<li>
-				<%= content_tag :h4, subcat.name %>
-					<ul>
+				<%= content_tag :h4, subcat.name, class: "opener #{'active' if index == 0 }" %>
+					<ul class="subcategory <%= 'active' if index == 0 %>">
 						<% if params[:query] %>
 						<% subcat.products.where("name @@ :q", q: params[:query]).active.is_stocked.each do |product| %>
 						<li>

@@ -20,3 +20,16 @@ jQuery ->
 		category_id = $(this).val()
 		the_link = $(this).next("input#path").val()
 		$('#subload').load("#{the_link}?category=#{category_id} #subload")
+	
+	if $('#subcategories').length > 0
+		setUpSliders()
+		$('h4.opener').on "click", ->
+			unless $(this).hasClass('active')
+				$('h4.active').removeClass('active')
+				$(this).addClass('active')
+				$('ul.active').slideUp().removeClass('active')
+				$(this).next('ul.subcategory').slideDown().addClass('active')
+
+setUpSliders = ->
+	$('.subcategory').hide()
+	$('.active').slideDown()
