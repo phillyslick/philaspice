@@ -18,6 +18,7 @@
 			<% if @category.subcategories.count > 0 %>
 				<%= f.label :subcategory, "Sub-Category:" %>
 				<%= f.collection_select :subcategory_id, @category.subcategories.all, :id, :name  %>
+				<%= link_to "<i class='icon-plus'></i>Add Subcategory".html_safe, new_category_subcategory_path(@category), class: "btn btn-mini tip triggerBlank", data: {toggle: "tooltip"}, title: "Add Subcategory" %>
 			<% end %>
 		</div>
 				

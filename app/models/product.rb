@@ -128,6 +128,9 @@ class Product < ActiveRecord::Base
     Product.all.select{ |p| p.stocked? == false }
   end
 
+  def self.alphabetical
+    Product.order("name")
+  end
   
   def self.search(query)
     if query.present?

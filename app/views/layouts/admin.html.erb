@@ -25,22 +25,17 @@
 			<% end %>
 		</ul>
 	</nav>
+	
 	<div class="container-fluid">
 	  <div class="row-fluid">
-			<div id="productSide" class="span4">
-				 <%= render :partial => 'navigation' %>
-				 <%= link_to "New Product", new_product_path, class: "btn btn-primary triggerBlank" %>
-			</div>
-<div id="rightDisplay" class="span8">
-  <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-
-	
+			<div class="span12">
+				<%= render partial: "flash_messages", flash: flash %> 
 				 <%= yield %>
-			 </div>
-	  </div>
+			</div>
+		</div>
 	</div>
 
+<%= render partial: 'blank_modal' %>
 
 
 </body>

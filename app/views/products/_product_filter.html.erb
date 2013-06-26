@@ -1,0 +1,14 @@
+<%= form_tag(products_path, method: 'get', id: "filter", class: "form-inline") do %>
+		<%# hidden_field_tag :direction, params[:direction] %>
+	  <%# hidden_field_tag :sort, params[:sort] %>
+		<%= hidden_field_tag :active, params[:active] %>
+		<%= hidden_field_tag :stocked, params[:stocked] %>
+		<% if params[:product] %>
+			<%= collection_select :product, :category_id, Category.all, :id, :name, {include_blank: "All", selected: params[:product][:category_id]} %>
+		<% elsif params[:category_id].to_s.length > 0 %>
+				<%= collection_select :product, :category_id, Category.all, :id, :name, {include_blank: "All", selected: params[:category_id]} %>
+		<% else %>
+			<%= collection_select :product, :category_id, Category.all, :id, :name, {include_blank: "All", selected: "All"} %>
+		<% end %>
+		<%= submit_tag "Filter by Category", class: "btn btn-primary btn-small" %>
+	<% end %>

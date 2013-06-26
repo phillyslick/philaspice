@@ -1,0 +1,6 @@
+<%= form_tag products_path, method: :get, id: "search", class: "form-inline" do %>
+	  <p>
+	    <%= text_field_tag :query, params[:query], data: {provide: "typeahead", source: "#{@products.collect {|product| product.name }}"}, autocomplete: "off" %>
+	    <%= submit_tag "Search", class: "btn btn-primary btn-small", name: nil %>
+	  </p>
+	<% end %>

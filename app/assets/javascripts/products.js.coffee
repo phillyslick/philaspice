@@ -8,7 +8,7 @@ jQuery ->
 				$('#myModal').modal('show'))
 		return false
 		
-	$('.triggerBlank').on "click", ->
+	$(document).on "click", ".triggerBlank", ->
 		the_link = $(this).attr('href')
 		$('#myModal').load("#{the_link} #content", ->
 				$('#myModal').modal('show'))

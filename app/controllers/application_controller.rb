@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
       params[:active] == 'false' ? building_products = Product.inactive : building_products = Product.active
       params[:stocked] == 'false' ? @products = building_products.unstocked : @products = building_products.is_stocked
     end
+    
+    if params[:order] == "alpha"
+      @products = building_products.alphabetical
+    end
   end
   
   def current_cart

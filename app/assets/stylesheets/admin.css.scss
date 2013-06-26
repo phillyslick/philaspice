@@ -1,4 +1,5 @@
 
+
 .headFloat{
 	margin-bottom:1px;
 }
@@ -12,8 +13,14 @@ textarea{
 	height: auto !important;
 }
 
+form#search, form#filter{
+	text-align:left;
+}
 @import "bootstrap";
-
+.icon-arrow-right{
+	background-position:-264px -91px;
+	height:25px;
+}
 body{
    min-width:780px; // suppose you want minimun width of 1000px
    _width: expression( document.body.clientWidth > 780 ? "780px" : "auto" ); /* sets max-width for IE */
@@ -24,6 +31,13 @@ ul{
 	list-style:none;
 	padding-left:0px;
 	margin-left:0px;
+}
+
+#filterAndSearch{
+	h1{
+		font-size:30px;
+		margin-bottom:10px;
+	}
 }
 
 #productShow{
@@ -82,26 +96,37 @@ ul{
 	}
 }
 
-#productSide{
-	#categories{
-		margin-bottom:10px;
-	}
+
 	
 	ul.products{
-		
+		margin-top:20px;
+		a{
+			color:black;
+		}
 		li{
 			cursor:pointer;
-			width:95%;
+			width:auto;
 			position:relative;
+			margin-bottom:20px;
+			padding:10px;
 		}
+		
 		li:hover{
 			background:rgba(#bc1900, .2);
 		}
+		img{
+			border:1px black solid;
+		}
 	}
+	
+	
 	.odd{
 			background-color: $lightBlue;
 		}
-}
+	.even{
+		background-color:#e3e3e3;
+	}
+
 
 .categories{
 	.odd{
@@ -116,5 +141,15 @@ ul{
 			margin-top:15px;
 			margin-left:20px;
 		}
+	}
+}
+
+#myModal{
+	h1{
+		font-size:40px;
+		text-align:center;
+	}
+	form{
+		text-align:left;
 	}
 }
