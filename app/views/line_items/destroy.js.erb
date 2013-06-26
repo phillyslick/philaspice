@@ -1,0 +1,9 @@
+if($('#cart').css('display') !== 'none')
+   {
+		  $('#theCart').html("<%=j render 'cart_table' %><span id='closeCart' class='main'>Close (X)</span>");
+			$('#cartTrigger').click();
+   }
+else{
+			$('#theCart').html("<%=j render 'cart_table' %>");
+			$('#cartTrigger').click();
+	 }

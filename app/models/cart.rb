@@ -7,13 +7,15 @@ class Cart < ActiveRecord::Base
     current_item = line_items.where(price_id: price_id,
                                     cost: price.amount,
                                     name: price.variant.name,
-                                    ounces: price.weight.ounces).first
+                                    ounces: price.weight.ounces,
+                                    measurement: price.weight.unit).first
     if current_item
       current_item.quantity += 1
     else
       current_item = line_items.build(price_id: price_id,
                                     name: price.variant.name,
-                                    ounces: price.weight.ounces)
+                                    ounces: price.weight.ounces,
+                                    measurement: price.weight.unit)
                                     current_item.cost = price.amount
     end
     current_item

@@ -1,0 +1,72 @@
+
+<div id="orderInfo">
+	<p>
+		Order ID: <%= @order.slug %>
+	</p>
+	
+	<h4>Contact Information</h4>
+	<%= content_tag :p, "First Name: " + @order.customer.first_name %>
+	<%= content_tag :p, "Last Name: " + @order.customer.last_name %>
+	<%= content_tag :p, "Company: " + @order.customer.company if @order.customer.company %>
+	<%= content_tag :p do %>
+		E-mail: <%= (mail_to @order.customer.email) %>  <span class="label label-info"> <-- Click to Send Email</span>
+	<% end.html_safe %>
+	<%= content_tag :p, "Home Phone: " + @order.customer.home_phone %>
+	<%= content_tag :p, "Work / Cell Phone: " + @order.customer.work_phone %>
+
+	<% @order.addresses.each do |address| %>
+	<br>
+		<%= content_tag :h4, "#{address.kind} Address" %>
+		<%= content_tag :p, address.address1 %>
+		<%= content_tag :p, address.address2 %>
+		<%= content_tag :p, address.city %>
+		<%= content_tag :p, address.state %>
+		<%= content_tag :p, address.zip %>
+	<% end %>
+
+</div>
+<br>
+
+<h4 id="orderStateUpdate">Order State: <%= @order.state %></h1>
+
+<% unless @order.state == "Unpaid" %>
+
+<%= form_tag 'stats_update_order_state', class: "update_state" do %>
+  <%= hidden_field :order_id, @order.id %>
+	<%= select_tag :state, options_for_select(["Paid", "Shipped"], selected: @order.state), data: {href: update_order_state_path, id: @order.id } %> <span class="label label-info"> <-- Change After You've Shipped</span>
+<% end %>
+
+
+<table>
+	<thead>
+		<tr>
+			<th>Unit Price</th>
+			<th>Item</th>
+			<th>Quantity</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	
+	
+	<tbody>
+		<% @order.line_items.each do |item| %>
+		
+		<tr>
+			<td><%= item.cost %></td>
+			<td><%= item.info %></td>
+			<td><%= item.quantity %></td>
+			<td><%= item.total_price %> </td>
+		</tr>
+		
+		<% end %>
+	</tbody>
+	
+	<tfoot>
+		<tr>
+			<td>Subtotal</td>
+			<td><%= @order.total_price %></td>
+		</tr>
+	</tfoot>
+</table>
+<% end %>
+ 

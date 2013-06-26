@@ -18,6 +18,7 @@ Philaspice::Application.routes.draw do
   
   put "line_items/update_quantity" => 'line_items#update_quantity', as: :update_quantity
   
+  get "stats/update_order_state" => 'stats#update_order_state', as: :update_order_state
   resources :orders, :stats
   get "front/index"
   

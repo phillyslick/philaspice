@@ -1,3 +1,43 @@
+<div class="hero-unit">
+	<h1>Your Orders:</h1>
+</div>
+<div class="accordion" id="help">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+      	<h3>Help!</h2>
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
+				<h3>Order State:</h3>
+					<p><i>Paid:</i> Orders that are completed and paid for.</p>
+					<p><i>Unpaid:</i> Orders that were started, customer information filled out, but never paid for. </p>
+					<p><i>Shipped:</i> Once you ship an order you can mark it as shipped. </p>
+				
+				<br>
+				
+				<h3>Order ID:</h3>
+				 <p>A guaranteed-unique identifier you can use on invoices, etc..</p>
+				
+				<br>
+				
+				<h3>Order Total:</h3>
+				 <p>The Total Paid for the Order - Right Now No Shipping Has Been Added</p>
+				
+				<br>
+				
+				<h3>Customer Name:</h3>
+				 <p>Click for Detailed Information About the Customer</p>
+				
+				<br>
+				
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <table border="0" cellspacing="5" cellpadding="5">
 	
 	<tr>
@@ -11,9 +51,9 @@
 		<tr>
 				<%= content_tag :td, order.uuid %>
 				<%= content_tag :td, order.state %>
-				<%= content_tag :td, order.total_price if order.total_price %>
+				<%= content_tag :td, order.total_price  %>
 				<%= content_tag :td, order.customer.name %>
-	
+				<%= content_tag :td, (link_to "Show Order", stat_path(id: order.id)) %>
 		</tr>
 	<% end %>
 </table>

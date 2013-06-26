@@ -19,6 +19,7 @@
 <div id="mainList">
 	<ul id="subcategories">
 		<% @category.subcategories.each_with_index do |subcat, index| %>
+		<% unless subcat.products.active.is_stocked.blank? %>
 			<li>
 				<%= content_tag :h4, subcat.name, class: "opener #{'active' if index == 0 }" %>
 					<ul class="subcategory <%= 'active' if index == 0 %>">
@@ -48,6 +49,7 @@
 							
 					</ul>
 			</li>
+			<% end %>
 		<% end %>
 	<ul>
 </div>

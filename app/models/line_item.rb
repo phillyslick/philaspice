@@ -4,7 +4,7 @@ class LineItem < ActiveRecord::Base
   belongs_to :price
   attr_accessor :variant_id
   attr_accessible :cart_attributes, :price_attributes, :price, :cart,
-                  :price_id, :name, :ounces, :quantity, :variant_id
+                  :price_id, :name, :ounces, :quantity, :variant_id, :measurement
   
   def total_price
     unless quantity.blank? || cost.blank?
@@ -19,6 +19,6 @@ class LineItem < ActiveRecord::Base
   end
   
   def info
-    "#{name} #{ounces} (oz) x #{quantity}"
+    "#{name} #{ounces} #{measurement} x #{quantity}"
   end
 end

@@ -129,7 +129,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.alphabetical
-    Product.order("name")
+    Product.order("lower(name)")
   end
   
   def self.search(query)

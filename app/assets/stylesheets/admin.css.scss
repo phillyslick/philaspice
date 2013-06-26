@@ -1,4 +1,6 @@
-
+.btn{
+	font-family:"Open Sans";
+}
 
 .headFloat{
 	margin-bottom:1px;
@@ -152,4 +154,8 @@ ul{
 	form{
 		text-align:left;
 	}
+}
+
+form.update_state{
+	text-align:left;
 }

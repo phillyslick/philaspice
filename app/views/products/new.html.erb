@@ -14,6 +14,7 @@
 
 		<%= f.collection_select :category_id, Category.all, :id, :name %>
 		<%= hidden_field_tag :path, new_product_path(@product) %>
+		<%= link_to "<i class='icon-plus'></i>Add Category".html_safe, new_category_path, class: "btn btn-mini tip triggerBlank", data: {toggle: "tooltip"}, title: "Add Category" %>
 		<div id="subload">
 			<% if @category.subcategories.count > 0 %>
 				<%= f.label :subcategory, "Sub-Category:" %>
