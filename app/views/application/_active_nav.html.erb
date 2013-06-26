@@ -1,39 +1,9 @@
 <nav class="filter">
 	<ul class="nav nav-pills">
-		<% if params[:product] %>
-			<% if params[:stocked] %>
-				<li <%= "class=active" if params[:active].blank? %>><%= link_to "All", {category_id: params[:product][:category_id], stocked: params[:stocked]} %></li>
-				<li <%= "class=active" if params[:active] == 'true' %>><%= link_to "Active", {active: 'true',category_id: params[:product][:category_id], stocked: params[:stocked]} %></li>
-				<li <%= "class=active" if params[:active] == 'false' %>><%= link_to "Inactive", {active: 'false',category_id: params[:product][:category_id], stocked: params[:stocked]} %></li>
-			<% else %>
-			<li <%= "class=active" if params[:active].blank? %>><%= link_to "All", {category_id: params[:product][:category_id]} %></li>
-			<li <%= "class=active" if params[:active] == 'true' %>><%= link_to "Active", {active: 'true',category_id: params[:product][:category_id]} %></li>
-			<li <%= "class=active" if params[:active] == 'false' %>><%= link_to "Inactive", {active: 'false',category_id: params[:product][:category_id]} %></li>
-			
-			<% end %>
-		<% elsif params[:category_id] %>
-			<% if params[:stocked] %>
-				<li <%= "class=active" if params[:active].blank? %>><%= link_to "All", {category_id: params[:category_id], stocked: params[:stocked]} %></li>
-				<li <%= "class=active" if params[:active] == 'true' %>><%= link_to "Active", {active: 'true',category_id: params[:category_id], stocked: params[:stocked]} %></li>
-				<li <%= "class=active" if params[:active] == 'false' %>><%= link_to "Inactive", {active: 'false',category_id: params[:category_id], stocked: params[:stocked]} %></li>
-			<% else %>
-			<li <%= "class=active" if params[:active].blank? %>><%= link_to "All", {category_id: params[:category_id]} %></li>
-			<li <%= "class=active" if params[:active] == 'true' %>><%= link_to "Active", {active: 'true',category_id: [:category_id]} %></li>
-			<li <%= "class=active" if params[:active] == 'false' %>><%= link_to "Inactive", {active: 'false',category_id: [:category_id]} %></li>
-	
-			<% end %>
-		<% else %>
-		<% if params[:stocked] %>
-			<li  <%= "class=active" unless params[:active] %>><%= link_to "All", {stocked: params[:stocked]} %></li>
-			<li <%= "class=active" if params[:active] == 'true' %>><%= link_to "Active", {active: 'true', stocked: params[:stocked]} %></li>
-			<li <%= "class=active" if params[:active] == 'false' %>><%= link_to "Inactive", {active: 'false', stocked:params[:stocked]} %></li>
-		<% else %>
-			<li  <%= "class=active" unless params[:active] %>><%= link_to "All", {} %></li>
-			<li <%= "class=active" if params[:active] == 'true' %>><%= link_to "Active", {active: 'true'} %></li>
-			<li <%= "class=active" if params[:active] == 'false' %>><%= link_to "Inactive", {active: 'false'} %></li>
-		<% end %>
+				<li <%= "class=active" if params[:active].blank? %>><%= link_to "All", params.merge({active: nil}) %></li>
+				<li <%= "class=active" if params[:active] == "true" %>><%= link_to "Active", params.merge({active: 'true'})  %></li>
+				<li <%= "class=active" if params[:active] == 'false' %>><%= link_to "Inactive", params.merge({active: 'false'}) %></li>
 
-		<% end %>
 	</ul>
 </nav>
 

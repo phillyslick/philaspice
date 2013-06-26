@@ -1,8 +1,9 @@
 <%= form_tag(products_path, method: 'get', id: "filter", class: "form-inline") do %>
 		<%# hidden_field_tag :direction, params[:direction] %>
 	  <%# hidden_field_tag :sort, params[:sort] %>
-		<%= hidden_field_tag :active, params[:active] %>
-		<%= hidden_field_tag :stocked, params[:stocked] %>
+		<%= hidden_field_tag(:active, params[:active]) if params[:active] %>
+		<%= hidden_field_tag(:stocked, params[:stocked]) if params[:stocked] %>
+		<%= hidden_field_tag(:query, params[:query]) if params[:query] %>
 		<% if params[:product] %>
 			<%= collection_select :product, :category_id, Category.all, :id, :name, {include_blank: "All", selected: params[:product][:category_id]} %>
 		<% elsif params[:category_id].to_s.length > 0 %>

@@ -1,6 +1,12 @@
 <%= form_tag products_path, method: :get, id: "search", class: "form-inline" do %>
 	  <p>
 	    <%= text_field_tag :query, params[:query], data: {provide: "typeahead", source: "#{@products.collect {|product| product.name }}"}, autocomplete: "off" %>
+			<%= (hidden_field_tag :active, params[:active]) if params[:active] %>
+			<%= (hidden_field_tag :stocked, params[:stocked]) if params[:stocked] %>
+			<%= (hidden_field_tag :category_id, params[:category_id]) if params[:category_id] %>
+			<%= (hidden_field_tag :category_id, params[:product][:category_id]) if params[:product] %>
 	    <%= submit_tag "Search", class: "btn btn-primary btn-small", name: nil %>
+				<%= link_to "Reset Form", products_path %>
 	  </p>
 	<% end %>
+	

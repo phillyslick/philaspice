@@ -136,7 +136,7 @@ class Product < ActiveRecord::Base
     if query.present?
       where("name @@ :q", q: query)
     else
-      scoped
+      scoped.all
     end
   end
   
