@@ -17,6 +17,9 @@ class Order < ActiveRecord::Base
       line_items << item
     end
     generate_total
+    calculate_weight
+    calculate_shipping
+    calculate_grand
   end
   
   def generate_total
@@ -27,5 +30,22 @@ class Order < ActiveRecord::Base
   def set_uuid
     self.uuid = SecureRandom.uuid if self.uuid.nil?
   end
+  
+  def calculate_weight
+    if self.line_items.blank? 
+      self.total_weight = 0
+    else 
+      self.total_weight = line_items.to_a.sum do |item| 
+        item.total_weight_in_ounces
+      end
+    end
+  end
+  
+  def calculate_shipping
+  end
+  
+  def calculate_grand
+  end
+
 
 end

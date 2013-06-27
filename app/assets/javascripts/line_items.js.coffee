@@ -2,13 +2,22 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
+	editableCart()
+
+reloadCart = ->
+	if $('#theCart').length > 0
+		$('#theCart').load('/storefront/index #theCart', ->
+			editableCart())
+	else
+		$('#orderItems').load('/orders/new #orderItems', ->
+			editableCart())
+		
+
+editableCart = ->
 	if $('#quantity').length > 0
 		$('#quantity').editable(
 			ajaxOptions:
 				type: "put"
 			success: ->
 				reloadCart())
-
-reloadCart = ->
-		$('#theCart').load('/storefront/index #theCart');
 	

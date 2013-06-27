@@ -14,6 +14,14 @@ class LineItem < ActiveRecord::Base
     end
   end
   
+  def total_weight_in_ounces
+    unless ounces.blank?
+      measurement =~ /Ounces/i ? ounces * quantity : ounces * 16 * quantity
+    else
+      0
+    end
+  end
+  
   def formatted_price
     sprintf( "%0.02f", price)
   end

@@ -25,6 +25,16 @@ class Cart < ActiveRecord::Base
     line_items.to_a.sum {|item| item.total_price}
   end
   
+  def total_weight_in_ounces
+    if self.line_items.blank? 
+      0
+    else 
+     line_items.to_a.sum do |item| 
+        item.total_weight_in_ounces
+      end
+    end
+  end
+  
   def number_of_items
     number = 0
     line_items.each do |item|

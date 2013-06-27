@@ -32,6 +32,10 @@
 			<td>Subtotal</td>
 			<td><%= @cart.total_price %></td>
 		</tr>
+		<tr>
+			<td>Total Weight</td>
+			<td><%= "#{@cart.total_weight_in_ounces/16} lbs." %></td>
+		</tr>
 	</tfoot>
 </table>
 <span class="checkoutTwig"></span>
