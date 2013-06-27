@@ -11,6 +11,7 @@
 	
 </div>
 
+
 <div id="orderInformation">
 	<h4>Contact Information</h4>
 	<%= content_tag :p, @order.customer.first_name %>
@@ -33,7 +34,15 @@
  
 
 <%= form_tag storefront_pay_path, id: 'new_transaction' do %>
+<%= "Select Your Shipping Method: " %><br>
 
+
+	<br>
+		<%= radio_button_tag 'selected_rate', 'usps', true, "data-cost" => @rates[:usps] %>
+		<%= label_tag "selected_rate_usps", "USPS: $#{@rates[:usps]}" %>
+	<br>
+		<%= radio_button_tag 'selected_rate', 'ups', false, "data-cost" => @rates[:ups] %>
+		<%= label_tag "selected_rate_ups", "UPS Overnight: $#{@rates[:ups]}" %>
 	<br>
 	<div class="payment-errors"></div>
   <div id="creditCardFields">
@@ -58,7 +67,7 @@
 
   </div>
 	
-	
+	<%= content_tag :div, "Grand Total: $#{@cart.total_price + @selected_rate}", id: 'grandTotal', data: {cost: @cart.total_price} %>
 	<%= submit_tag "Pay" %>
 <% end %>
 

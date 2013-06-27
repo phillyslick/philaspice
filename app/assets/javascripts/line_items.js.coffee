@@ -14,8 +14,8 @@ reloadCart = ->
 		
 
 editableCart = ->
-	if $('#quantity').length > 0
-		$('#quantity').editable(
+	if $('.quantity').length > 0
+		$('.quantity').editable(
 			ajaxOptions:
 				type: "put"
 			success: ->

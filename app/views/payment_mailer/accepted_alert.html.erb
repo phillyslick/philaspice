@@ -30,7 +30,16 @@ You just received the following order:
 			<td>Subtotal</td>
 			<td><%= @order.total_price %></td>
 		</tr>
+		<tr>
+			<td>Shipping</td>
+			<td><%= @order.shipping_cost %></td>
+		</tr>
+		<tr>
+			<td>Grand-Total</td>
+			<td><%= @order.grand_total %></td>
+		</tr>
 	</tfoot>
+
 </table>
 
 

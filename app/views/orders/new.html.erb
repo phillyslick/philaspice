@@ -90,7 +90,7 @@
 	</p>	
 <p>		
 		<%= a.label :state, "State" %>
-		<%= a.text_field :state %>
+		<%= a.select :state, options_for_select(us_states) %>
 </p>		
 <p>
 		<%= a.label :zip, "Zip Code" %>

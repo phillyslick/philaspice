@@ -34,7 +34,7 @@
 		</tr>
 		<tr>
 			<td>Total Weight</td>
-			<td><%= "#{@cart.total_weight_in_ounces/16} lbs." %></td>
+			<td><%= "#{@cart.total_weight_in_ounces.to_f/16.0} lbs." %></td>
 		</tr>
 	</tfoot>
 </table>

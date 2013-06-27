@@ -17,9 +17,6 @@ class Order < ActiveRecord::Base
       line_items << item
     end
     generate_total
-    calculate_weight
-    calculate_shipping
-    calculate_grand
   end
   
   def generate_total
@@ -41,11 +38,10 @@ class Order < ActiveRecord::Base
     end
   end
   
-  def calculate_shipping
+  def grand_total
+    self.total_price + self.shipping_cost
   end
   
-  def calculate_grand
-  end
-
+  
 
 end

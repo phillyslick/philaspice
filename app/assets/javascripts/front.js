@@ -20,3 +20,4 @@
 //= require orders
 //= require cart
 //= require jquery.poshytip.min
+//= require storefront

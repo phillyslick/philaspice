@@ -51,7 +51,7 @@
 		<tr>
 				<%= content_tag :td, order.uuid %>
 				<%= content_tag :td, order.state %>
-				<%= content_tag :td, order.total_price  %>
+				<%= content_tag :td, order.shipping_cost if order.shipping_cost  %>
 				<%= content_tag :td, order.customer.name %>
 				<%= content_tag :td, (link_to "Show Order", stat_path(id: order.id)) %>
 		</tr>
