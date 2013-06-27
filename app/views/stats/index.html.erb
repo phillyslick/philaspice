@@ -43,7 +43,8 @@
 	<tr>
 		<th>Order ID</th>
 		<th>Order State</th>
-		<th>Order Total</th>
+		<th>Grand Total</th>
+		<th>Shipping Method</th>
 		<th>Customer Name</th>
 	</tr>
 	
@@ -51,7 +52,8 @@
 		<tr>
 				<%= content_tag :td, order.uuid %>
 				<%= content_tag :td, order.state %>
-				<%= content_tag :td, order.shipping_cost if order.shipping_cost  %>
+				<%= content_tag :td, order.shipping_cost ? order.grand_total : order.total_price   %>
+				<%= content_tag :td, order.shipping_method   %>
 				<%= content_tag :td, order.customer.name %>
 				<%= content_tag :td, (link_to "Show Order", stat_path(id: order.id)) %>
 		</tr>

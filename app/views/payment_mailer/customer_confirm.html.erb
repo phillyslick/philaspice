@@ -35,6 +35,12 @@ Thanks for your order.
 		<tr>
 			<td>Shipping</td>
 			<td><%= @order.shipping_cost %></td>
+			<td>Method: <%= @order.shipping_method %></td>
+			
+			<% if @order.shipping_method =~ /pickup/ %>
+				<h3>Note: Please Call Us to Arrange Pickup: 215-999-9888</h3>
+			<% end %>
+			
 		</tr>
 		<tr>
 			<td>Grand-Total</td>

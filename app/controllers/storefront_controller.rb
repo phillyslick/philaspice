@@ -49,6 +49,7 @@ class StorefrontController < ApplicationController
     
     if params[:selected_rate]
       @order.shipping_cost = determine_shipping(@cart, @order, params[:selected_rate])
+      @order.shipping_method = params[:selected_rate]
     else
       redirect_to storefront_review_order_path(@order.uuid), notice: "Select a Shipping Method!"
       return
@@ -129,8 +130,12 @@ class StorefrontController < ApplicationController
   end
   
   def determine_shipping(cart, order, selected_ship)
-    rates = generate_rates(cart, order)
-    rates[selected_ship.to_sym]
+    unless selected_ship =~ /pickup/
+      rates = generate_rates(cart, order)
+      rates[selected_ship.to_sym]
+    else
+      0
+    end
   end
   
   def generate_rates(cart, order)

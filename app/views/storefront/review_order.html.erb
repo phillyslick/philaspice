@@ -44,6 +44,9 @@
 		<%= radio_button_tag 'selected_rate', 'ups', false, "data-cost" => @rates[:ups] %>
 		<%= label_tag "selected_rate_ups", "UPS Overnight: $#{@rates[:ups]}" %>
 	<br>
+		<%= radio_button_tag 'selected_rate', 'pickup', false, "data-cost" => 0 %>
+		<%= label_tag "selected_rate_ups", "Arrange Pickup: $0" %>
+	<br>
 	<div class="payment-errors"></div>
   <div id="creditCardFields">
 <%= hidden_field_tag :order_id, @order.id %>

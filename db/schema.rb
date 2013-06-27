@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626191646) do
+ActiveRecord::Schema.define(:version => 20130627174330) do
 
   create_table "addresses", :force => true do |t|
     t.string   "kind"
@@ -100,16 +100,17 @@ ActiveRecord::Schema.define(:version => 20130626191646) do
   add_index "options", ["product_id"], :name => "index_options_on_product_id"
 
   create_table "orders", :force => true do |t|
-    t.decimal  "total_price",   :precision => 9, :scale => 2
+    t.decimal  "total_price",     :precision => 9, :scale => 2
     t.integer  "total_weight"
-    t.decimal  "shipping_cost", :precision => 9, :scale => 2
+    t.decimal  "shipping_cost",   :precision => 9, :scale => 2
     t.integer  "customer_id"
     t.datetime "archived_at"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.string   "state"
     t.string   "uuid"
     t.string   "slug"
+    t.string   "shipping_method"
   end
 
   add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"

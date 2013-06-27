@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   has_many :addresses
   has_many :line_items
   attr_accessible :archived_at, :shipping_cost, :total_price, :total_weight, :addresses_attributes,
-  :line_item_attributes, :customer_id, :customer, :customer_attributes, :uuid
+  :line_item_attributes, :customer_id, :customer, :customer_attributes, :uuid, :shipping_method
   accepts_nested_attributes_for :customer, :addresses, :line_items
   
   extend FriendlyId
