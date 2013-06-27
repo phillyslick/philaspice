@@ -19,7 +19,7 @@
 		<tr>
 			<td><%= item.cost %></td>
 			<td><%= item.info %></td>
-			<td><%= link_to item.quantity, '#', id: "quantity", data: {type: "text", url: update_quantity_path, pk: item.id, original_title: "Change Quantity"} %></td>
+			<td><%= link_to item.quantity, '#', id: "quantity", class: "quantity", data: {type: "text", url: update_quantity_path, pk: item.id, original_title: "Change Quantity"} %></td>
 			<td><%= item.total_price %> </td>
 					<td> <%= link_to "Remove Item", item, method: :delete, remote: true, confirm: "Are You Sure"  %> </td>
 		</tr>

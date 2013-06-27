@@ -1,9 +1,41 @@
-if($('#cart').css('display') !== 'none')
+var reloadCart = function () {
+	if ($('#theCart').length > 0) {
+		$('#theCart').load('/storefront/index #theCart', function () {
+			editableCart();
+		});
+	}
+	else{
+		$('#orderItems').load('/orders/new #orderItems', function () {
+			editableCart();
+		});
+	}
+}
+
+var editableCart = function () {
+	if ($('.quantity').length > 0) {
+		$('.quantity').editable({
+			ajaxOptions: {type: "put"},
+			success: function () {
+				reloadCart();
+			}
+		})
+	}
+}
+
+
+if(($('#cart').css('display') !== 'none') && $('#cart').length > 0)
    {
 		  $('#theCart').html("<%=j render 'cart_table' %><span id='closeCart' class='main'>Close (X)</span>");
 			$('#cartTrigger').click();
+			editableCart();
    }
+else if($('#orderItems').length > 0)
+	{
+		 $('#orderItems').html("<%=j render 'cart_table' %>");
+		 editableCart();
+	}
 else{
-			$('#theCart').html("<%=j render 'cart_table' %>");
+			$('#theCart').html("<%=j render 'cart_table' %><span id='closeCart' class='main'>Close (X)</span>");
 			$('#cartTrigger').click();
+			editableCart();
 	 }
