@@ -1,3 +1,7 @@
+<% if @cart.line_items.empty? %>
+	<h2>Your Cart is Empty!</h2>
+<% else %>
+
 <h1 id="cartHead">Your Cart</h1>
 
 <span class='note'>(You remove items or edit their quantity)</span>
@@ -43,3 +47,4 @@
 <%= link_to "Checkout", new_order_path, class: "checkout" %>
 
 <span class="checkoutTwig flip"></span>
+<% end %>

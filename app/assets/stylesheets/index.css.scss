@@ -993,3 +993,78 @@ form{
 	@include button($color: $black, $text_color: $white);
 	margin-bottom:10px;
 }
+
+@media only screen and (min-width: 768px) {
+	// header and front
+	
+	body{
+ 	 header#front{
+		 img{
+		 max-width:550px;
+	 }
+		 nav{
+			 div{
+				 font-size:2.2em;
+
+			 }
+		 }
+ 	 }
+	 
+	 #mainSlider{
+		 width:600px;
+	 }
+	 
+	 h2.main{
+		 width:200px;
+		 font-size:3em;
+	 }
+	 
+	 h2.featured{
+		 width:200px;
+		 font-size:3em;
+		 margin:0 auto 40px auto;
+	 }
+	 
+	 #featuredProduct{
+		 hr{
+		 	 width:100%;
+		 }
+		 h2{}
+	 }
+	 
+	 #catalogueFeature {
+		 	h2 {
+		 	 font-size:3em;
+			 width:200px;
+			 padding:24px 48px;
+		 	}
+		 hr{
+			 width:100%;
+		 }
+	 }
+ 
+	}
+	
+	// CATALOG PAGE
+	#subcategories{
+		form{
+		#line_item_price_id{
+			  width: 240px;
+			    height: 34px;
+			    overflow: hidden;
+
+			    border: 1px solid #ccc;
+			}
+		}
+		.productLeft{
+			display:inline-block;
+			width:30%;
+		}
+		.description{
+			width:60%;
+			display:inline-block;
+		}
+	}
+	
+	
+}

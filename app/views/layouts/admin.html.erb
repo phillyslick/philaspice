@@ -10,6 +10,7 @@
 <body>
 	<nav id="adminNav">
 		<ul class="nav nav-tabs">
+			<%= active_link_to("Dashboard", dashboard_path, :wrap_tag => :li) %>
 			<%= active_link_to("Products", products_path, :wrap_tag => :li) %>
 			<%= active_link_to("Categories", categories_path, :wrap_tag => :li) %>
 			<%= active_link_to("Orders", stats_path, :wrap_tag => :li) %>

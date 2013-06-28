@@ -87,12 +87,12 @@ class LineItemsController < ApplicationController
     else
       @line_item.destroy
     end
-
-    respond_to do |format|
-      format.html { redirect_to store_index_path }
-      format.json { head :no_content }
-      format.js
-    end
+    
+      respond_to do |format|
+        format.html { redirect_to store_index_path }
+        format.json { head :no_content }
+        format.js
+      end
   end
   
   def update_quantity

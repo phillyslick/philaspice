@@ -84,5 +84,20 @@ class Order < ActiveRecord::Base
     orders_paid + orders_shipped
   end
   
-
+  def self.completed
+    paid.or.shipped
+  end
+  
+  def self.recent
+    order("created_at").limit(5)
+  end
+  
+ #def self.top_items
+ #  best = []
+ #  self.completed.each do |order|
+ #    order.line_items.each do |item|
+ #      item.
+ #    end
+ #  end
+ #end
 end

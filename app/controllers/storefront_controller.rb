@@ -30,8 +30,12 @@ class StorefrontController < ApplicationController
   def review_order
     @cart = current_cart
     @order = Order.find_by_uuid(params[:slug])
-    @rates = generate_rates(@cart, @order)
-    
+    begin
+      @rates = generate_rates(@cart, @order)
+    rescue ActiveMerchant::Shipping::ResponseError
+      redirect_to new_order_path, notice: "Sorry, your zip code did not match your state. "
+      return
+    end
     if params[:selected_rate]
       [:selected_rate] > 6.00 ? @selected_rate = [:selected_rate] : @selected_rate = @rates[:usps]
     else

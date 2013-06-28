@@ -1,4 +1,6 @@
 Philaspice::Application.routes.draw do
+  get "dashboard/index" => 'dashboard#index', as: :dashboard
+
   devise_for :admins, skip: [:registration]
 
   get "admin/options" => 'options#show', as: :option

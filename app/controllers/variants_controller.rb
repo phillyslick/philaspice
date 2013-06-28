@@ -87,7 +87,7 @@ class VariantsController < ApplicationController
   
   def save_weight
     @variant = Variant.find(params[:id])
-   ' @variant.add_price(params[:price], params[:weight], params[:measurement])'
+    @variant.add_price(params[:price], params[:weight], params[:measurement])
     redirect_to @variant.product
   end
 
