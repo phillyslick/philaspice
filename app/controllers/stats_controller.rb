@@ -3,7 +3,7 @@ class StatsController < ApplicationController
   layout 'category'
   
   def index
-    @orders = Order.all
+    @orders = Order.order("created_at DESC").page(params[:page]).per(10)
   end
   
   def show

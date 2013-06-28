@@ -1,6 +1,9 @@
 <div class="hero-unit">
 	<h1>Your Orders:</h1>
+	<p><%= "Total Money Accepted: #{Order.total}"%></p>
+	<p><%= link_to "Visit Your Stripe Account", "https://manage.stripe.com"%></p>
 </div>
+
 <div class="accordion" id="help">
   <div class="accordion-group">
     <div class="accordion-heading">
@@ -37,25 +40,32 @@
   </div>
 </div>
 
-
-<table border="0" cellspacing="5" cellpadding="5">
-	
-	<tr>
+<%= paginate @orders %>
+<table border="0" cellspacing="5" cellpadding="5" class="table table-striped">
+	<thead>
+	 <tr>
 		<th>Order ID</th>
+		<th>Customer Name</th>
+		<th>Order Date</th>
 		<th>Order State</th>
 		<th>Grand Total</th>
 		<th>Shipping Method</th>
-		<th>Customer Name</th>
-	</tr>
-	
+		
+	 </tr>
+	</thead>
+	<tbody>
 	<% @orders.each do |order| %>
 		<tr>
 				<%= content_tag :td, order.uuid %>
+					<%= content_tag :td, order.customer.name %>
+				<%= content_tag :td, order.updated_at %>
 				<%= content_tag :td, order.state %>
 				<%= content_tag :td, order.shipping_cost ? order.grand_total : order.total_price   %>
 				<%= content_tag :td, order.shipping_method   %>
-				<%= content_tag :td, order.customer.name %>
+			
 				<%= content_tag :td, (link_to "Show Order", stat_path(id: order.id)) %>
 		</tr>
 	<% end %>
+</tbody>
 </table>
+<%= paginate @orders %>

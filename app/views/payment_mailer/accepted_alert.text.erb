@@ -1,0 +1,45 @@
+You just received the following order:
+
+Your Order:
+
+		<% @order.line_items.each do |item| %>
+		
+		
+		<%= item.cost %>
+		<%= item.info %>
+		<%= item.quantity %>
+		<%= item.total_price %>
+		
+		
+		<% end %>
+	
+			Subtotal
+			<%= @order.total_price %>
+		
+		
+		Shipping
+		<%= @order.shipping_cost %>
+		Method: <%= @order.shipping_method %>
+		
+		
+		Grand-Total
+		<%= @order.grand_total %>
+		
+		Contact Information
+	<%=  @order.customer.first_name %>
+	<%=  @order.customer.last_name %>
+	<%=  @order.customer.company %>
+	<%=  @order.customer.email %>
+	<%=  @order.customer.home_phone %>
+	<%=  @order.customer.work_phone %>
+
+	<% @order.addresses.each do |address| %>
+		<%= "#{address.kind} Address" %>
+		<%= address.address1 %>
+		<%= address.address2 %>
+		<%= address.city %>
+		<%= address.state %>
+		<%= address.zip %>
+	<% end %>
+
+	

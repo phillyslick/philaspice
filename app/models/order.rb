@@ -1,4 +1,7 @@
 class Order < ActiveRecord::Base
+  require 'active_shipping'
+  include ActiveMerchant::Shipping
+  
   belongs_to :customer
   has_many :addresses
   has_many :line_items
@@ -42,6 +45,44 @@ class Order < ActiveRecord::Base
     self.total_price + self.shipping_cost
   end
   
+  def self.create_packages(total_weight_in_ounces)
+    packages = []
+    number_of_full_packages = (total_weight_in_ounces / 800)
+    ounces_left = total_weight_in_ounces % 800.0
+    number_of_full_packages.times do
+      packages << Package.new(800, [8, 8, 8], units: :imperial)
+    end
+    if ounces_left > 0
+      packages << Package.new(ounces_left, [8, 8, 8], units: :imperial)
+    end
+    packages
+  end
+  
+  def self.paid
+    where("state = 'Paid' ")
+  end
+  
+  def self.shipped
+    where("state = 'Shipped'")
+  end
+  
+  def self.total
+    orders_paid = paid.sum do |order|
+      if order.shipping_cost
+        order.grand_total
+      else
+        order.total_price
+      end
+    end
+    orders_shipped = shipped.sum do |order|
+      if order.shipping_cost
+        order.grand_total
+      else
+        order.total_price
+      end
+    end
+    orders_paid + orders_shipped
+  end
   
 
 end

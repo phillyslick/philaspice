@@ -65,7 +65,7 @@ class StorefrontController < ApplicationController
        charge = Stripe::Charge.create(
          :card    => params[:stripeToken],
          :amount      => @amount,
-         :description => @order.customer.first_name,
+         :description => "Customer Name: #{@order.customer.name} / Order Total: #{@order.grand_total} / Order ID: #{@order.slug}",
          :currency    => 'usd'
        )
 
@@ -81,14 +81,6 @@ class StorefrontController < ApplicationController
     else
       render :review_order
     end
-  end
-  
-  
-  def create_packages(total_weight_in_ounces)
-    packages = []
-    package = Package.new(total_weight_in_ounces, [8, 8, 8], units: :imperial)
-    packages << package
-    packages
   end
   
   def create_origin
@@ -117,16 +109,19 @@ class StorefrontController < ApplicationController
     ups_rates
   end
   
-  def usps_rate(weight_in_ounces)
+  def usps_rate(weight_in_ounces, packages)
     rates = {small: 6.00, medium: 12.35, large: 16.85}
-    if weight_in_ounces < 16
-      rate = rates[:small]
-    elsif weight_in_ounces < 25
-      rate = rates[:medium]
-    else
-      rate = rates[:large]
+    rate = 0
+    packages.each do |package|
+      if package.oz < 16
+        rate += rates[:small]
+      elsif package.oz < 25
+        rate += rates[:medium]
+      else
+        rate += rates[:large]
+      end
     end
-    rate
+    rate.round(2)
   end
   
   def determine_shipping(cart, order, selected_ship)
@@ -139,11 +134,11 @@ class StorefrontController < ApplicationController
   end
   
   def generate_rates(cart, order)
-    packages = create_packages(cart.total_weight_in_ounces)
+    packages = Order.create_packages(cart.total_weight_in_ounces)
     origin = create_origin
     destination = create_destination(order.addresses.where(kind: "Shipping").first)
     ups_rates = ups_rates(origin, destination, packages)
-    usps_rate = usps_rate(cart.total_weight_in_ounces)
+    usps_rate = usps_rate(cart.total_weight_in_ounces, packages)
     rates = {
       ups: ups_rates.last.last/100.to_f,
       usps: usps_rate
