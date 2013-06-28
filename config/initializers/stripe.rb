@@ -1,1 +1,1 @@
-Stripe.api_key = 'sk_test_8aVwnGWfIfRBYOogYZTJBS3H'
+Stripe.api_key = Settings.stripe_api_key

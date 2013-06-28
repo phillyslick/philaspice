@@ -100,9 +100,9 @@ class StorefrontController < ApplicationController
   end
   
   def ups_rates(origin, destination, packages)
-    ups = UPS.new(login: 'phillyslick',
-                  password: 'Sh3rl0ck215',
-                  key: 'DCB92DB31B6D5D46')
+    ups = UPS.new(login: Settings.ups.login,
+                  password: Settings.ups.password,
+                  key: Settings.ups.key)
                   
     response = ups.find_rates(origin, destination, packages)
     ups_rates = response.rates.sort_by(&:price).collect {|rate| [rate.service_name, rate.price]}
