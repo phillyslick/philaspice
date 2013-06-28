@@ -20,6 +20,7 @@ gem 'bootstrap-sass', '~> 2.3.1.3'
 gem 'client_side_validations'
 gem "active_shipping"
 gem "rails_config"
+gem 'active_link_to'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

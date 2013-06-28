@@ -58,7 +58,7 @@
 		<tr>
 				<%= content_tag :td, order.uuid %>
 					<%= content_tag :td, order.customer.name %>
-				<%= content_tag :td, order.updated_at %>
+				<%= content_tag :td, order.updated_at.strftime("%B %d at %I:%M %p") %>
 				<%= content_tag :td, order.state %>
 				<%= content_tag :td, order.shipping_cost ? order.grand_total : order.total_price   %>
 				<%= content_tag :td, order.shipping_method   %>

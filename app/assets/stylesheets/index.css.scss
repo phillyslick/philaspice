@@ -198,6 +198,7 @@ body{
 	width:100%;
 	font-size:100%;
 	line-height: 1.125em;
+
 }
 
 div,p{
@@ -260,12 +261,16 @@ header#front{
 			width:100%;
 			text-align:center;
 				a{
-					margin:0 .5em;
+					margin:0 .1em;
 					color:$black;
 					text-transform:lowercase;
+					text-decoration:none;
 					font-size:1.2em;
 					font-weight:bold;
 
+				}
+				.active{
+					text-decoration:underline;
 				}
 				
 		}
@@ -628,32 +633,55 @@ div#orderItems{
 
 	}
 	table{
+		font-family: "Open Sans", serif;
 		width:95%;
-		margin:40px auto 80px auto;
-		text-align:left;
+		margin:10px auto;
+		text-align:center;
+		tfoot{
+			font-family: "Open Sans", serif;
+			font-size:.6em;
+			tr{
+				td{
+					font-family: "Open Sans", serif;
+					font-size:1em;
+					line-height:1.3em;
+						font-weight:bold;
+				}
+			}
+		}
 		thead{
-			font-family: "chelsea", serif;
-			font-size:1.5em;
+			text-align:center;
+			font-weight:bold;
+			font-family: "Open Sans", serif;
+			font-size:1.1em;
 			text-transform:uppercase;
 			tr{
-			td{
-				padding-left:30px;
+				
+			th{
+				font-size:.6em;
+				padding-left:5px;
+				line-height:1.2em;
 			}
 		}
 		}
-		tfoot{
-			font-family: "chelsea", serif;
-			font-size:1.5em;
-		}
+
 		tbody{
+
 			tr{
 				padding: 5px 0;
 				margin-bottom:10px;
 				height:25px;
 				color:$black;
 				background-color:#cccccc;
+				.cost{
+					width:40px !important;
+				}
 				td{
-					padding:3px 0;
+
+					max-width:50px;
+					font-size:.6em;
+					line-height:1.2em;
+					padding:3px 0 3px 5px;
 					border-bottom:white 10px solid;
 				}
 				.itemPrice{
@@ -664,7 +692,8 @@ div#orderItems{
 				}
 			}
 		}
-}
+	}
+	
 }
 
 form h4{
@@ -673,24 +702,41 @@ form h4{
 }
 
 form.new_order{
+	.label_error{
+		
+	}
 	.field_with_errors{
-		width:auto;
+		width:80%;
 		display:inline-block;
+		margin: 0 auto 20px auto;
 		label{
 			vertical-align:top;
 			display:inline-block;
-			width:10%;
-			min-width:111px;
+			width:100%;
+			min-width:100px;
 			text-align:left;
 			color:red;
 		}
+		
 		input{
-			width:50%;
+			width:85%;
 			display:inline-block;
 			position:absolute;
 		}
+		
 	}
-	
+	.label_error{
+		min-width: 13% !important;
+		width:auto;
+		label{
+			vertical-align:top;
+			display:inline-block;
+			width:100%;
+			min-width:100px;
+			text-align:left;
+			color:red;
+		}
+	}
 	width:95%;
 	margin: auto auto 40px auto;
 	p{
@@ -730,7 +776,7 @@ aside#cart{
 	right:-100%;
 	z-index:9999;
 	width:100%;
-	height:60%;
+	height:100%;
 	#closeCart{
 		cursor:pointer;
 		position:absolute;
@@ -750,7 +796,7 @@ aside#cart{
 	}
 	
 	#theCart{
-		min-height:400px;
+		overflow-y:scroll;
 		height:100%;
 		background:$white;
 		background-image:url('ovals.png');
@@ -762,11 +808,12 @@ aside#cart{
 			font-family:"ofl", serif;
 			text-transform:uppercase;
 			color:$maroon;
-			font-size:2em;
+			font-size:1.4em;
+			margin-bottom:10px;
 		}
 		span.note{
 			text-align:center;
-			margin:20px auto;
+			margin:10px auto 20px auto;
 			width:auto;
 			display:block;
 			color:$maroon;
@@ -786,32 +833,55 @@ aside#cart{
 
 		}
 		table{
+			font-family: "Open Sans", serif;
 			width:95%;
 			margin:10px auto;
-			text-align:left;
+			text-align:center;
+			tfoot{
+				font-family: "Open Sans", serif;
+				font-size:.6em;
+				tr{
+					td{
+						font-family: "Open Sans", serif;
+						font-size:1em;
+						line-height:1.3em;
+							font-weight:bold;
+					}
+				}
+			}
 			thead{
-				font-family: "chelsea", serif;
-				font-size:1.5em;
+				text-align:center;
+				font-weight:bold;
+				font-family: "Open Sans", serif;
+				font-size:1.1em;
 				text-transform:uppercase;
 				tr{
-				td{
-					padding-left:30px;
+					
+				th{
+					font-size:.6em;
+					padding-left:5px;
+					line-height:1.2em;
 				}
 			}
 			}
-			tfoot{
-				font-family: "chelsea", serif;
-				font-size:1.5em;
-			}
+
 			tbody{
+
 				tr{
 					padding: 5px 0;
 					margin-bottom:10px;
 					height:25px;
 					color:$black;
 					background-color:#cccccc;
+					.cost{
+						width:40px !important;
+					}
 					td{
-						padding:3px 0;
+
+						max-width:50px;
+						font-size:.6em;
+						line-height:1.2em;
+						padding:3px 0 3px 5px;
 						border-bottom:white 10px solid;
 					}
 					.itemPrice{
@@ -897,6 +967,29 @@ form{
 
 .editable-container{
 	z-index: 9999999;
-	background:$beige;
-	padding:3px;
+	padding:0px 3px;
+	form{
+		z-index: 9999999;
+		margin-top:0px !important;
+		input{
+			z-index: 9999999;
+			width:20px;
+		}
+		button{
+			display:none;
+		}
+	}
+}
+
+#notice, .payment-errors{
+	text-align:center;
+	color:red;
+	font-size:1.5em;
+	font-family: "ofl", serif;
+	margin-top:20px;
+}
+
+#addyCopy{
+	@include button($color: $black, $text_color: $white);
+	margin-bottom:10px;
 }

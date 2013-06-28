@@ -10,11 +10,11 @@
 <body>
 	<nav id="adminNav">
 		<ul class="nav nav-tabs">
-			<%= content_tag :li, link_to("Products", products_path), class: 'active' %>
-			<%= content_tag :li, link_to("Categories", categories_path) %>
-			<%= content_tag :li, link_to("Orders", stats_path) %>
-			<%= content_tag :li, link_to("Front Sliders", sliders_path) %>
-			<%= content_tag :li, link_to("Additional Pages", pages_path) %>
+			<%= active_link_to("Products", products_path, :wrap_tag => :li) %>
+			<%= active_link_to("Categories", categories_path, :wrap_tag => :li) %>
+			<%= active_link_to("Orders", stats_path, :wrap_tag => :li) %>
+			<%= active_link_to("Front Sliders", sliders_path, :wrap_tag => :li) %>
+			<%= active_link_to("Additional Pages", pages_path, :wrap_tag => :li) %>
 			<% if admin_signed_in? %>
 			  <li>
 			  <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>        

@@ -46,6 +46,9 @@ ul{
 }
 
 #productShow{
+	.btn-group{
+		margin:20px 0px;
+	}
 	h1{
 		text-align:left;
 	}
@@ -61,6 +64,9 @@ ul{
 		clear:both;
 		width:100%;
 		position:relative;
+		h3{
+		
+		}
 		ul{
 			margin-top:20px;
 			li.variant{
@@ -138,13 +144,18 @@ ul{
 			background-color: $lightBlue;
 		}
 	li{
+		padding:0px 10px 10px 10px;
 		margin-bottom:20px;
 		.action{
 
 		}
 		ul{
 			margin-top:15px;
-			margin-left:20px;
+			margin-left:0px;
+			li{
+
+				display:block;
+			}
 		}
 	}
 }
@@ -161,4 +172,13 @@ ul{
 
 form.update_state{
 	text-align:left;
+}
+
+form label{
+	font-family: "Open Sans", sans-serif;
+}
+#backSliders{
+	li{
+		margin:10px;
+	}
 }

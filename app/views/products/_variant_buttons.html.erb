@@ -1,4 +1,4 @@
-<%= "#{link_to 'Edit', edit_product_variant_path(@product, variant), class: "btn btn-mini triggerWeight"}  #{link_to "Add a Weight", weights_product_variant_path(@product, variant), class: "btn-mini btn triggerWeight"}".html_safe %>
+<%= "#{link_to 'Edit', edit_product_variant_path(@product, variant), class: "btn btn-mini triggerWeight"}  #{link_to "Add a Weight/Price", weights_product_variant_path(@product, variant), class: "btn-mini btn triggerWeight"}".html_safe %>
 		
 		<% if variant.stocked? %>
 			<%= link_to "Unstock", unstock_product_variant_path(@product, variant), class:'btn btn btn-mini'%>

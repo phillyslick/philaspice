@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Philadelphia Spice Trader</title>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
-	
+  <title><%= "Philadelphia Spice Trader #{yield :title}" %></title>
   <%= stylesheet_link_tag    "front", :media => "all" %>
   <%= javascript_include_tag "front" %>
+	
+	  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+		  <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.4/jquery-editable/css/jquery-editable.css" rel="stylesheet">
 		<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.4/jquery-editable/js/jquery-editable-poshytip.min.js"></script>
-	<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.4/jquery-editable/css/jquery-editable.css" rel="stylesheet">
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">
-  // This identifies your website in the createToken call below
-  Stripe.setPublishableKey('<%= Settings.stripe_api_pk %>');
-  // ...
-</script>
+	
+<%= yield :stripe %>
   <%= csrf_meta_tags %>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -26,10 +22,10 @@
 			<nav id="front">
 				
 				<div>
-					<%= link_to "Home", root_path %>
-					<%= link_to "Catalogue", storefront_path %>
-					<%= link_to "About", front_about_path %>
-					<%= link_to "Contact", front_contact_path %>
+					<%= active_link_to "Home", root_path, active: :exclusive %> | 
+					<%= active_link_to "Catalogue", storefront_path, :active => /^\/store/ %> | 
+					<%= active_link_to "About", front_about_path %> | 
+					<%= active_link_to "Contact", front_contact_path %>
 				</div>
 				
 			</nav>

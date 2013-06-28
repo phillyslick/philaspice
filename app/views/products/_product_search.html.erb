@@ -6,7 +6,7 @@
 			<%= (hidden_field_tag :category_id, params[:category_id]) if params[:category_id] %>
 			<%= (hidden_field_tag :category_id, params[:product][:category_id]) if params[:product] %>
 	    <%= submit_tag "Search", class: "btn btn-primary btn-small", name: nil %>
-				<%= link_to "Reset Form", products_path %>
+				<%= link_to "Reset Form", products_path, class: "btn btn-danger" %>
 	  </p>
 	<% end %>
 	

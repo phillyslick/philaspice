@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   end
   
   def show
-    find_products
+
     params[:id] ? @product = Product.find(params[:id]) : @product = Product.active.first
   end
   

@@ -22,6 +22,8 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
+    active_link_to (1.0.1)
+      actionpack
     active_shipping (0.9.15)
       active_utils (>= 1.0.1)
       activesupport (>= 2.3.5)
@@ -217,6 +219,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_link_to
   active_shipping
   awesome_nested_fields
   bootstrap-sass (~> 2.3.1.3)

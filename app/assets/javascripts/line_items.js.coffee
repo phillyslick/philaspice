@@ -18,6 +18,8 @@ editableCart = ->
 		$('.quantity').editable(
 			ajaxOptions:
 				type: "put"
+			mode: "inline",
+			onblur: "submit",
 			success: ->
 				reloadCart())
 	

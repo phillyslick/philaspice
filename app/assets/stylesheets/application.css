@@ -10,6 +10,7 @@
  *
  *= require jquery.Jcrop
  *= require bjqs
+ *= require_directory ./fonts
+ *= require admin
  *= require_self
- *= require_tree .
  */

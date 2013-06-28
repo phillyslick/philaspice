@@ -1,5 +1,5 @@
 <div id="variants">
-<%= content_tag :h2, "Variations" %> 
+<%= content_tag :h1, "Variations" %> 
 	<ul>
 		<% @product.variants.recent.each do |variant| %>
 			<%= render :partial => 'variant', locals: {variant: variant} %>

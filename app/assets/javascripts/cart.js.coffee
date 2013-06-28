@@ -15,6 +15,10 @@ toggleCart =  ->
 	if $('#cart').data("open") == false
 		$('#cart').data("open", true) 
 		$('body').append("<div id='overlay'></div>")
+		$('body').css
+			height: "100px"
+			overflow: "hidden"
+			
 		$('#overlay').show()
 		$('#cart').animate
 			right: "0%"
@@ -22,5 +26,8 @@ toggleCart =  ->
 		$('#cart').data("open", false)
 		$('#cart').animate
 			right: "-100%"
+		$('body').css
+			height: "auto"
+			overflow: "auto"
 		$('#overlay').remove()
 

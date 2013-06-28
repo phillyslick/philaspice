@@ -1,8 +1,8 @@
 <%= content_tag :h1, "Front Sliders" %>
 
-<%= link_to "New Slider", new_slider_path, class: "btn btn-primary" %>
+<%= link_to "New Slider", new_slider_path, class: "btn btn-large btn-primary" %>
 
-<ul>
+<ul id="backSliders">
 	<% @sliders.each do |slider| %>
 		<%= content_tag :li do %>
 				<%= image_tag slider.picture.url(:thumb) %>

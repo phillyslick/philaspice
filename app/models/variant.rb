@@ -90,8 +90,8 @@ class Variant < ActiveRecord::Base
   end
   
   def set_as_master
-    product.variants.where('id != ? and master', id).update_all("master = 'false'")
-    master = true
+    self.product.variants.where('id != ?', self.id).update_all("master = 'false'")
+    self.master = true
   end
 
   def self.active
