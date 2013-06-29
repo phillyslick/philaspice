@@ -21,6 +21,7 @@ sudo apt-get install postgresql libpq-dev
  CREATE ROLE
  postgres=# create database blog_production owner blog;
  CREATE DATABASE
+ 
 sudo apt-get -y install nodejs
 sudo wget ftp://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p195.tar.gz
 
@@ -40,9 +41,13 @@ check the current deploy stuff.
 things to remember.
 Slick needs access and probably has access to the rusty files
 www-data:www-data needs access to the entire app structure, i think
+
 the matcher for assets is incorrect in railscasts nginx conf
+
 use bundle exec for everything...
+
 add what you need to be precompiled
+
 remember to uncomment the correct header for nginx in production.rb
 just follow whats here.
 now the problem of compiled assets are not ordering correctly 0 media queries
