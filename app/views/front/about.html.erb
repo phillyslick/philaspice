@@ -1,7 +1,7 @@
-<% title " - About Us" %>
+<span id='about'><% title " - About Us" %>
 
 <hr>
-<%= content_tag :h2, @about.title, class: "main" %>
+<%= content_tag :h2, @about.title, class: "main about" %>
 <%= image_tag @about.image.url(:large), class: "aboutPic" %>
 <div id="aboutContent">
 
@@ -9,3 +9,4 @@
 </div>
 
 <%= render :partial => 'the_cart' %>
+</span>

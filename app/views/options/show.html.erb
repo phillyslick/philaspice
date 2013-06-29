@@ -4,7 +4,7 @@
 	<%= f.collection_select :product_id, Product.active.is_stocked, :id, :name %>
 	
 	<br/>
-	<%= image_tag @option.image.url(:thumb) %>
+	<%= image_tag @option.image.url(:square) %>
 	<%= f.label :image, "Change a Catalogue Image" %>
 	<%= f.file_field :image %>
 

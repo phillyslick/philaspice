@@ -11,11 +11,11 @@
 
 <% end %>
 
-<h4>
-<h2 class="main">Review Your Order</h2>
+
+<h2 class="review main">Review Your Order</h2>
 
 <div id="checkoutText">
-	If everything looks good, hit submit and we’ll receive your order.  Once again, thanks so much for ordering spices from us.  We hope the spices will please you.
+	Please review the information below, select a shipping/pickup method, and enter payment information.  All payment is completed over a secure connection and we don't store your credit card information on our site.
 </div>
 
 
@@ -38,16 +38,14 @@
 		<%= content_tag :h4, "#{address.kind} Address" %>
 		<%= content_tag :p, address.address1 %>
 		<%= content_tag :p, address.address2 %>
-		<%= content_tag :p, address.city %>
-		<%= content_tag :p, address.state %>
-		<%= content_tag :p, address.zip %>
+		<%= content_tag :p, "#{address.city}, #{address.state} #{address.zip} "%>
 	<% end %>
 
 </div>
  
-
+<br>
 <%= form_tag storefront_pay_path, id: 'new_transaction' do %>
-<%= "Select Your Shipping Method: " %><br>
+<h2 class="shipping main">Shipping Method:</h2>
 
 
 	<br>

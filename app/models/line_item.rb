@@ -27,6 +27,6 @@ class LineItem < ActiveRecord::Base
   end
   
   def info
-    "#{name} #{ounces} #{measurement}"
+    "#{name} - #{ounces} #{measurement}"
   end
 end

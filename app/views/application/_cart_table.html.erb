@@ -1,5 +1,5 @@
 <% if @cart.line_items.empty? %>
-	<h2>Your Cart is Empty!</h2>
+	<h2 class="empty">Your Cart is Empty!</h2>
 <% else %>
 
 <h1 id="cartHead">Your Cart</h1>
@@ -33,12 +33,13 @@
 	
 	<tfoot>
 		<tr>
-			<td>Subtotal</td>
-			<td><%= @cart.total_price %></td>
-		</tr>
-		<tr>
 			<td>Weight</td>
 			<td><%= "#{@cart.total_weight_in_ounces.to_f/16.0} lbs." %></td>
+			
+		</tr>
+		<tr>
+			<td>Subtotal</td>
+			<td><%= @cart.total_price %></td>
 		</tr>
 	</tfoot>
 </table>

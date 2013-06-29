@@ -4,8 +4,7 @@ jQuery ->
 class SliderCropper
 	constructor: ->
 		$('#cropbox').Jcrop
-			aspectRatio: 1
-			setSelect: [0, 0, 600, 600]
+			aspectRatio: 900/600
 			onSelect: @update
 			onChange: @update
 

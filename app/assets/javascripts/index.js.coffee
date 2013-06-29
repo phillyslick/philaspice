@@ -8,7 +8,8 @@ jQuery ->
 		
 	$('#mainSlider').bjqs
 		width: 900
-		height: 900
+		height: 600
+		animspeed : 4000
 		animtype: 'fade'
 		responsive: 'true'
 		nexttext: "<span class='prevAarow'></span>"

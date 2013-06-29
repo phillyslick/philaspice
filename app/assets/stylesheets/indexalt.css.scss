@@ -211,20 +211,19 @@ img{
 }
 
 h2{
-	background-color:$maroon;
-	color:$white;
+	color:$maroon;
 	padding: .5em 1em;
 	width:auto;
 
 	text-align:center;
 	text-transform:lowercase;
 	font-family:'chelsea', serif;
-	font-size:1.6em;
+	font-size:3.6em;
 	font-weight:normal;
 	letter-spacing:.02em;
 	margin:auto;
 	
-	@include box-shadow(0px, 4px, 10px, $black, $inset: false)
+	
 }
 
 h3{
@@ -281,25 +280,33 @@ header#front{
 // front page
 
 h2.main{
-	width:25%;
+	text-align:center;
 	margin-bottom:20px;
 	position:relative;
 	top:-1px;
+	padding:.5em 0px;
+	line-height:.8em;
 }
-
+h2.review{
+	font-size:4em;
+}
+h2.shipping{
+	font-size:2.2em;
+	margin-bottom:0px;
+	padding-bottom:0px;
+}
 h2.featured{
-	width:23%;
 	text-align:center;
-	margin:0 0 20px 7%;
+	margin:0 auto 20px auto;
 	position:relative;
 	top:-1px;
-	font-size:1.2em;
+	font-size:3.6em;
 }
 
 hr{
 	margin-bottom:0px;
 	padding-bottom:0px;
-
+	display:none;
 }
 
 #mainSlider{
@@ -374,11 +381,10 @@ hr{
 }
 
 #catalogueFeature{
-	margin-top:25px;
+	margin-top:15px;
 	background:$white;
 	h2{
-		width:29%;
-		padding: .5em .4em;
+		padding: .5em 0em;
 	}
 }
 
@@ -386,15 +392,17 @@ hr{
 // ------------- CATALOGUE PAGE
 
 h2#productCategories{
-	width:80%;
-	padding:.5em .2em;
+	text-align:center;
+	color:$black;
 	position:relative;
 	top:-1px;
 	margin-bottom:50px;
+	background:$white;
+	font-size:2em;
 	span{
 		margin:0 5px;
 		a{
-			color:white;
+			color:$black;
 			font-decoration:none;
 		}
 	}
@@ -421,6 +429,7 @@ h2#productCategories{
 				text-align:center;
 				margin-bottom:40px;
 				cursor:pointer;
+				font-weight:100;
 				}
 				h4.active{
 					cursor:auto;
@@ -467,14 +476,17 @@ h1#productName{
 }
 
 h2#productAlternates{
-	width:70%;
+	width:90%;
+	text-align:center;
 	line-height:1.2em;
 	position:relative;
-	top:-1px;	
+	top:-1px;
+	padding:0px;
+	font-size:1.5em;	
 }
 
 img#productImage{
-	width:100%;
+	width:90%;
 	display:block;
 	margin:auto;
 }
@@ -520,6 +532,15 @@ div#aboutContent{
 		width:80%;
 		text-align:center;
 		margin: 50px auto;
+	}
+}
+#about{
+	h2.main{
+		font-size:3.6em;
+		line-height:1em;
+		text-align:center;
+		padding:0px;
+		margin:30px auto;
 	}
 }
 
@@ -699,6 +720,7 @@ div#orderItems{
 form h4{
 	font-size:2em;
 	margin:20px;
+	font-weight:100;
 }
 
 form.new_order{
@@ -995,67 +1017,128 @@ form{
 }
 
 @media only screen and (min-width: 768px) {
+	// main rewrites
+	h2{
+		width:auto;
+		font-size:8em;
+	}
+
 	// header and front
-	
 	body{
  	 header#front{
 		 img{
 		 max-width:550px;
-	 }
+	 		}
 		 nav{
 			 div{
 				 font-size:2.2em;
-
-			 }
-		 }
- 	 }
+			 	}
+		  }
+ 	  }
 	 
 	 #mainSlider{
 		 width:90%;
+		 margin-bottom:140px;
 	 }
 	 
+	 hr{
+		 display:none;
+	 }
 	 h2.main{
-		 width:200px;
-		 font-size:3em;
+
+		 margin:60px auto 50px auto;
 		 padding:.3em 1em;
 	 }
 	 
 	 h2.featured{
-		 width:200px;
-		 font-size:3em;
-		 margin:0 auto 40px auto;
+		
+		 font-size:7em;
+		 margin:40px auto 80px auto;
 		  padding:.3em 1em;
 	 }
 	 
 	 #featuredProduct{
+		 img{
+			 margin-right:30px;
+		 }
 		 hr{
 		 	 width:100%;
 		 }
-		 h2{}
+		 h2.featured{
+			 width:395px;
+		 }
+		 h3{
+			 font-size:2.7em;
+			 margin:50px auto 20px auto;
+		 }
+		 p{
+			 font-size:1em;
+			 line-height:1.8em;
+		 }
 	 }
 	 
 	 #catalogueFeature {
-		 	h2 {
-		 	 font-size:3em;
-			 width:200px;
+		 margin-bottom:30px;
+		 	h2.featured {
+
 			 padding:24px 48px;
 		 	}
 		 hr{
 			 width:100%;
+		 }
+		 h3{
+			 font-size:2.7em;
+			 margin:50px auto 20px auto;
+		 }
+		 p{
+			 font-size:1em;
+			 line-height:1.8em;
+			 padding-right:10%;
 		 }
 	 }
  
 	}
 	
 	// CATALOG PAGE
+	
+	form#search{
+		.btn{
+			padding:.2em 1em;
+			
+		}
+		a{
+			@include rounded();
+		}
+		
+	}
+	
+	h2#productCategories{
+		margin-top:30px;
+		width:59%;
+		background:$white;
+		font-size:1em;
+		span{
+			font-size:1em;
+			a{
+				color:$white;
+				background:$maroon;
+				padding:.08em 1em .2em 1em;
+				 @include rounded();
+				font-size:1.4em;
+				text-decoration:none;
+			}
+		}
+	}
 	#subcategories{
 		form{
 		#line_item_price_id{
 			  width: 240px;
 			    height: 34px;
 			    overflow: hidden;
-
 			    border: 1px solid #ccc;
+					background-color:#f7f7f7;
+					font-size:18px;
+					
 			}
 		}
 		.productLeft{
@@ -1067,6 +1150,336 @@ form{
 			display:inline-block;
 		}
 	}
+	
+	
+	// About Page
+	
+	#about{
+		h2.main{
+			font-size:8em;
+			line-height:1em;
+			width:780px;
+			padding:0px;
+			margin:60px auto;
+		}
+	}
+	
+	// CART
+	
+	aside#cart{
+		.empty{
+			font-size:4em;
+		}
+		#closeCart{
+			right:20px;
+			bottom:0px;
+		}
+	
+		#cartTrigger{
+		}
+	
+		#theCart{
+			overflow-y:scroll;
+			height:100%;
+			background:$white;
+			background-image:url('ovals.png');
+			background-repeat:no-repeat;
+			background-position:right 10px;
+			#cartHead{
+				padding-top:40px;
+				text-align:center;
+				font-family:"ofl", serif;
+				text-transform:uppercase;
+				color:$maroon;
+				font-size:2.4em;
+				margin-bottom:10px;
+			}
+			span.note{
+				text-align:center;
+				margin:10px auto 20px auto;
+				width:auto;
+				display:block;
+				color:$maroon;
+			}
+			.front-checkout{
+		
+				text-decoration:none;
+			}
+			.empty-cart{
+
+				border:none;
+				cursor:pointer;
+			}
+			h5{
+				text-align:center;
+				margin: 10px;
+
+			}
+			table{
+				font-family: "Open Sans", serif;
+				width:95%;
+				margin:10px auto;
+				text-align:center;
+				tfoot{
+					font-family: "Open Sans", serif;
+					font-size:1.2em;
+					tr{
+						td{
+							font-family: "Open Sans", serif;
+							font-size:2em;
+							line-height:1.9em;
+								font-weight:bold;
+						}
+					}
+				}
+				thead{
+					text-align:center;
+					font-weight:bold;
+					font-family: "Open Sans", serif;
+					font-size:1.1em;
+					text-transform:uppercase;
+					tr{
+					
+					th{
+						font-size:.6em;
+						padding-left:5px;
+						line-height:2em;
+					}
+				}
+				}
+
+				tbody{
+
+					tr{
+						padding: 5px 0;
+						margin-bottom:10px;
+						height:25px;
+						color:$black;
+						background-color:#cccccc;
+						.cost{
+							width:40px !important;
+						}
+						td{
+
+							max-width:50px;
+							font-size:1.1em;
+							line-height:1.2em;
+							padding:3px 0 3px 5px;
+							border-bottom:white 10px solid;
+						}
+						.itemPrice{
+							padding-left:20px;
+						}
+						.cartTotal{
+							padding-left:20px;
+						}
+					}
+				}
+			}
+	form{
+		margin-top:10px;
+		input[type="submit"]{
+		
+			}
+		}
+
+		a.checkout{
+			@include button($color: $maroon, $text_color: $white);
+			text-align:center !important;
+			display:block;
+			margin:50px auto;
+			width:100px;
+		}
+		span.checkoutTwig{
+			background-image:url("sm_stem_mobile.png");
+			background-repeat:no-repeat;
+	
+			left:20%;
+			bottom:3%;
+			height:20%;
+			display:block;
+			position:absolute;
+		
+		}
+		span.flip{
+			right:20%;
+			left:auto !important;
+			bottom: 4%;
+		  -moz-transform: scaleX(-1);
+		     -o-transform: scaleX(-1);
+		     -webkit-transform: scaleX(-1);
+		     transform: scaleX(-1);
+		     filter: FlipH;
+		     -ms-filter: "FlipH";
+		}
+	}
+
+	}
+
+	// --------- ORDER REVIEW
+	#orderInformation{
+		width:90%;
+		margin: auto;
+		text-align:center;
+		h4{
+			font-size:2em;
+			margin:20px;
+		}
+		p{
+			font-family: "ofl", serif;
+		}
+	}
+
+	div#orderItems{
+		a.checkout{
+			display:none;
+		}
+		#cartHead{
+			padding-top:20px;
+			text-align:center;
+			font-family:"ofl", serif;
+			text-transform:uppercase;
+			color:$maroon;
+			font-size:2em;
+			display:none;
+		}
+		span.note{
+			text-align:center;
+			margin:20px auto;
+			width:auto;
+			display:block;
+			color:$maroon;
+			display:none;
+		}
+		.front-checkout{
+		
+			text-decoration:none;
+		}
+		.empty-cart{
+
+			border:none;
+			cursor:pointer;
+		}
+		h5{
+			text-align:center;
+			margin: 10px;
+
+		}
+		table{
+			font-family: "Open Sans", serif;
+			width:95%;
+			margin:10px auto;
+			text-align:center;
+			tfoot{
+				font-family: "Open Sans", serif;
+				font-size:.6em;
+				tr{
+					td{
+						font-family: "Open Sans", serif;
+						font-size:1.9em;
+						line-height:1.3em;
+							font-weight:bold;
+					}
+				}
+			}
+			thead{
+				text-align:center;
+				font-weight:bold;
+				font-family: "Open Sans", serif;
+				font-size:1.1em;
+				text-transform:uppercase;
+				tr{
+				
+				th{
+					font-size:.6em;
+					padding-left:5px;
+					line-height:1.2em;
+				}
+			}
+			}
+
+			tbody{
+
+				tr{
+					padding: 5px 0;
+					margin-bottom:10px;
+					height:25px;
+					color:$black;
+					background-color:#cccccc;
+					.cost{
+						width:40px !important;
+					}
+					td{
+
+						max-width:50px;
+						font-size:1.1em;
+						line-height:1.2em;
+						padding:3px 0 3px 5px;
+						border-bottom:white 10px solid;
+					}
+					.itemPrice{
+						padding-left:20px;
+					}
+					.cartTotal{
+						padding-left:20px;
+					}
+				}
+			}
+		}
+	
+	}
+
+
+	#grandTotal{
+		text-align:center;
+		font-size:30px;
+		margin:20px auto;
+	}
+	// --------- RANDOM
+	#overlay{
+		width:100%;
+		height:100%;
+		display:block;
+		background-color: rgba(#000, .7);
+		position: fixed;
+		top: 0px;
+		z-index:998
+	}
+
+
+
+	.editable-container{
+		z-index: 9999999;
+		padding:0px 3px;
+		form{
+			z-index: 9999999;
+			margin-top:0px !important;
+			input{
+				z-index: 9999999;
+				width:20px;
+			}
+			button{
+				display:none;
+			}
+		}
+	}
+	
+	
+	
+	// CONTACT
+	
+	div#contactContent{
+		width:50%;
+	}
+	
+	
+	// footer
+	
+	footer{
+		padding-top:30px;
+		font-size:3em;
+	}
+	
 	
 	
 }

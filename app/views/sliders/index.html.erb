@@ -5,7 +5,7 @@
 <ul id="backSliders">
 	<% @sliders.each do |slider| %>
 		<%= content_tag :li do %>
-				<%= image_tag slider.picture.url(:thumb) %>
+				<%= image_tag slider.picture.url(:main) %>
 				<%= link_to "Edit", edit_slider_path(slider) %>
 				<%= link_to "Destroy", slider, method: :delete, data: {confirm: "Are You Sure?"} %>
 		<% end %>

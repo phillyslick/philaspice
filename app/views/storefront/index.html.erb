@@ -5,7 +5,7 @@
 <h2 id="productCategories">
 	<% Category.all.each do |cat| %>
 		<%= content_tag :span do %>
-		 <%= link_to cat.name, category_id: cat.id %>
+		 <%= link_to cat.name, category_id: cat.slug %>
 		 <% end %>
 	<% end %>
 </h2>
