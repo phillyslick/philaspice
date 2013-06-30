@@ -37,7 +37,12 @@
 	</table>
 
 </div>
+
+<% else %>
+<h2>Sorry, No Orders Right Now</h2>
 <% end %>
+
+
 <% if @unshipped_orders.size > 0 %>
 <div id="ordersToShip" class="widget">
 	<table border="0" cellspacing="5" cellpadding="5" class="table table-striped table-condensed">
@@ -76,4 +81,7 @@
 	</table>
 
 </div>
+
+<% else %>
+<h2>No Orders To Ship</h2>
 <% end %>

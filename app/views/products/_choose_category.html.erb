@@ -4,6 +4,6 @@
 		<div id="subload">
 			<% if @category.subcategories.count > 0 %>
 				<%= f.label :subcategory, "Sub-Category:" %>
-				<%= f.collection_select :subcategory_id, @category.subcategories.all, :id, :name, include_blank: "None"  %>
+				<%= f.collection_select :subcategory_id, @category.subcategories.all, :id, :name %>
 			<% end %>
 		</div>
