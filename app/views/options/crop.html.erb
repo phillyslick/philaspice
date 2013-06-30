@@ -1,12 +1,12 @@
-<h1>Crop Slider</h1>
+<h1>Crop Image</h1>
 <h2>Please Crop As Much As Possible</h2>
-<%= image_tag @slider.picture.url(:medium), id: "cropbox" %>
+<%= image_tag @option.image.url(:large), id: "cropbox_option" %>
 
-<%= form_for @slider do |f| %>
+<%= form_for [@option] do |f| %>
   <div class="actions">
 		
   	<% %w[x y w h].each do |attribute| %>
-			<%= f.hidden_field "crop_#{attribute}" %>
+			<%= f.text_field "crop_#{attribute}" %>
 		<% end %>
 		
 		<%= f.submit "crop" %>

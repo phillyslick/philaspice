@@ -1,0 +1,14 @@
+<h1>Crop Image</h1>
+<h2>Please Crop As Much As Possible</h2>
+<%= image_tag @variant.image.url(:large), id: "cropbox_variant" %>
+
+<%= form_for [@product, @variant] do |f| %>
+  <div class="actions">
+		
+  	<% %w[x y w h].each do |attribute| %>
+			<%= f.text_field "crop_#{attribute}" %>
+		<% end %>
+		
+		<%= f.submit "crop" %>
+  </div>
+<% end %>

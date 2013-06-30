@@ -28,7 +28,6 @@ class Product < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
   
-  
 
   def hero_variant 
     active_variants.detect{ |v| v.master } || variants.first

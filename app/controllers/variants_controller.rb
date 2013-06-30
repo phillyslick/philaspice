@@ -3,7 +3,7 @@ class VariantsController < ApplicationController
   
   layout 'admin'
   def show
-       @product = Product.find(params[:product_id])
+    @product = Product.find(params[:product_id])
     @variant = Variant.find(params[:id])
   end
 
@@ -30,6 +30,7 @@ class VariantsController < ApplicationController
     
     if @variant.save
       @variant.add_price(params[:price], params[:weight])
+      
       flash[:notice] = "Variant Created"
       redirect_to @product
     else
@@ -48,8 +49,11 @@ class VariantsController < ApplicationController
       elsif params[:delete] == "trues"
         @variant.activate!
       end
-      flash[:notice] = "Variant Updated"
-      redirect_to @variant.product
+      if params[:variant][:image].present?
+        render :crop
+      else
+        redirect_to @product, notice: "Variant Created"
+      end
     else
       flash[:error] = "Sorry, Variant Couldn't Be Updated"
       render action: :edit

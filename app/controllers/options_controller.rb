@@ -9,7 +9,11 @@ class OptionsController < ApplicationController
   def update
     @option = Option.find(1)
     @option.update_attributes(params[:option])
-    redirect_to option_path
+    if params[:option][:image].present?
+      render :crop
+    else
+      redirect_to option_path, notice: "Options updated!"
+    end
   end
   
 end

@@ -5,19 +5,25 @@ class Variant < ActiveRecord::Base
   
   
   accepts_nested_attributes_for :weights, :prices
-  attr_accessor :delete
+  attr_accessor :delete, :crop_x, :crop_y, :crop_w, :crop_h
   attr_accessible :deleted_at, :master, :name, :price, :sku, :delete, 
-  :description, :prices_attributes, :weights_attributes, :image, :stocked,
-  :slug
+                  :crop_x, :crop_y, :crop_w, :crop_h, :description, 
+                  :prices_attributes, :weights_attributes, :image, :stocked, :slug
+                  
   extend FriendlyId
   friendly_id :name, use: :slugged
   
   before_create :set_as_master, :if => Proc.new { |variant| variant.product.variants.size == 0 }
   validates_presence_of :name
+  
   mount_uploader :image, ImageUploader
+  after_update :crop_image
   
   scope :recent, order("updated_at DESC")
-
+ 
+  def crop_image
+    image.recreate_versions! if crop_x.present?
+  end
   
   def active?
     deleted_at.nil? || deleted_at > Time.zone.now

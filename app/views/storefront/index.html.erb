@@ -30,7 +30,7 @@
 						<% subcat.products.where("name @@ :q", q: params[:query]).active.is_stocked.each do |product| %>
 						<li>
 							<div class="productLeft">
-							<%= image_tag product.front_hero.image.url(:medium) %>
+							<%= image_tag product.front_hero.image.url(:square) %>
 							<%= link_to product.name, storefront_product_path(product) %>
 							<%= form_for @line_item, remote: true do |f| %>
 								<%= f.grouped_collection_select :price_id, product.variants.active.is_stocked, 'prices.by_weight', :name, :id, :weight_and_price %>
@@ -44,7 +44,7 @@
 							<% subcat.products.active.is_stocked.each do |product| %>
 							<li>
 								<div class="productLeft">
-								<%= image_tag product.front_hero.image.url(:medium) %>
+								<%= image_tag product.front_hero.image.url(:square) %>
 								<%= link_to product.name, storefront_product_path(product) %>
 								<%= form_for @line_item, remote: true do |f| %>
 									<%= f.grouped_collection_select :price_id, product.variants.active.is_stocked, 'prices.by_weight', :name, :id, :weight_and_price %>

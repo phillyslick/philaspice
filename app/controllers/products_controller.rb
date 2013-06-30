@@ -39,11 +39,16 @@ class ProductsController < ApplicationController
     @product.name = params[:product][:variants_attributes]["0"][:name]
     @product.description = params[:product][:variants_attributes]["0"][:description]
     if @product.save
-      @product.variants.first.add_price(params[:price], params[:weight], params[:measurement])
-      flash[:notice] = "Product Created"
-      redirect_to @product
+      @variant = @product.variants.first
+      @variant.add_price(params[:price], params[:weight], params[:measurement])
+      if params[:product][:variants_attributes]["0"][:image].present?
+        render :crop
+      else
+        redirect_to @product, flash[:notice] = "Product Created"
+      end
+      
     else
-      flash[:errro] = "Sorry, Product Could Not Be Saved"
+      flash[:error] = "Sorry, Product Could Not Be Saved"
       render action: :new
     end
   end
@@ -51,8 +56,13 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes(params[:product])
-      flash[:notice] = "Product Updated"
-      redirect_to @product
+      
+      if params[:product][:variants_attributes]["0"][:image].present?
+        render :crop
+      else
+        redirect_to @product, flash[:notice] = "Product Updated"
+      end
+
     else
       flash[:error] = "Sorry, Product Couldn't Be Updated"
       render action: :edit

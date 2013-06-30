@@ -6,7 +6,7 @@
   </div>
   <div class="modal-body">
 		<%= form_for [@product, @variant], html: {class: "validate_me"} do |f| %>
-		<%= f.label :name, "Name:", class: "required_field", data: {message: "Please enter a Name of at Least Three Letters"} %>
+		<%= f.label :name, "Name:" %>
 		<%= f.text_field :name %>
 
 		<%= f.label :description, "Description:" %>

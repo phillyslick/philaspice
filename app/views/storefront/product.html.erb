@@ -4,7 +4,7 @@
 <hr>
 <%= content_tag :h2, @product.alternate_names, id: "productAlternates" unless @product.alternate_names.blank? %>
 <%= content_tag :h1, @selected_variant.name, id: "productName" %>
-<div id="variantImage"><%= image_tag @selected_variant.image.url(:large), id: "productImage" %></div>
+<div id="variantImage"><%= image_tag @selected_variant.image.url(:square), id: "productImage" %></div>
 <%= content_tag :div, @selected_variant.description, id: "productDescription" %>
 
 <%= form_for @line_item, remote: true do |f| %>

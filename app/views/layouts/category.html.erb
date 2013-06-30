@@ -32,6 +32,7 @@
 	<div class="container-fluid">
 	  <div class="row-fluid">
 			<span class="span12">
+				<%= render partial: "flash_messages", flash: flash %> 
 				 <%= yield %>
 			 </span>
 	  </div>
