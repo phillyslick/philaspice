@@ -5,7 +5,6 @@ server "198.211.100.11:21521", :web, :app, :db, primary: true
 
 set :application, "philaspice"
 set :user, "slick"
-set :password, ""
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
