@@ -7,9 +7,9 @@ Philaspice::Application.routes.draw do
   
   put "admin/options" => 'options#update', as: :option
   get "storefront/index" => 'storefront#index', as: :storefront
-
-  get "storefront/product/:id" => 'storefront#product', as: :storefront_product
-
+ get "store/category/:category_id" => 'storefront#index', as: :storefront
+  get "store/product/:id" => 'storefront#product', as: :storefront_product
+ 
   get "storefront/checkout"
   
   get "storefront/review_order/:slug" => 'storefront#review_order', as: :storefront_review_order
@@ -26,12 +26,17 @@ Philaspice::Application.routes.draw do
   
   post "front/contact_us" => 'front#contact_us', as: :contact_us
   
-  get "index" => "front#index", as: :index
+ 
   get "front/about"
   
   get "front/thanks"
   
   get "front/contact"
+  get "index" => "front#index", as: :index
+  get "contact" => "front#contact", as: :contact
+  get "about" => "front#contact", as: :about
+  get "store" => "storefront#index", as: :store
+  
   root to: "index#front"
   resources :products do
     
