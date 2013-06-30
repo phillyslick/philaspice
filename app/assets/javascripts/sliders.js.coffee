@@ -29,7 +29,7 @@ class VariantCropper
 		$('#variant_crop_w').val(coords.w)
 		$('#variant_crop_h').val(coords.h)
 		
-class VariantCropper
+class OptionCropper
 	constructor: ->
 		$('#cropbox_option').Jcrop
 			aspectRatio: 1

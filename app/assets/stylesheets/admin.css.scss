@@ -186,15 +186,23 @@ form label{
 
 #lastOrders{
 	table{
-		width:100%;
+
 
 	}
 }
 
 .widget{
+	
+	width:500px;
+	display:block;
+
+	table{
+		width:500px;
+	}
 	caption{
 		background:black;
 		color:white;
+		padding:.4em 0;
 	}
 	width:30%;
 }

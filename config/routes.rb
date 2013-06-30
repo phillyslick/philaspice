@@ -1,7 +1,7 @@
 Philaspice::Application.routes.draw do
   get "dashboard/index" => 'dashboard#index', as: :dashboard
 
-  devise_for :admins, skip: [:registration]
+  devise_for :admins, path: '', path_names: {sign_in: 'tallyho'}, skip: [:registration]
 
   get "admin/options" => 'options#show', as: :option
   
@@ -26,12 +26,13 @@ Philaspice::Application.routes.draw do
   
   post "front/contact_us" => 'front#contact_us', as: :contact_us
   
+  get "index" => "front#index", as: :index
   get "front/about"
   
-   get "front/thanks"
+  get "front/thanks"
   
   get "front/contact"
-  root to: "front#index"
+  root to: "index#front"
   resources :products do
     
     member do

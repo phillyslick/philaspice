@@ -1233,8 +1233,8 @@ form{
 					tr{
 						td{
 							font-family: "Open Sans", serif;
-							font-size:2em;
-							line-height:1.9em;
+							font-size:1em;
+							line-height:1.5em;
 								font-weight:bold;
 						}
 					}
@@ -1324,6 +1324,12 @@ form{
 	}
 
 	// --------- ORDER REVIEW
+	div#checkoutText{
+		width:80%;
+		max-width:700px;
+		margin:10px auto 50px auto;
+		text-align:center;
+	}
 	#orderInformation{
 		width:90%;
 		margin: auto;
@@ -1375,7 +1381,7 @@ form{
 		table{
 			font-family: "Open Sans", serif;
 			width:95%;
-			margin:10px auto;
+			margin:10px auto 30px auto;
 			text-align:center;
 			tfoot{
 				font-family: "Open Sans", serif;
@@ -1383,8 +1389,8 @@ form{
 				tr{
 					td{
 						font-family: "Open Sans", serif;
-						font-size:1.9em;
-						line-height:1.3em;
+						font-size:2em;
+						line-height:1.5em;
 							font-weight:bold;
 					}
 				}

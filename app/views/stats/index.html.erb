@@ -40,6 +40,16 @@
   </div>
 </div>
 
+<nav class="filter">
+	<ul class="nav nav-pills">
+				<li <%= "class=active" if params[:state].blank? %>><%= link_to "All", state: nil %></li>
+				<li <%= "class=active" if params[:state] == "Paid" %>><%= link_to "Paid", state: 'Paid'  %></li>
+				<li <%= "class=active" if params[:state] == 'Shipped' %>><%= link_to "Shipped", state: 'Shipped' %></li>
+					<li <%= "class=active" if params[:state] == 'Unpaid' %>><%= link_to "Unpaid/Abandonded", state: 'Unpaid' %></li>
+
+	</ul>
+</nav>
+
 <%= paginate @orders %>
 <table border="0" cellspacing="5" cellpadding="5" class="table table-striped">
 	<thead>
@@ -50,6 +60,7 @@
 		<th>Order State</th>
 		<th>Grand Total</th>
 		<th>Shipping Method</th>
+		<th>Actions</th>
 		
 	 </tr>
 	</thead>
@@ -58,12 +69,15 @@
 		<tr>
 				<%= content_tag :td, order.uuid %>
 					<%= content_tag :td, order.customer.name %>
-				<%= content_tag :td, order.updated_at.strftime("%B %d at %I:%M %p") %>
+				<%= content_tag :td, order.created_at.strftime("%B %d at %I:%M %p") %>
 				<%= content_tag :td, order.state %>
 				<%= content_tag :td, order.shipping_cost ? order.grand_total : order.total_price   %>
 				<%= content_tag :td, order.shipping_method   %>
 			
-				<%= content_tag :td, (link_to "Show Order", stat_path(id: order.id)) %>
+				<%= content_tag :td do %>
+					<%= (link_to "Show Order", stat_path(id: order.id), class: "btn btn-mini") %> 
+					<%= link_to "Mark As Shipped", update_order_state_path(order_id: order.id, state: "Shipped"), class: "btn btn-mini" if order.state == "Paid" %>
+				<% end %>
 		</tr>
 	<% end %>
 </tbody>

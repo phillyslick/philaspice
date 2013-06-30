@@ -112,11 +112,11 @@ class Product < ActiveRecord::Base
   end
   
   def self.active
-    where("products.deleted_at IS NULL OR products.deleted_at > ?", Time.zone.now)
+    where("products.deleted_at IS NULL OR products.deleted_at > ?", Time.zone.now).order("lower(name)")
   end
   
   def self.inactive
-    where("products.deleted_at IS NOT NULL OR products.deleted_at > ?", Time.zone.now)
+    where("products.deleted_at IS NOT NULL OR products.deleted_at > ?", Time.zone.now).order("lower(name)")
   end
   
   def self.is_stocked

@@ -66,6 +66,10 @@ class Order < ActiveRecord::Base
     where("state = 'Shipped'")
   end
   
+  def self.unpaid
+    where("state = 'Unpaid'")
+  end
+  
   def self.total
     orders_paid = paid.sum do |order|
       if order.shipping_cost
@@ -89,7 +93,7 @@ class Order < ActiveRecord::Base
   end
   
   def self.recent
-    order("created_at").limit(5)
+    order("updated_at DESC").limit(5)
   end
   
  #def self.top_items

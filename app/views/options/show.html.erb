@@ -1,20 +1,23 @@
-<%= form_for @option do |f| %>
-
-	<%= f.label :product_id, "Select a Featured Product: " %>
-	<%= f.collection_select :product_id, Product.active.is_stocked, :id, :name %>
-	
-	<br/>
+<h1>Front Options</h1>
+<%= form_for @option, class: "form" do |f| %>
+<fieldset>
+	<h3>Select a Featured Product To Display: </h3>
+	<%= f.collection_select :product_id, Product.active.is_stocked, :id, :name %><br>
+	<%= image_tag @option.product.hero_variant.image.url(:thumb) if @option.product %>
+	<br/><br>
+	<h2>Catalogue Feature</h2>
 	<%= image_tag @option.image.url(:thumb) %>
-	<%= f.label :image, "Change a Catalogue Image" %>
+	<br>
+	<%= f.label :image, "Change Catalogue Image" %>
 	<%= f.file_field :image %>
 
 	
 	<%= f.label :cat_heading, "Catalogue Heading" %>
 	<%= f.text_field :cat_heading %>
 	
-	<%= f.label :cat_info, "Catalogue Info" %>
+	<%= f.label :cat_info, "Catalogue Body" %>
 	<%= f.text_area :cat_info, size: "80x8" %>
-	
-	<%= f.submit "Update" %>
-	
+	<br>
+	<%= f.submit "Update", class: "btn btn-primary" %>
+</fieldset>
 <% end %>
