@@ -1,5 +1,3 @@
-copy the fallback image?
-throw up spalsh page
 Root path for admin should be dashboard
 clean up dashbord
 implement crops for everything
@@ -11,6 +9,7 @@ after update of options, redirect or show notice.
 cart weight subtotal font
 maybe change some route names
 webmaster tools and search and shutff
+sign in link?
 
 
 

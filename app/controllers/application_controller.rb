@@ -40,4 +40,8 @@ class ApplicationController < ActionController::Base
     session[:cart_id] = cart.id
     cart    
   end
+  
+  def after_sign_in_path_for(admin)
+   dashboard_path
+  end
 end
