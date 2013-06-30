@@ -1,3 +1,9 @@
+frontContact to contact ( routes )
+frontAbout to about (route )
+align front text
+badge for ssl
+fallback for both uploaders
+
 force ssl i guess
 webmaster tools and search and shutff
 mobile css crapness...
