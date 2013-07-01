@@ -1,7 +1,8 @@
-<span id='about'><% title " - About Us" %>
+<% title " - About Us" %>
 
 <hr>
-<%= content_tag :h2, @about.title, class: "main about" %>
+<%= content_tag :h2, @about.title, class: "main" %>
+<span id='about'>
 <%= image_tag @about.image.url(:large), class: "aboutPic" %>
 <div id="aboutContent">
 

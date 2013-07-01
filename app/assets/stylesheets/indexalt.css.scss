@@ -319,7 +319,7 @@ h2.review{
 	padding-bottom:10px;
 }
 h2.shipping{
-	font-size:2.2em;
+	font-size:1.8em;
 	margin-bottom:0px;
 	padding-bottom:0px;
 }
@@ -589,7 +589,9 @@ h2#productCategories{
 }
 
 // ------------- PRODUCT PAGE
-
+input#inside{
+	font-family: "chelsea", sans-serif;
+}
 h1#productName{
 	font-family: 'chelsea', serif;
 	font-size:2.5em;
@@ -650,13 +652,17 @@ span.bottomImage{
 
 img.aboutPic{
 	display:block;
-	margin: auto;
+	margin: 10px auto 0 auto;
+	width:80%;
 }
 
 div#aboutContent{
-	div{
+	img{
 		width:80%;
-		text-align:center;
+	}
+	div{
+		width:70%;
+		text-align:left;
 		margin: 50px auto;
 	}
 }
@@ -1200,7 +1206,7 @@ font-size:2.8em;
 	 	padding-bottom:10px;
 	 }
 	 h2.checkout{
-	 	margin-bottom:0px;
+	 	margin-bottom:10px;
 		padding-bottom:10px;
 	 }
 	 
@@ -1347,11 +1353,13 @@ font-size:2.8em;
 	
 	#variantImage{
 		img#productImage{
-		width:600px;
+		width:700px;
 		}
 	}
 	// About Page
-	
+	input#inside{
+		font-family: "chelsea", sans-serif;
+	}
 	#about{
 		h2.main{
 			font-size:8em;
@@ -1518,7 +1526,7 @@ font-size:2.8em;
 	div#checkoutText{
 		width:80%;
 		max-width:700px;
-		margin:10px auto 50px auto;
+		margin:50px auto 50px auto;
 		text-align:center;
 	}
 	#orderInformation{

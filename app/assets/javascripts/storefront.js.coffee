@@ -4,6 +4,7 @@
 jQuery ->
 	$(document).on 'change', 'input[type="radio"]', ->
 		cost = $(this).data('cost')
+		cost = (Number) cost
 		current_cost = $('#grandTotal').data('cost')
 		new_cost = (Number) cost + (Number) current_cost
 		$('#grandTotal').text("Grand Total: $#{new_cost}")

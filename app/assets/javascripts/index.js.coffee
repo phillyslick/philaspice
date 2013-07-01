@@ -21,7 +21,10 @@ jQuery ->
 		variant_id = $(this).val()
 		address = "?variant_id=#{variant_id}"
 		$('#priceSelect').load("#{address} #priceSelect")
+		$('#productName').load("#{address} #productName", ->
+			$('#productName').text($('#productName').text()))
 		$('#variantImage').load("#{address} #variantImage")
+		
 		
 	$(document).on "change", "#product_category_id", ->
 		category_id = $(this).val()

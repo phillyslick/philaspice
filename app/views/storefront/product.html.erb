@@ -2,7 +2,7 @@
 
 
 <hr>
-<%= content_tag :h2, @product.alternate_names, id: "productAlternates" unless @product.alternate_names.blank? %>
+<%= content_tag :h2, @product.alternate_names, class: "main " unless @product.alternate_names.blank? %>
 <%= content_tag :h1, @selected_variant.name, id: "productName" %>
 <div id="variantImage"><%= image_tag @selected_variant.image.url(:square), id: "productImage" %></div>
 <%= content_tag :div, @selected_variant.description, id: "productDescription" %>
@@ -14,7 +14,7 @@
 			<%= f.label :price_id, "Weight:" %>
 		<%= f.collection_select :price_id, @selected_variant.prices, :id, :weight_and_price %>
 	</span>
-	<%= f.submit "Add to Cart" %>
+	<%= f.submit "Add to Cart", id: "inside" %>
 <% end %>
 
 <span class='bottomImage'>

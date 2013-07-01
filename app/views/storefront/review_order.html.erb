@@ -49,8 +49,6 @@
 <%= form_tag storefront_pay_path, id: 'new_transaction' do %>
 <h2 class="shipping main">Shipping Method:</h2>
 
-
-	<br>
 		<%= radio_button_tag 'selected_rate', 'usps', true, "data-cost" => @rates[:usps] %>
 		<%= label_tag "selected_rate_usps", "USPS: $#{@rates[:usps]}" %>
 	<br>

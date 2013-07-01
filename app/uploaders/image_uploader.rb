@@ -62,7 +62,7 @@ class ImageUploader < CarrierWave::Uploader::Base
    
    version :square do
      process :crop
-      resize_to_limit(600, 600)
+      resize_to_limit(700, 700)
    end
    
    version :large do
