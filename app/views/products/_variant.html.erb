@@ -1,5 +1,5 @@
 <li class='variant <%= cycle("odd", "even") -%>'>
-	<%= image_tag variant.image.url(:thumb) %>
+	<%= image_tag variant.image.url(:rect) %>
 	
 	<%= content_tag :h3, "#{variant.name}", id: "variantName" %>
 	<span id="status">

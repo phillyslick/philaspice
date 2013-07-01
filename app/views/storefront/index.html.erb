@@ -32,7 +32,7 @@
 						<li>
 
 							<div class="productLeft">
-							<%= image_tag product.front_hero.image.url(:square) %>
+							<%= image_tag product.front_hero.image.url(:rect) %>
 							<%= link_to product.name, storefront_product_path(product) %>
 							<%= form_for @line_item, remote: true do |f| %>
 								<%= f.grouped_collection_select :price_id, product.variants.active.is_stocked, 'prices.by_weight', :name, :id, :weight_and_price %>
@@ -47,7 +47,7 @@
 							<li>
 
 								<div class="productLeft">
-								<%= image_tag product.front_hero.image.url(:square) %>
+								<%= image_tag product.front_hero.image.url(:rect) %>
 								<%= link_to product.name, storefront_product_path(product) %>
 								<%= form_for @line_item, remote: true do |f| %>
 									<%= f.grouped_collection_select :price_id, product.variants.active.is_stocked, 'prices.by_weight', :name, :id, :weight_and_price %>

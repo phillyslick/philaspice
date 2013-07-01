@@ -19,7 +19,7 @@ class SliderCropper
 class VariantCropper
 	constructor: ->
 		$('#cropbox_variant').Jcrop
-			aspectRatio: 1
+			aspectRatio: (143/62)
 			onSelect: @update
 			onChange: @update
 
