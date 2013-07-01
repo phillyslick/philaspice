@@ -1,14 +1,19 @@
-search suggesstions complete - but functionality isn't quite there - hmm...
-Empty whole cart perhaps
+DAMNIT NEW VARIANT DOES NOT CROP!
 
-why isn't accordion opening on live site?
-orders/new doesn't redirect on live site...
+search suggesstions complete - but functionality isn't quite there - hmm...
+STILL NEED TO DECIDE WHICH UPS SERVICE GOING TO USE... SET ON EXPENSIVE ON RIGHT NOW
+
+Empty whole cart perhaps?
+
+why isn't accordion opening on live site? - could be that you need to use it in the hide callback..
 
 webmaster tools and search and shutff
-dynamic address and footer info
 
+dynamic address and footer info / or get some of the real info...
 
-fill in more dummy content i guess..
 write up Help Section for the site. / View site thingy
 
-DESKTOP / LAPTOP TESTING
+He's probably more happy on gmail?  Already set up essentially, I can create whatever accounts:
+also -
+names of email accounts to create
+TITLES ON BACKENDS

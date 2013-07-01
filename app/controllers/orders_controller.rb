@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   def new
     @cart = current_cart
     if @cart.line_items.empty?
-      redirect_to storefront_path, notice: "Your Cart is Empty"
+      redirect_to store_path, notice: "Your Cart is Empty"
       return
     end
     @order = Order.new
