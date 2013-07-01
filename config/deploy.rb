@@ -33,11 +33,11 @@ namespace :deploy do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
     run "mkdir -p #{shared_path}/config"
-    run "mkdir -p #{shared_path}/config/settings"
+    run "mkdir -p #{current_path}/config/settings"
     run "mkdir -p #{shared_path}/public/uploads"
     run "mkdir -p #{shared_path}/public/fallback"
     put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
-    put File.read("config/settings/production.yml"), "#{shared_path}/config/settings/production.yml"
+    put File.read("config/settings/production.yml"), "#{current_path}/config/settings/production.yml"
     puts "Now edit the config files in #{shared_path}."
   end
   
