@@ -5,10 +5,17 @@
 
 <div id="helpContent">
 	<nav id="tableOfContents">
-		<a class="articleLink" href="#productCreation">Product Creation</a>
-		<a class="articleLink" href="#variantCreation">Variant Creation</a>
-		<a class="articleLink" href="#productEdits">Editing Products and Variants</a>
-		<a class="articleLink" href="#productCreation">Product/Variant Creation</a>
+		<a class="articleLink" href="#productCreation">Product Creation</a> | 
+		<a class="articleLink" href="#variantCreation">Variant Creation</a> | 
+		<a class="articleLink" href="#productEdits">Editing Products and Variants</a> | 
+		<a class="articleLink" href="#categories">Managing Categories and Subcategories</a> | 
+	  <a class="articleLink" href="#sliders">Managing Front Slider</a> |
+		<a class="articleLink" href="#front">Other Front Page Options</a> |
+		<a class="articleLink" href="#pages">About and Contact Pages</a> |  
+		<a class="articleLink" href="#dash">The Dashboard</a> |
+		<a class="articleLink" href="#stripe">Stripe (Payment Processor) and Security</a> |  
+		<a class="articleLink" href="#email">Setting Up E-mail</a> |  
+  
 
 	</nav>
 	
@@ -21,6 +28,8 @@
 		</div>
 	</article>
 	
+	<hr>
+	
 	<article>
 		<h2 class="heading" id="variantCreation">Creating Variants</h2>
 		<div class="content">
@@ -29,21 +38,142 @@
 		</div>
 	</article>
 	
+	<hr>
+	
 	<article>
 		<h2 class="heading" id="productEdits">Editing Products and Variants</h2>
 		<div class="content">
 			<p>You can edit a product or variant by navigating to the product page.</p>
-			<h3> Editing Products</h3>
+			<b> Editing Products</b>
 			<p>Click on 'Edit Product Details.'</p><p>  There you can change the product's category, subcategory, and alternate names.</p>
-			<h3> Editing Variants</h3>
-			<p></p>
+			<b> Editing Variants</b>
+			<p> For each variant you'll want to set a price/weight combination.  Prices and weights go hand in hand, so you can't enter one without entering the other.  To add one, just click "Add a Weight/Price" under the variant you wish to modify and enter a price and weight in the ensuing window.  You can select to enter it in ounces or pounds. </p>
+			<b> Understanding Stock and 'Status'</b>
+			<p>Both products and their variants have options to activate/deactivate and stock/unstock.  When you activate a product it becomes available to customers on your site.  On the products page you can deactivate a product, <b>which will deactivate all of the product's variants</b>  If a product is deactivated you'll see a button to 'activate' the product instead.  If you deactivate a variant, just that variant will be deactivated.</p>
+			<p>Stock merely tells customers that the product or variant is in stock.  You can change this from the individual product pages.  Each variant can be "stocked" or "unstocked" by clicking on the button under the respective variant.  Also, you can 'unstock' or 'stock' <i>all</i> of a product's variants by clicking the "Unstock All" or "Stock All" button under a product on its page.</p>
+			<b>Understanding Master Variants</b>
+			<p>Each product, if active and stocked, has a master variant.  This is the variation that will appear first and 'represent' the product.  You can set a variant as 'Master' by clicking the green "Set As Master" button next to each variant.  </p>
+			<p><b>Even if you don't explicitly set a variant to 'master', as long as a product has a variant that is stocked and active it will set a variant to display on the front end. </b></p>
+			<p><b>Also, please note that there is no deletion of products.  You merely deactivate them.  The reasoning behind this is that deleting a product would remove any trace of that product in the system, which possibly could conflict with tracking of past orders, or future functionality that gives you feedback about what your customers/visitors have been browsing. </b></p>
+		</div>
+	</article>
+	
+	<hr>
+	
+	<article>
+		<h2 class="heading" id="categories">Managing Categories and Subcategories</h2>
+		<div class="content">
+			<p>Categories are simple to create.  <b>You'll probably want to do so before you create any products.</b> Click on "Categories" in the main menu at the top of the page, and click "New Category" at the bottom of the screen.  Just enter a name and click "Create."</p> 
+			<p>Then, you can add subcategories to each category. <b>You MUST create a subcategory for each category or the products you assign to them will not be visible in the front store.</b><i>If a category doesn't have a subcategory, just add a subcategory named "All."</i></p> 
+			<p> You cannot delete categories but you can remove subcategories.  Both are editable.</p>
+		</div>
+	</article>
+	
+	<hr>
+	
+	<article>
+		<h2 class="heading" id="categories">Managing Categories and Subcategories</h2>
+		<div class="content">
+			<p>Categories are simple to create.  <b>You'll probably want to do so before you create any products.</b> Click on "Categories" in the main menu at the top of the page, and click "New Category" at the bottom of the screen.  Just enter a name and click "Create."</p> 
+			<p>Then, you can add subcategories to each category. <b>You MUST create a subcategory for each category or the products you assign to them will not be visible in the front store.</b><i>If a category doesn't have a subcategory, just add a subcategory named "All."</i></p> 
+			<p> You cannot delete categories but you can remove subcategories.  Both are editable.</p>
+		</div>
+	</article>
+	
+	<hr>
+	
+	<article>
+		<h2 class="heading" id="orders">Keeping Track of Orders</h2>
+		<div class="content">
+			<p>Anytime a visitor adds items to his/her cart, clicks "checkout" and enters personal information, an order is created.  <b><i>At this point the order state is 'Unpaid.'</i></b>  Once a visitor enters payment information and pays the state becomes 'Paid.'  An order's state can change to 'Shipped' only if you mark it as so in the admin area.</p>
+			<p>Click on "Orders" in the top navigation and you'll be taken to your order page.  Here you'll see the total money you've accepted as well as a link to your Stripe Account <i>more on that soon.</i></p>
+			<p>Below that, you see a list of your orders that you can filter based on its state.  If an order is paid but not shipped you'll see a button that says "Mark as Shipped."  This is just so you can keep track of which orders you've shipped or that have been picked up.</p>
+			<p><b>View more about an order, including shipping and customer information, by clicking "Show Order."</b></p>
+			<p><i>All order have a unique 'uuid' (universal unique ID) that is generated.</i>  Feel free to use it on invoices, though its main purpose is to keep visitors from guessing others' order numbers.</p>
+		</div>
+	</article>
+	
+	<hr>
+	
+	<article>
+		<h2 class="heading" id="sliders">Managing the Front Slider</h2>
+		<div class="content">
+			<p>To manage the images that fade in and out on the front page click on "Front Sliders" in the navigation menu.  Click "New Slider," enter a name, and upload a picture.  You'll be taken to a screen where you can crop the image to the correct dimensions.</p>
+			<p>On the main slider page, you can edit (re-upload) or delete a slider.</p>
+		</div>
+	</article>
+	
+	<hr>
+	
+	<article>
+		<h2 class="heading" id="front">Managing Other Front Page Options</h2>
+		<div class="content">
+			<p>There are a few other options you can set on the front page.</p>
+			<b>Featured Product</b>
+			<p>You can feature one of your products on the front page: click on "Front Options" in the main navigation bar.  There you can select one of your products to feature.  The image and description will automatically appear on the front page.</p>
+			
+			<b>Catalogue/Other Feature</b>
+			<p>You also have the flexibility of uploading another feature for the front page.  This can be anything you like.  Under "Catalogue Feature" upload a picture and enter a heading and description.  You'll be able to crop the image afterwards.</p>
+		</div>
+	</article>
+	
+	<hr>
+	
+	<article>
+		<h2 class="heading" id="pages">Contact and About Pages</h2>
+		<div class="content">
+			<p>You can modify a couple options on your contact and about pages.  Click on "Additional Pages" in the top navigation menu.  Then, click "Edit" on whichever page you wish to modify.</p>
+			<b>About Page</b>
+			<p>You can change the title, text, and image on the about page.</p>
+			<b>Contact Page</b>
+			<p>You can change the title and text on the contact page.</p>
 		</div>
 	</article>
 	
 	<article>
-		<h2 class="heading" id="articleName">Article Name</h2>
+		<h2 class="heading" id="dash">The Dashboard</h2>
 		<div class="content">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p>The dashboard will provide some quick functionality once you receive some orders.  You can view the last five order as well as any orders that are paid but you have not marked as "shipped."  There's also a quick button for you to mark that order "shipped."</p>
+		</div>
+	</article>
+	
+	<article>
+		<h2 class="heading" id="stripe">Stripe (Payment Processor) and Security</h2>
+		<div class="content">
+			<b>Security</b>
+			<p>Stripe is the company we are using for handling payments.  They're great because (among other things) they handle 99% of the security involved in processing credit cards.  The other 1% has already been handled when I installed SSL - a technology that encrypts all data while browsing your site. </p>
+			<p> <b>Luckily, all this means is that you don't have to worry about credit card fraud on your end.  HOWEVER:</b>
+			
+			<b>It's extremely important that you do not share your login information with anyone you do not trust. </b> </p>
+			<p> All the encryption in the world won't work if someone has access via a legitimate login.  (Think of a castle that has a moat and huge walls but leaves the gate down.)  <b>Even then, no credit card information would ever be at risk, only your customers' names and contact information.</b>  A physical business certainly locks their doors when they pack up for the night and that's the same idea here. </p>
+			<p> Okay, my little speech on security is over.</p>
+			
+			<b>Logging into the Stripe Dashboard</b>
+			<p>While there will rarely be a need for you to log into your account at Stripe, you need to be aware of how to do it incase a credit card dispute occurs, if you want to issue a refund, manage what appears on customers' credit card statements, or a few other things.</p>
+			<p>To login, click on 'Orders' in the top navigation menu.  Click on "Visit Your Stripe Account."  If you've previously logged in, you'll be taken to the Stripe Dashboard.  Otherwise you'll need to enter your login information. </p>
+			
+			<p>You can also login to stripe by visiting "https://manage.stripe.com"</p>
+						
+			<b>Chargebacks / Disputes</b>
+			<p>A customer may dispute a charge on the rare occasion that their credit card is stolen or they do not recognize your charge on their statement.  You'll receive an email directly from Stripe if this occurs with information regarding the dispute and what you can do to challenge or accept it.  <b>Though this happens infrequently, it is one of the consequences of accepting credit and debit cards as payment</b></p>
+			
+			<p>At any rate, <%= link_to "This Stripe Help Article", 'https://stripe.com/help/disputes' %> does a fantastic job at detailing the process.  They are a great company and will definitely help you throughout the process should a customer ever dispute a charge.</p>
+			
+			<b>Refunds</b>
+			<p>If you need to issue a refund to a customer, login to Stripe.  Click on "Payments."  On the next page click on "View all payments." </p>
+			<p>There, you'll see the description for each payment which <b>will include the order id assigned on your website's backend - in the order section</b>  Identify the correct payment by the order id or the customer's name (which also appears in the description) and click on it.  There you'll see a button "Refund Payment" which you can click and issue a partial or full refund to a customer.</p>
+			
+			<b>Manage Other Account Options</b>
+			<p>At the top of the Stripe Dashboard, you can click "Your Account" and then "Account Details."  Be very careful with the settings here.  You can change your login information, your business contact information, and what appears on your customers' credit card statement when billed."</p>
+		</div>
+	</article>
+	
+	<article>
+		<h2 class="heading" id="dash">Setting Up Email</h2>
+		<div class="content">
+			<p>Setting up your email account is easiest through gmail.</p>
+			<p>1. Click the gear icon near the upper-right corner of the screen.  Then click 'settings.'</p>
+			<p>2. Click the gear icon near the upper-right corner of the screen.  Then click 'settings.'</p>			
 		</div>
 	</article>
 	

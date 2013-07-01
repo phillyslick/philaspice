@@ -15,8 +15,8 @@
     <td><%= page.name %></td>
     <td><%= page.title %></td>
     <td><%= page.content %></td>
-    <td><%= link_to 'Show', page %></td>
-    <td><%= link_to 'Edit', edit_page_path(page) %></td>
+    <td><%= link_to 'Show', page, class: "btn btn-small" %></td>
+    <td><%= link_to 'Edit', edit_page_path(page), class: "btn btn-small" %></td>
    
   </tr>
 <% end %>

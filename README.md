@@ -1,6 +1,11 @@
 DAMNIT NEW VARIANT DOES NOT CROP!
+PRODUCT LIST PAGE NEEDS TO BE CLEANED UP!!!!
+
+Little arrow in variant doesn't line up (little labels)
+
 
 search suggesstions complete - but functionality isn't quite there - hmm...
+
 STILL NEED TO DECIDE WHICH UPS SERVICE GOING TO USE... SET ON EXPENSIVE ON RIGHT NOW
 
 Empty whole cart perhaps?
