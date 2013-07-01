@@ -23,7 +23,7 @@ Philaspice::Application.routes.draw do
   get "stats/update_order_state" => 'stats#update_order_state', as: :update_order_state
   resources :orders, :stats
   get "front/index"
-  
+  get "/" => 'front#index'
   post "front/contact_us" => 'front#contact_us', as: :contact_us
   
  
@@ -34,7 +34,7 @@ Philaspice::Application.routes.draw do
   get "front/contact"
   get "index" => "front#index", as: :index
   get "contact" => "front#contact", as: :contact
-  get "about" => "front#contact", as: :about
+  get "about" => "front#about", as: :about
   get "store" => "storefront#index", as: :store
   
   root to: "index#front"

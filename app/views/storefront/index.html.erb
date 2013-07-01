@@ -29,6 +29,7 @@
 						<% if params[:query] %>
 						<% subcat.products.where("name @@ :q", q: params[:query]).active.is_stocked.each do |product| %>
 						<li>
+
 							<div class="productLeft">
 							<%= image_tag product.front_hero.image.url(:square) %>
 							<%= link_to product.name, storefront_product_path(product) %>
@@ -38,11 +39,13 @@
 							<% end %>
 							</div>
 							<%= content_tag :div, product.description, class: "description" %>
+							<hr>
 						</li>
 					<% end %>
 						<% else %>
 							<% subcat.products.active.is_stocked.each do |product| %>
 							<li>
+
 								<div class="productLeft">
 								<%= image_tag product.front_hero.image.url(:square) %>
 								<%= link_to product.name, storefront_product_path(product) %>
@@ -52,6 +55,7 @@
 								<% end %>
 							</div>
 							<%= content_tag :div, product.description, class: "description" %>
+							<hr>
 							</li>
 						<% end %>
 						<% end %>

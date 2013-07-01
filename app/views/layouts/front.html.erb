@@ -24,7 +24,7 @@
 			<nav id="front">
 				
 				<div>
-					<%= active_link_to "Home", root_path, active: :exclusive %> | 
+					<%= active_link_to "Home", root_path, active: [['front'], ['index']] %> | 
 					<%= active_link_to "Catalogue", store_path, :active => /^\/store/ %> | 
 					<%= active_link_to "About", about_path %> | 
 					<%= active_link_to "Contact", contact_path %>
@@ -48,15 +48,15 @@
 
 <footer>
 	<div>
-		Philadelphia Spice Trader
+		<p>Philadelphia Spice Trader</p>
 <%= mobile_image "stem.png" %>
-		1000 E. Spice Street
-		Philadelphia, P.A. 19148
+		<p>1000 E. Spice Street</p>
+		<p>Philadelphia, P.A. 19148</p>
 		<br>
 		<br>
-		(215) 888-1212
+		<p>(215) 888-1212</p>
 		<br>
-		sales@phillyspicetrader.com
+		<p>sales@phillyspicetrader.com</p>
 	</div>
 	
 	
