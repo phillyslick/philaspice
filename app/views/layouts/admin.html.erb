@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Philaspice</title>
+  <title>Philadelphia Spice Trader - Admininstration</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -18,6 +18,7 @@
 			<%= active_link_to("Front Options", option_path, :wrap_tag => :li) %>
 			<%= active_link_to("Additional Pages", pages_path, :wrap_tag => :li) %>
 			<%= active_link_to("Help", help_path, :wrap_tag => :li) %>
+			<li><%= link_to("View Site", root_path, target: "new") %></li>
 			<% if admin_signed_in? %>
 			  <li>
 			  <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>        

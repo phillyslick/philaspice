@@ -28,20 +28,12 @@ jQuery ->
 		the_link = $(this).next("input#path").val()
 		$('#subload').load("#{the_link}?category=#{category_id} #subload")
 	
-	if $('#subcategories').length > 0
-		setUpSliders()
-		$('h4.opener').on "click", ->
-			unless $(this).hasClass('active')
-				openAndCloseSections($(this))
-			
-setUpSliders = ->
-	$('.subcategory').hide(0, ->
-		$('.active').slideDown())
+	$('h4.opener').on "click", ->
+		openAndCloseSections($(this))
 
 openAndCloseSections = (h4) ->
 	$('h4.active').removeClass('active')
 	h4.addClass('active')
-	$('ul.active').slideUp().removeClass('active')
 	h4.next('ul.subcategory').slideDown().addClass('active')
 
 copyBillingAddress = ->

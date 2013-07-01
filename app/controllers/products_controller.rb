@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
       if params[:product][:variants_attributes]["0"][:image].present?
         render :crop
       else
-        redirect_to @product, flash[:notice] = "Product Created"
+        redirect_to @product, notice: "Product Created"
       end
       
     else
@@ -60,7 +60,7 @@ class ProductsController < ApplicationController
       if params[:product][:variants_attributes]["0"][:image].present?
         render :crop
       else
-        redirect_to @product, flash[:notice] = "Product Updated"
+        redirect_to @product, notice: "Product Updated"
       end
 
     else
