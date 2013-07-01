@@ -35,8 +35,8 @@ jQuery ->
 				openAndCloseSections($(this))
 			
 setUpSliders = ->
-	$('.subcategory').hide()
-	$('.active').slideDown()
+	$('.subcategory').hide(0, ->
+		$('.active').slideDown())
 
 openAndCloseSections = (h4) ->
 	$('h4.active').removeClass('active')

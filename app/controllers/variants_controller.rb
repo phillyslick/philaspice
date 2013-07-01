@@ -31,8 +31,12 @@ class VariantsController < ApplicationController
     if @variant.save
       @variant.add_price(params[:price], params[:weight])
       
-      flash[:notice] = "Variant Created"
-      redirect_to @product
+      if params[:variant][:image].present?
+        render :crop
+      else
+        redirect_to @product, notice: "Variant Created"
+      end
+      
     else
       flash[:error] = "Sorry, Variant Could Not Be Saved"
       render action: :new
