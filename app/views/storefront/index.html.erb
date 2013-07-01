@@ -36,10 +36,10 @@
 							<%= link_to product.name, storefront_product_path(product) %>
 							<%= form_for @line_item, remote: true do |f| %>
 								<%= f.grouped_collection_select :price_id, product.variants.active.is_stocked, 'prices.by_weight', :name, :id, :weight_and_price %>
-								<%= f.submit "Add to Cart" %>
+									<%= f.submit "Add to&#10;Cart".html_safe %>
 							<% end %>
 							</div>
-							<hr>
+
 						</li>
 					<% end %>
 						<% else %>
@@ -51,11 +51,11 @@
 								<%= link_to product.name, storefront_product_path(product) %>
 								<%= form_for @line_item, remote: true do |f| %>
 									<%= f.grouped_collection_select :price_id, product.variants.active.is_stocked, 'prices.by_weight', :name, :id, :weight_and_price %>
-									<%= f.submit "Add to Cart" %>
+									<%= f.submit "Add to&#10;Cart".html_safe %>
 								<% end %>
 							</div>
 
-							<hr>
+
 							</li>
 						<% end %>
 						<% end %>

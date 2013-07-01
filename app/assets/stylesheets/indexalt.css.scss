@@ -519,7 +519,7 @@ h2#productCategories{
 				font-size:1.6em;
 				padding:8px 0 5px 0;
 				text-align:center;
-				margin-bottom:40px;
+				margin-bottom:20px;
 				cursor:pointer;
 				font-weight:100;
 				}
@@ -530,32 +530,57 @@ h2#productCategories{
 				padding-left:0px;
 				list-style:none;
 				li{
-					hr{
-						display:block;
-						margin:20px 0 10px 0;
-					}
+					height:60px;
+					background-color:$beige;
 					.productLeft{
-						margin-left:10px;
+						width:380px;
+						margin: 0 auto;
 					}
 					
-					margin:0 0 20px 0;
+					margin:0 0 30px 0;
+					padding-top:10px;
+					padding-bottom:0px;
 						img{
-							width:150px;
-							vertical-align:text-bottom;
-					
+							margin-left:10px;
+							width:70px;
+							vertical-align:middle;
+							border: 1px solid black;
+							display:inline-block;
 						}
 						a{
 							position:relative;
 							color:$black;
-							margin:0 20px 0 10px;
-							font-size:2em;					
+							margin:0 15px 0 10px;
+							font-size:.8em;
+							display:inline-block;			
+							text-decoration:none;		
+							width:85px;
 						}
 						form{
+							margin-bottom:0px !important;
 							padding-top:10px;
-							display:block;
-							width:100%;
+							display:inline-block;
+							width:46%;
 							text-align:left;
-					
+							select{
+								display:inline;
+								width:130px;
+								margin-right:10px;
+							}
+							input[type='Submit']{
+								display:inline;
+								width:30px;
+								height:20px;
+								padding:0px;
+								font-size:.2em;
+								display:inline;
+								background:$beige;
+								color:$maroon !important;
+								border:none;
+								text-shadow:none;
+								box-shadow:none;
+
+							}
 						}
 					}
 			}
@@ -1248,7 +1273,7 @@ font-size:2.8em;
 		width:auto;
 		background:$maroon;
 		font-size:1.3em;
-		padding:.3em 1em;
+		padding:.4em 1em;
 		.spacer{
 			margin-right:15px;
 		}
@@ -1263,7 +1288,38 @@ font-size:2.8em;
 			}
 		}
 	}
+	#mainList{
 	#subcategories{
+		li.subcategories{
+			ul.subcategory{
+				li{
+					background-color:white;
+					.productLeft{
+						width:730px;
+						margin: 0 auto;
+						img{
+							width:95px;
+						}
+						a{
+							font-size:1.2em;
+							width:200px;
+						}
+						form{
+							width:50%;
+							input[type="submit"]{
+								text-align:right;
+								background-color:white;
+								color:$maroon;
+								font-size:1em;
+								width:110px;
+								height:60px;
+							}
+						}
+					}
+				}
+			}
+		}
+	
 		form{
 		#line_item_price_id{
 			  width: 240px;
@@ -1286,7 +1342,7 @@ font-size:2.8em;
 			display:inline-block;
 		}
 	}
-	
+}
 	//product page
 	
 	#variantImage{
