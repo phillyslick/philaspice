@@ -147,7 +147,7 @@ hr {
     display:block;
     height:1px;
     border:0;
-    border-top:1px solid #cccccc;
+    border-top:1px solid black;
     margin:1em 0;
     padding:0;
 }
@@ -211,18 +211,31 @@ img{
 }
 
 h2{
-	color:$maroon;
-	padding: .5em 1em;
+	//color:$maroon;
+	//padding: .5em 1em;
+	//width:auto;
+  //
+	//text-align:center;
+	//text-transform:lowercase;
+	//font-family:'chelsea', serif;
+	//font-size:3.6em;
+	//font-weight:normal;
+	//letter-spacing:.02em;
+	//margin:auto;
+	background-color:$maroon;
+	color:$white;
+	padding: .8em 1em;
 	width:auto;
 
 	text-align:center;
 	text-transform:lowercase;
 	font-family:'chelsea', serif;
-	font-size:3.6em;
-	font-weight:normal;
+	font-size:1.3em;
+	font-weight:100;
 	letter-spacing:.02em;
 	margin:auto;
 	
+	@include box-shadow(0px, 4px, 10px, $black, $inset: false)
 	
 }
 
@@ -278,15 +291,23 @@ header#front{
 
 
 // front page
-
+#content{
+	width:100%;
+	position:relative;
+}
 h2.main{
-	text-align:center;
+	//text-align:center;
 	margin-bottom:20px;
 	position:relative;
 	top:-1px;
-	padding:.5em 0px;
+	padding:.2em .9em;
 	line-height:.8em;
+	width:auto;
+	display:table;
+	text-align:center;
+	font-size:1.8em;
 }
+
 h2.checkout{
 	margin-bottom:0px;
 }
@@ -303,17 +324,21 @@ h2.shipping{
 	padding-bottom:0px;
 }
 h2.featured{
+	width:auto;
+	display:table;
 	text-align:center;
-	margin:0 auto 20px auto;
+	margin:-1px auto 20px auto;
 	position:relative;
 	top:-1px;
-	font-size:3.6em;
+	font-size:1.6em;
+	padding:.3em .7em;
+	line-height:.8em;
 }
 
 hr{
 	margin-bottom:0px;
 	padding-bottom:0px;
-	display:none;
+	
 }
 
 #mainSlider{
@@ -370,29 +395,49 @@ hr{
 	background:$beige;
 	padding:10px 0 30px 0;
 	width:100%;
+	#container{
+		width:85%;
+		position:relative;
+		margin: 0 auto;
+	}
+	#left{
+		width:44%;
+		float:left;
+		position:relative;
+		overflow:hidden;
+		img{
+			position:relative;
+			width:85%;
+			float:left;
+			margin:0 4.5%;
+		}
 	
+	}
+	#right{
+		float:left;
+		width:50%;
+		padding:0 3%;
+		p{
+			float:left;
+			word-break:break-all;
+			font-size:.8em;
+			line-height:1.5em;
+		}
+	}
 	hr{
 		width:30%;
+		position:relative;
+		top:2px;
 	}
 	
-	img{
-		min-width:130px;
-		width:33.5%;
-		float:left;
-		margin:0 4.5%;
-	}
 	
-	p{
-		margin: 0 4.5%;
-	}
+
 }
 
 #catalogueFeature{
 	margin-top:15px;
 	background:$white;
-	h2{
-		padding: .5em 0em;
-	}
+
 }
 
 
@@ -436,17 +481,20 @@ hr{
 
 
 h2#productCategories{
+	@include box-shadow(0px, 4px, 10px, $black, $inset: false);
 	text-align:center;
-	color:$black;
+	color:$white;
 	position:relative;
 	top:-1px;
 	margin-bottom:50px;
-	background:$white;
-	font-size:2em;
+	display:table;
+	width:auto;
+	padding:.2em 1em;
 	span{
 		margin:0 5px;
 		a{
-			color:$black;
+			color:$white;
+			font-weight:100;
 			font-decoration:none;
 		}
 	}
@@ -1093,7 +1141,7 @@ form{
 	// main rewrites
 	h2{
 		width:auto;
-		font-size:8em;
+		font-size:2em;
 	}
 
 	// header and front
@@ -1110,16 +1158,16 @@ form{
  	  }
 	 
 	 #mainSlider{
-		 width:90%;
+		 width:75%;
 		 margin-bottom:140px;
 	 }
 	 
 	 hr{
-		 display:none;
+
 	 }
 	 h2.main{
-
-		 margin:60px auto 50px auto;
+font-size:2.8em;
+		 margin:0px auto 50px auto;
 		 padding:.3em 1em;
 	 }
 	 h2.review{
@@ -1133,9 +1181,9 @@ form{
 	 
 	 h2.featured{
 		
-		 font-size:7em;
-		 margin:40px auto 80px auto;
-		  padding:.3em 1em;
+		 font-size:1.5em;
+		 margin:40px 0em 20px .3em;
+
 	 }
 	 
 	 #featuredProduct{
@@ -1143,10 +1191,10 @@ form{
 		
 		 }
 		 hr{
-		 	 width:100%;
+
 		 }
 		 h2.featured{
-			 width:395px;
+
 		 }
 		 h3{
 			 font-size:2.7em;
@@ -1161,11 +1209,12 @@ form{
 	 #catalogueFeature {
 		 margin-bottom:30px;
 		 	h2.featured {
+				padding:.2em 1.2em;
 
-			 padding:24px 48px;
+
 		 	}
 		 hr{
-			 width:100%;
+
 		 }
 		 h3{
 			 font-size:2.7em;
@@ -1194,18 +1243,22 @@ form{
 	}
 	
 	h2#productCategories{
-		margin-top:30px;
-		width:59%;
-		background:$white;
-		font-size:1em;
+		@include box-shadow(0px, 4px, 10px, $black, $inset: false);
+		display:table;
+		width:auto;
+		background:$maroon;
+		font-size:1.3em;
+		padding:.3em 1em;
+		.spacer{
+			margin-right:15px;
+		}
 		span{
 			font-size:1em;
 			a{
 				color:$white;
 				background:$maroon;
-				padding:.08em 1em .2em 1em;
-				 @include rounded();
-				font-size:1.4em;
+
+				font-size:1.8em;
 				text-decoration:none;
 			}
 		}
@@ -1576,5 +1629,34 @@ form{
 	}
 	
 	
-	
+	.featuredSlice{
+		#container{
+			width:51%;
+			min-width:600px;
+			position:relative;
+			margin: 0 auto;
+		}
+		#left{
+			width:48%;
+
+			img{
+				margin:0 10% 0 0%;
+			}
+		}
+		#right{
+			width:47%;
+			padding: 0 0 0 5%;
+			h3{
+				font-size:1.1em;
+			}
+			p{
+				font-size:.8em;
+				line-height:1.5em;
+			}
+		}
+		hr{
+			width:30%;
+			top:41px;
+		}
+	}
 }

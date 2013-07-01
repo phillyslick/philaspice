@@ -3,8 +3,9 @@
 
 <hr class="top">
 <h2 id="productCategories">
-	<% Category.active.each do |cat| %>
+	<% Category.active.each_with_index do |cat, index| %>
 		<%= content_tag :span do %>
+		<%= content_tag :span, "|", class: "spacer" unless index == 0 %>
 		 <%= link_to cat.name, category_id: cat.slug %>
 		 <% end %>
 	<% end %>
