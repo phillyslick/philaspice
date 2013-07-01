@@ -13,7 +13,6 @@ set :scm, "git"
 set :repository, "git@github.com:phillyslick/#{application}.git"
 set :branch, "master"
 set :shared_children, shared_children + %w{public/uploads}
-set :shared_children, shared_children + %w{config/settings}
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
@@ -46,6 +45,7 @@ namespace :deploy do
 
   task :symlink_config, roles: :app do
       run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+      run "ln -nfs #{shared_path}/config/settings/production.yml #{release_path}/config/settings.yml"
   end
   
   after "deploy:finalize_update", "deploy:symlink_config"
