@@ -21,3 +21,4 @@
 //= require cart
 //= require jquery.poshytip.min
 //= require storefront
+//= require typeahead.min

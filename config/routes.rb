@@ -1,5 +1,6 @@
 Philaspice::Application.routes.draw do
   get "dashboard/index" => 'dashboard#index', as: :dashboard
+  get "help" => 'dashboard#help', as: :help
 
   devise_for :admins, path: '', path_names: {sign_in: 'tallyho'}, skip: [:registration]
 

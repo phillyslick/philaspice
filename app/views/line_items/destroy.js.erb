@@ -15,12 +15,15 @@ var editableCart = function () {
 	if ($('.quantity').length > 0) {
 		$('.quantity').editable({
 			ajaxOptions: {type: "put"},
+			mode: "inline",
+			onblur: "submit",
 			success: function () {
 				reloadCart();
 			}
 		})
 	}
 }
+
 
 if(($('#cart').css('display') !== 'none') && $('#cart').length > 0)
    {

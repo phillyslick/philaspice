@@ -7,4 +7,9 @@ before_filter :authenticate_admin!
     @unshipped_orders = Order.paid.order("updated_at DESC")
   end
   
+  def help
+  
+  end
+  
+  
 end
