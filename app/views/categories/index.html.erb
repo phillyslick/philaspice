@@ -17,7 +17,7 @@
 					<%= content_tag :span, subcategory.name %>
 						<div class='btn-group'>
 						<%= link_to "<i class='icon-pencil'></i>".html_safe, edit_category_subcategory_path(category, subcategory), class: "btn btn-mini tip triggerBlank", data: {toggle: "tooltip"}, title: "Edit Subcategory" %>
-						<%= link_to "<i class='icon-trash'></i>".html_safe, category_subcategory_path(category, subcategory), method: :delete, class: "btn btn-mini tip", data: {toggle: "tooltip"}, title: "Delete Subcategory" %>
+						<%# link_to "<i class='icon-trash'></i>".html_safe, category_subcategory_path(category, subcategory), method: :delete, class: "btn btn-mini tip", data: {toggle: "tooltip"}, title: "Delete Subcategory" %>
 					</div>
 				</li>
 					<% end %>
