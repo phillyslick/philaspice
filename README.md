@@ -13,3 +13,7 @@ footer stuff
 He's probably more happy on gmail?  Already set up essentially, I can create whatever accounts:
 also -
 names of email accounts to create
+
+
+REMAINING:
+email accounts - set up mailer to and from.
