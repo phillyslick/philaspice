@@ -8,11 +8,9 @@
 			<%= form_for(@category) do |f| %>
 			<%= f.label :name, "Name:" %>
 			<%= f.text_field :name %>
+			<%= f.submit "Create", class: 'btn-primary' %>
+		<% end %>
   </div>
-  <div class="modal-footer">
-		<%= f.submit "Create", class: 'btn-primary' %>
-	<% end %>
-		
-  </div>
+ 
 </div>
 </div>

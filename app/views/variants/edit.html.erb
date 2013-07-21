@@ -21,8 +21,8 @@
 			<%= f.file_field :image %>
 					<%= image_tag f.object.image.url(:thumb) %>
 		<% end %>	
-  </div>
-  <div class="modal-footer">
+
+
 
 		<%= f.submit "Update", class: "btn btn-primary" %>
 	<% end %>
