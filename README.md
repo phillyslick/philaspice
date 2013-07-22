@@ -17,3 +17,7 @@ names of email accounts to create
 
 REMAINING:
 email accounts - set up mailer to and from.
+deletion
+
+- default weights. 
+list weights for a price for each
