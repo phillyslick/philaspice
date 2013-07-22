@@ -56,13 +56,15 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes(params[:product])
-      
-      if params[:product][:variants_attributes]["0"][:image].present?
-        render :crop
+      if params[:product][:varaints_attributes].present?
+        if params[:product][:variants_attributes]["0"][:image].present?
+          render :crop
+        else
+          redirect_to @product, notice: "Product Updated"
+        end
       else
         redirect_to @product, notice: "Product Updated"
       end
-
     else
       flash[:error] = "Sorry, Product Couldn't Be Updated"
       render action: :edit

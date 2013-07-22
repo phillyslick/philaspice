@@ -356,7 +356,7 @@ hr{
 	background:$beige;
 	padding:10px 0 30px 0;
 	width:100%;
-	
+
 	hr{
 		width:30%;
 	}
@@ -379,6 +379,13 @@ hr{
 	h2{
 		width:29%;
 		padding: .5em .4em;
+	}
+	#right{
+		h3{
+			a{
+				color:black;
+			}
+		}
 	}
 }
 

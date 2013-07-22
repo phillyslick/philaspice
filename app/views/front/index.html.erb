@@ -21,7 +21,7 @@
 		<%= image_tag @featured.front_hero.image.url(:square) %>
 	</div>
 	<div id="right">
-		<h3><%= @featured.front_hero.name %></h3>
+		<h3><%= link_to @featured.front_hero.name, storefront_product_path(@featured) %></h3>
 		<p><%= @featured.front_hero.description %></p>
 	</div>
 	</div>
@@ -35,7 +35,7 @@
 		<%= image_tag @option.image.url(:square) %>
 	</div>
 	<div id="right">
-		<h3><%= @option.cat_heading %></h3>
+		<h3><%= link_to @option.cat_heading, store_path %></h3>
 		<p><%= @option.cat_info %></p>
 	</div>
 	</div>
