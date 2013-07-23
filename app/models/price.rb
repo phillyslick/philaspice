@@ -19,5 +19,9 @@ class Price < ActiveRecord::Base
   def pretty
     "$#{amount}"
   end
+  
+  def self.active
+    where("amount > 0")
+  end
 
 end
