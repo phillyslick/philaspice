@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
       in_pounds: d[:pounds]
       )
     end
-    6.times {}
+
     if params[:category]
       @category = Category.find(params[:category])
     else

@@ -10,6 +10,13 @@ class VariantsController < ApplicationController
   def new
     @product = Product.find(params[:product_id])
     @variant = @product.variants.build
+    @default_weights = Weight::DEFAULT_WEIGHTS
+    @default_weights.each do |d|
+      @variant.weights.build(
+      ounces: d[:weight],
+      in_pounds: d[:pounds]
+      )
+    end
     respond_to do |format|
       format.html
       format.json
@@ -27,10 +34,14 @@ class VariantsController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
     @variant = @product.variants.create(params[:variant])
-    
+    @default_weights = Weight::DEFAULT_WEIGHTS
     if @variant.save
-      @variant.add_price(params[:price], params[:weight])
-      
+      params[:pricesa].each_pair do |k,v|
+        @variant.add_price(v.to_i,
+         @default_weights[k.to_i][:weight],
+          @default_weights[k.to_i][:unit])
+           @variant.save
+      end
       if params[:variant][:image].present?
         render :crop
       else

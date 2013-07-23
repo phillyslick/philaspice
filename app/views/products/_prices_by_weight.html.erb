@@ -1,4 +1,4 @@
-<% variant.prices.by_weight.each do |price| %>
+<% variant.prices.by_weight.reverse.each do |price| %>
 			<li class="priceWeight">
 				<span>
 					<%= "#{price.weight.display} for: " %>
