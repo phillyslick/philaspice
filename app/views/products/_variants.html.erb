@@ -13,16 +13,17 @@
 		<% end %>
 		<h3>Prices</h3>
 		
+		<%= fields_for :pricesa do |p| %>
+		<% @variant.weights.each_with_index do |w, index| %>
 		<div class="priceWeight">
-			<%= label_tag :weight, "Weight:" %>
-			<%= text_field_tag :weight, nil, class: "required_weight" %>
-					<%= select_tag :measurement, "<option value='ounces'>Ounces</option><option value='pounds'>Pounds</option>".html_safe %>
+			<%= "#{w.ounces} #{w.unit}" %>
+		<p></p>
 		
-			<%= label_tag :price, "Price:" %>
-			<%= text_field_tag :price, nil, class: "required_price" %>
+			<%= p.label "Price:" %>
+			<%= p.text_field nil, class: "required_price", name: "[pricesa][#{index}]" %>
 			
 		</div>
-			
+		<% end %>
 
-		
+		<% end %>
 </fieldset>

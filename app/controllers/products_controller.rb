@@ -15,7 +15,15 @@ class ProductsController < ApplicationController
   def new
     find_products
     @product = Product.new
-    @product.variants.build
+    @variant = @product.variants.build
+    @default_weights = Weight::DEFAULT_WEIGHTS
+    @default_weights.each do |d|
+      @variant.weights.build(
+      ounces: d[:weight],
+      in_pounds: d[:pounds]
+      )
+    end
+    6.times {}
     if params[:category]
       @category = Category.find(params[:category])
     else
@@ -35,12 +43,20 @@ class ProductsController < ApplicationController
   end
   
   def create
+    @default_weights = Weight::DEFAULT_WEIGHTS
     @product = Product.new(params[:product])
     @product.name = params[:product][:variants_attributes]["0"][:name]
     @product.description = params[:product][:variants_attributes]["0"][:description]
     if @product.save
       @variant = @product.variants.first
-      @variant.add_price(params[:price], params[:weight], params[:measurement])
+      params[:pricesa].each_pair do |k,v|
+         Rails.logger.info(v.to_i) 
+        @variant.add_price(v.to_i,
+         @default_weights[k.to_i][:weight],
+          @default_weights[k.to_i][:unit])
+           @variant.save
+      end
+     
       if params[:product][:variants_attributes]["0"][:image].present?
         render :crop
       else

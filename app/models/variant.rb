@@ -53,7 +53,12 @@ class Variant < ActiveRecord::Base
   
   def add_price(price, quantity, measurement="ounces")
     measurement.downcase == "pounds" ? in_pounds = true : in_pounds = false
-    prices.create(amount: price, weight: Weight.create(ounces: quantity, in_pounds: in_pounds))
+    w = Weight.create(ounces: quantity, in_pounds: in_pounds)
+    Rails.logger.info(w.errors.inspect) 
+    p = Price.create(amount: price, weight: w)
+    Rails.logger.info(p.errors.inspect) 
+    prices << p
+     Rails.logger.info(self) 
   end
 
   def update_price(price_id, new_price, new_quantity, measurement="ounces")

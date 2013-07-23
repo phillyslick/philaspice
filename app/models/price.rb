@@ -4,7 +4,7 @@ class Price < ActiveRecord::Base
   has_many :line_items
   attr_accessible :amount, :weight_id, :weight_attributes, :weight
   
-  validates_presence_of :amount, :weight_id
+  validates_presence_of :amount
   accepts_nested_attributes_for :weight
   
   def self.by_weight

@@ -7,6 +7,17 @@ class Weight < ActiveRecord::Base
   validates_presence_of :ounces
   accepts_nested_attributes_for :variants, :prices
   
+  #in ounces
+  DEFAULT_WEIGHTS = [
+    { weight: 4, pounds: false, unit: 'Ounces' },
+    { weight: 8, pounds: false, unit: 'Ounces' },
+    { weight: 1, pounds: true, unit: "Pounds" },
+    { weight: 5, pounds: true, unit: "Pounds" },
+    { weight: 10, pounds: true, unit: "Pounds" },
+    { weight: 20, pounds: true, unit: "Pounds" },
+    { weight: 25, pounds: true, unit: "Pounds" }
+  ]
+  
   def pounds
     if in_pounds?
       ounces
