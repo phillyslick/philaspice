@@ -16,14 +16,17 @@
 		<%= fields_for :pricesa do |p| %>
 		<% @variant.weights.each_with_index do |w, index| %>
 		<div class="priceWeight">
-			<%= "#{w.ounces} #{w.unit}" %>
-		<p></p>
+			<span><%= "#{w.ounces} #{w.unit}" %></span>
 		
-			<%= p.label "Price:" %>
-			<%= p.text_field nil, class: "required_price", name: "[pricesa][#{index}]" %>
+		<div class="input-prepend">
+		      <span class="add-on">$</span>
+		     				<%= p.text_field nil, class: "required_price", name: "[pricesa][#{index}]" %>
+		    </div>
+
 			
 		</div>
 		<% end %>
 
 		<% end %>
 </fieldset>
+<br><br>

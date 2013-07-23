@@ -15,7 +15,12 @@
 						<%= select_tag :measurement, "<option value='ounces'>Ounces</option><option value='pounds'>Pounds</option>".html_safe %>
 			
 				<%= label_tag :price, "Price:" %>
-				<%= text_field_tag :price %>
+				<div class="input-prepend">
+				      <span class="add-on">$</span>
+				     			<%= text_field_tag :price %>
+				    </div>
+				
+				
 			</div>
 
 

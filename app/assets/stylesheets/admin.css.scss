@@ -169,6 +169,18 @@ ul{
 	form{
 		text-align:left;
 	}
+	.priceWeight{
+		input[type="text"]{
+			width:50px;
+		}
+		span{
+			width:100px;
+			display:inline-block;
+		}
+		span.add-on{
+			width:30px;
+		}
+	}
 }
 
 form.update_state{

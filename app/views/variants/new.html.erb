@@ -36,14 +36,17 @@
 				<%= image_tag f.object.image.url(:thumb) %>
 			<% end %>
 
+<h3>Prices</h3>
+
 			<%= fields_for :pricesa do |p| %>
 			<% @variant.weights.each_with_index do |w, index| %>
 			<div class="priceWeight">
-				<%= "#{w.ounces} #{w.unit}" %>
-			<p></p>
-		
-				<%= p.label "Price:" %>
-				<%= p.text_field nil, class: "required_price", name: "[pricesa][#{index}]" %>
+				<span><%= "#{w.ounces} #{w.unit}: " %></span>
+				<div class="input-prepend">
+				      <span class="add-on">$</span>
+				     				<%= p.text_field nil, class: "required_price", name: "[pricesa][#{index}]" %>
+				    </div>
+
 			
 			</div>
 			<% end %>
@@ -51,7 +54,7 @@
 			<% end %>
 			
 
-	
+			<br><br>
 		<%= f.submit "Create" %>
 	<% end %>
 
