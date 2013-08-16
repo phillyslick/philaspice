@@ -9,12 +9,12 @@ class Weight < ActiveRecord::Base
   
   #in ounces
   DEFAULT_WEIGHTS = [
+    { weight: 2, pounds: false, unit: 'Ounces' },
     { weight: 4, pounds: false, unit: 'Ounces' },
     { weight: 8, pounds: false, unit: 'Ounces' },
     { weight: 1, pounds: true, unit: "Pounds" },
     { weight: 5, pounds: true, unit: "Pounds" },
     { weight: 10, pounds: true, unit: "Pounds" },
-    { weight: 20, pounds: true, unit: "Pounds" },
     { weight: 25, pounds: true, unit: "Pounds" }
   ]
   
