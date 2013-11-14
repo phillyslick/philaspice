@@ -95,6 +95,12 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
   
+  def hard_destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to products_path
+  end
+  
   def revive
     @product = Product.find(params[:id])
     @product.deleted_at = nil

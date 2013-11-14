@@ -31,6 +31,7 @@
 					<div class="btn-group">
 					<%= "#{link_to( 'Details', product_path(product), class: "rightPane btn btn-mini")}".html_safe  %>
 					<%= product.active? ? (link_to 'Deactivate', product, method: :delete, class: "btn btn-mini") : (link_to 'Activate', revive_product_path(product), class: 'btn btn-mini') %>
+					<%= link_to "Delete", hard_destroy_product_path(product), method: :post, confirm: "This will completely delete the product AND all of it's variants! ONLY delete if you've made a mistake, not if you want to unstock or deactivate an item.", class: "btn btn-danger btn-mini" %>
 				</div>	
 				</span>				
 			</li>

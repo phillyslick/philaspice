@@ -45,6 +45,7 @@ Philaspice::Application.routes.draw do
       get :revive
       get :stock
       get :unstock
+      post :hard_destroy
     end
     
     resources :variants do
