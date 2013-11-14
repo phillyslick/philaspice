@@ -1,6 +1,5 @@
 require "bundler/capistrano"
 
-
 server "198.211.100.11:21521", :web, :app, :db, primary: true
 
 set :application, "philaspice"
