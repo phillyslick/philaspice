@@ -84,6 +84,19 @@ class VariantsController < ApplicationController
     redirect_to @variant.product
   end
   
+  def hard_destroy
+    @product = Product.find(params[:product_id])
+    @variant = @product.variants.find(params[:id])
+    if @product.variants.count > 1
+      @variant.destroy
+      redirect_to @product
+    else
+      flash[:error] = "#{@variant.name} is the last variant for #{@product.name}, just delete the product instead."
+     redirect_to products_path
+   end
+      
+  end
+  
   def revive
     @variant = Variant.find(params[:id])
     @variant.deleted_at = nil

@@ -59,6 +59,7 @@ Philaspice::Application.routes.draw do
         put :master
         get :stock
         get :unstock
+        post :hard_destroy
       end
     end
     
