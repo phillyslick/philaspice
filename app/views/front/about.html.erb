@@ -3,11 +3,12 @@
 <hr>
 <%= content_tag :h2, @about.title, class: "main" %>
 <span id='about'>
-<%= image_tag @about.image.url(:large), class: "aboutPic" %>
-<div id="aboutContent">
+	<div id="aboutContent">
 
-	<%= content_tag :div, @about.content %>
-</div>
+		<%= content_tag :div, simple_format(@about.content) %>
+	</div>
+<%= image_tag @about.image.url(:large), class: "aboutPic" %>
+
 
 <%= render :partial => 'the_cart' %>
 </span>
