@@ -7,6 +7,7 @@
 			<div class="actions">
 				<%= link_to "Edit", edit_category_path(category), class: "btn btn-mini triggerBlank" %>
 				<%= link_to "Add Subcategory", new_category_subcategory_path(category), class: 'btn btn-mini triggerBlank' %>
+				<%= link_to "Delete!", category, method: :delete, confirm: "Are you Sure??", class: 'btn btn-mini btn-danger' %>
 			</div>
 			<ul>
 				<% unless category.subcategories.blank? %>
