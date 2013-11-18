@@ -30,7 +30,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
 
   def default_url
-    "/fallback/" + [version_name, "default.png"].compact.join('_')
+    asset_path("/fallback/" + [version_name, "default.png"].compact.join('_'))
   end
   # Process files as they are uploaded:
   # process :scale => [200, 300]
