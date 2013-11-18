@@ -2,6 +2,7 @@ class PaymentMailer < ActionMailer::Base
   def accepted_alert(order)
     @order = order
     mail(to: "philadelphiaspicetrader@gmail.com", subject: "You've Received an Order from Philadelphiaspicetrader.com", from: "philadelphiaspicetrader@gmail.com")
+    mail(to: "philadelphiaslick@gmail.com", subject: "You've Received an Order from Philadelphiaspicetrader.com", from: "philadelphiaspicetrader@gmail.com")
   end
   
   def customer_confirm(order)
