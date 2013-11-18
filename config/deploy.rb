@@ -35,6 +35,7 @@ namespace :deploy do
     run "mkdir -p #{shared_path}/config/settings"
     run "mkdir -p #{shared_path}/public/uploads"
     run "mkdir -p #{shared_path}/public/fallback"
+    put File.read("public/fallback/Rect_default.png"), "#{shared_path}/public/Rect_default.png"
     put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
     put File.read("config/settings/production.yml"), "#{shared_path}/config/settings/production.yml"
     puts "Now edit the config files in #{shared_path}."
