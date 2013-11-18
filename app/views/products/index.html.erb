@@ -20,7 +20,7 @@
 	
 		<%= link_to product_path(product) do %>
 			<li id="product_<%= product.id %>" class="<%= cycle("odd", "even") -%>">
-				<%= image_tag product.hero_variant.image.url(:rect) %>
+				<%= image_tag product.hero_variant.image.url(:rect) if product.hero_variant %>
 				<span class="productDeets">
 					<p>
 					<%= "Name: #{product.name} | Price Range: #{product.display_price_range}" %>

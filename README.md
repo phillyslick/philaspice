@@ -1,23 +1,16 @@
 signin title
 consider not using that cdn for whatever its pulling js from...
-
+metadata
 
 
 Should Search take you to the page?
-STILL NEED TO DECIDE WHICH UPS SERVICE GOING TO USE... SET ON EXPENSIVE ON RIGHT NOW
-webmaster tools and search and shutff
-footer stuff
 
 
-
-He's probably more happy on gmail?  Already set up essentially, I can create whatever accounts:
-also -
-names of email accounts to create
 
 
 REMAINING:
 email accounts - set up mailer to and from.
-deletion
-
-- default weights. 
-list weights for a price for each
+make it so unstocked spices appear on front
+STILL NEED TO DECIDE WHICH UPS SERVICE GOING TO USE... SET ON EXPENSIVE ON RIGHT NOW - change to cheapest i guess...
+webmaster tools and search and shutff
+footer stuff
