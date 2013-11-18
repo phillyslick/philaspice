@@ -29,6 +29,7 @@
 					<ul class="subcategory <%= 'active' if index == 0 %>">
 						<% if params[:query] %>
 						<% subcat.products.where("name @@ :q", q: params[:query]).active.each do |product| %>
+							<% unless product.lowest_price.blank? %>
 						<li>
 
 							<div class="productLeft">
@@ -39,11 +40,13 @@
 									<%= f.submit "Add to&#10;Cart".html_safe %>
 							<% end %>
 							</div>
-
 						</li>
+						<% end %>
+						
 					<% end %>
 						<% else %>
 							<% subcat.products.active.each do |product| %>
+							<% unless product.lowest_price.blank? %>
 							<li>
 
 								<div class="productLeft">
@@ -57,6 +60,7 @@
 
 
 							</li>
+							<% end %>
 						<% end %>
 						<% end %>
 
