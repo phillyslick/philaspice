@@ -65,9 +65,3 @@ Philaspice::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 end
-Philaspice::Application.config.middleware.use ExceptionNotification::Rack,
-  :email => {
-    :email_prefix => "[None] ",
-    :sender_address => %{"notifier" <admin@philadelphiaspicetrader.com>},
-    :exception_recipients => %w{philadelphiaslick@gmail.com}
-  }
