@@ -37,3 +37,9 @@ Philaspice::Application.configure do
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
+Philaspice::Application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[None] ",
+    :sender_address => %{"notifier" <admin@philadelphiaspicetrader.com>},
+    :exception_recipients => %w{philadelphiaslick@gmail.com}
+  }

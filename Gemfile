@@ -21,6 +21,7 @@ gem 'client_side_validations'
 gem "active_shipping"
 gem "rails_config"
 gem 'active_link_to'
+gem 'exception_notification'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
