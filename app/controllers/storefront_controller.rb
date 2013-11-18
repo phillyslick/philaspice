@@ -144,7 +144,7 @@ class StorefrontController < ApplicationController
     ups_rates = ups_rates(origin, destination, packages)
     usps_rate = usps_rate(cart.total_weight_in_ounces, packages)
     rates = {
-      ups: ups_rates.last.last/100.to_f,
+      ups: ups_rates.first.last/100.to_f,
       usps: usps_rate
     }
     rates

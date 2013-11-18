@@ -53,7 +53,7 @@
 		<%= label_tag "selected_rate_usps", "USPS: $#{@rates[:usps]}" %>
 	<br>
 		<%= radio_button_tag 'selected_rate', 'ups', false, "data-cost" => @rates[:ups] %>
-		<%= label_tag "selected_rate_ups", "UPS Overnight: $#{@rates[:ups]}" %>
+		<%= label_tag "selected_rate_ups", "UPS Ground: $#{@rates[:ups]}" %>
 	<br>
 		<%= radio_button_tag 'selected_rate', 'pickup', false, "data-cost" => 0 %>
 		<%= label_tag "selected_rate_ups", "Arrange Pickup: $0" %>
