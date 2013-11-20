@@ -2,7 +2,7 @@
 <%= form_for @option, class: "form" do |f| %>
 <fieldset>
 	<h3>Select a Featured Product To Display: </h3>
-	<%= f.collection_select :product_id, Product.active.is_stocked, :id, :name %><br>
+	<%= f.collection_select :product_id, Product.active, :id, :name %><br>
 	<%= image_tag @option.product.hero_variant.image.url(:rect) if @option.product %>
 	<br/><br>
 	<h2>Catalogue Feature</h2>
