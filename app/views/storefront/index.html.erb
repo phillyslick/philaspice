@@ -25,8 +25,14 @@
 
 <div id="mainList">
 	<ul id="subcategories">
+		
 		<% @category.subcategories.each_with_index do |subcat, index| %>
+		<% if @category.products.count < 1 || @category.products.active.count < 1 %>
+
+		<h3>Coming Soon!</h3>
+		<% end %>
 		<% unless subcat.products.active.blank? %>
+
 			<li class="subcategories">
 				<%= content_tag :h4, subcat.name, class: "opener #{'active' if index == 0 }" %>
 					<ul class="subcategory <%= 'active' if index == 0 %>">
@@ -69,8 +75,8 @@
 
 					</ul>
 			</li>
-			<% else %>
-			<p>Coming Soon!</p>
+
+		
 			<% end %>
 		<% end %>
 	<ul>
