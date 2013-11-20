@@ -27,7 +27,7 @@
 	<ul id="subcategories">
 		
 		<% @category.subcategories.each_with_index do |subcat, index| %>
-		<% if @category.products.count < 1 || @category.products.active.count < 1 %>
+		<% if @category.products.count < 1 || @category.products.active.count < 1 || @category.products.blank? %>
 
 		<h3>Coming Soon!</h3>
 		<% end %>
