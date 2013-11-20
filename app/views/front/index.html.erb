@@ -36,7 +36,7 @@
 	</div>
 	<div id="right">
 		<h3><%= link_to @option.cat_heading, store_path %></h3>
-		<p><%= @option.cat_info %></p>
+		<p><%= simple_format(@option.cat_info) %></p>
 	</div>
 	</div>
 </div>
