@@ -12,6 +12,9 @@
 </h2>
 
 <%= form_tag store_path, method: :get, id: "search", class: "form-inline" do %>
+
+<p>Search for spices: we have a large catalogue.</p>
+<br>
   <p>
     <%= text_field_tag :query, params[:query], data: {provide: "typeahead", source: "#{@category.products.active.collect {|product| product.name }}"}, autocomplete: "off" %>
     <%= submit_tag "Search", class: "btn btn-primary btn-small", name: nil %><br>
@@ -66,6 +69,8 @@
 
 					</ul>
 			</li>
+			<% else %>
+			<p>Coming Soon!</p>
 			<% end %>
 		<% end %>
 	<ul>
