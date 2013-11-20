@@ -13,7 +13,7 @@ class Price < ActiveRecord::Base
   end
   
   def weight_and_price
-    "$#{weight.display} for #{amount}"
+    "#{weight.display} for $#{amount}"
   end
   
   def pretty
